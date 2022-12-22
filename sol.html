@@ -8,36 +8,67 @@
 	<header>
 		<h1>Food & Packaging Co.</h1>
 	</header>
-	<nav>
-		<ul>
-			<li><a href="#food">Food</a></li>
-			<li><a href="#packaging">Packaging</a></li>
-			<li><a href="#about">About Us</a></li>
-			<li><a href="#contact">Contact</a></li>
-		</ul>
-	</nav>
-	<main>
-		<section id="food">
-			<h2>Food</h2>
-			<p>At Food & Packaging Co., we offer a wide variety of high-quality food products for all your needs. From fresh produce to packaged goods, we have it all. Browse our selection below:</p>
-			<ul>
-				<li>Fruits</li>
-				<li>Vegetables</li>
-				<li>Meats</li>
-				<li>Dairy</li>
-				<li>Bakery</li>
-			</ul>
-		</section>
-		<section id="packaging">
-			<h2>Packaging</h2>
-			<p>In addition to our food offerings, we also provide a range of packaging options to suit your needs. From disposable containers to reusable bags, we have everything you need to safely transport and store your products. Check out our selection below:</p>
-			<ul>
-				<li>Containers</li>
-				<li>Bags</li>
-				<li>Wraps</li>
-				<li>Totes</li>
-			</ul>
-		</section>
+	<!-- HTML -->
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Food</a></li>
+    <li><a href="#">Packaging</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Cart</a></li>
+  </ul>
+</nav>
+<!-- CSS -->
+nav {
+background-color: #f8f8f8;
+border-bottom: 1px solid #e8e8e8;
+}
+
+nav ul {
+list-style: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 0;
+padding: 0;
+}
+
+nav li {
+display: inline-block;
+}
+
+nav a {
+display: block;
+padding: 20px;
+color: #333;
+text-decoration: none;
+}
+
+nav a:hover {
+background-color: #e8e8e8;
+}
+
+nav a.active {
+background-color: #333;
+color: #f8f8f8;
+}
+
+nav li a.cart {
+display: flex;
+align-items: center;
+}
+
+nav li a.cart i {
+margin-right: 10px;
+font-size: 20px;
+}
+
+nav li a.cart span {
+font-size: 18px;
+}
+	
+	
 		<section id="about">
 			<h2>About Us</h2>
 			<p>Food & Packaging Co. is a family-owned business dedicated to providing high-quality food and packaging products at affordable prices. With over 20 years of experience in the industry, we have built a reputation for excellence and customer satisfaction. Contact us today to learn more about what we can offer you.</p>
