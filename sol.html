@@ -1,46 +1,58 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>E-Commerce Company</title>
+	<title>Food & Packaging Co.</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Our E-Commerce Company</h1>
-    <p>We specialize in food and packaging products at affordable prices.</p>
-    <h2>Featured Products:</h2>
-    <div id="featured-products">
-        <!-- ReactJS code will go here to render featured products -->
-    </div>
-    <h2>Food Products:</h2>
-    <div id="food-products">
-        <!-- ReactJS code will go here to render food products -->
-    </div>
-    <h2>Packaging Products:</h2>
-    <div id="packaging-products">
-        <!-- ReactJS code will go here to render packaging products -->
-    </div>
+	<header>
+		<h1>Food & Packaging Co.</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="#food">Food</a></li>
+			<li><a href="#packaging">Packaging</a></li>
+			<li><a href="#about">About Us</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</nav>
+	<main>
+		<section id="food">
+			<h2>Food</h2>
+			<p>At Food & Packaging Co., we offer a wide variety of high-quality food products for all your needs. From fresh produce to packaged goods, we have it all. Browse our selection below:</p>
+			<ul>
+				<li>Fruits</li>
+				<li>Vegetables</li>
+				<li>Meats</li>
+				<li>Dairy</li>
+				<li>Bakery</li>
+			</ul>
+		</section>
+		<section id="packaging">
+			<h2>Packaging</h2>
+			<p>In addition to our food offerings, we also provide a range of packaging options to suit your needs. From disposable containers to reusable bags, we have everything you need to safely transport and store your products. Check out our selection below:</p>
+			<ul>
+				<li>Containers</li>
+				<li>Bags</li>
+				<li>Wraps</li>
+				<li>Totes</li>
+			</ul>
+		</section>
+		<section id="about">
+			<h2>About Us</h2>
+			<p>Food & Packaging Co. is a family-owned business dedicated to providing high-quality food and packaging products at affordable prices. With over 20 years of experience in the industry, we have built a reputation for excellence and customer satisfaction. Contact us today to learn more about what we can offer you.</p>
+		</section>
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Thank you for visiting Food & Packaging Co. If you have any questions or would like to place an order, please don't hesitate to contact us. We look forward to serving you.</p>
+			<p>Phone: 555-555-5555</p>
+			<p>Email: info@foodandpackaging.com</p>
+			<p>Address: 123 Main Street, Anytown USA</p>
+		</section>
+	</main>
+	<footer>
+		<p>Copyright 2020 Food & Packaging Co. All rights reserved.</p>
+	</footer>
 </body>
-</html>
-ReactJS Code:
-
-const FeaturedProducts = (props) => {
-return (
-<div>
-<h3>Featured Product 1</h3>
-<img src="featured-product-1.jpg" alt="Featured Product 1" />
-<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec erat auctor, lacinia massa at, facilisis diam. Nam placerat sem a tortor tempus, at mollis eros rhoncus. Praesent vel velit velit. Pellentesque placerat, purus at dignissim eleifend, ipsum purus condimentum ipsum, id tincidunt enim ante at nunc.</p>
-<button>Add to Cart</button>
-<hr />
-<h3>Featured Product 2</h3>
-<img src="featured-product-2.jpg" alt="Featured Product 2" />
-<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec erat auctor, lacinia massa at, facilisis diam. Nam placerat sem a tortor tempus, at mollis eros rhoncus. Praesent vel velit velit. Pellentesque placerat, purus at dignissim eleifend, ipsum purus condimentum ipsum, id tincidunt enim ante at nunc.</p>
-<button>Add to Cart</button>
-<hr />
-<h3>Featured Product 3</h3>
-<img src="featured-product-3.jpg" alt="Featured Product 3" />
-<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec erat auctor, lacinia massa at, facilisis diam. Nam placerat sem a tortor tempus, at mollis eros rhoncus. Praesent vel velit velit. Pellentesque placerat, purus at dignissim eleifend, ipsum purus condimentum ipsum, id tincidunt enim ante at nunc.</p>
-<button>Add to Cart</button>
-</div>
-);
-}
-
-const FoodProducts = (props) => {
-return (
+    
+    </html>
