@@ -12,15 +12,15 @@
 	
 	
 	<header>
-		<nav>
-			<ul>
-				<li><a href="sol.html">Home</a></li>
-				<li><a href="liste.html">Liste des produits</a></li>
-				<li><a href="devis.html">Demander un devis</a></li>
-				<li><a href="fiche.html">Devenir client</a></li>
-				<li><a href="rdv.html">Prendre Rendez-vous avec un commercial</a></li>
-			</ul>
-		</nav>
+		
+<nav>
+  <a href="/">Home</a>
+  <a href="/liste">Liste des produits</a>
+  <a href="/fiche">Devenir Client</a>
+  <a href="https://wa.me/+212667041734"><img src="/whatsapp-icon.png" alt="WhatsApp icon"></a>
+  <a href="https://instagram.com/your_username"><img src="/instagram-icon.png" alt="Instagram icon"></a>
+</nav>
+
 	</header>
 	
 	
@@ -39,24 +39,140 @@ transition: all 0.3s ease;
 .whatsapp-icon:hover {
 color: #00a655;
 }
-	header nav ul {
-		display: flex;
-		list-style: none;
-	}
-	header nav ul li {
-		margin: 0 10px;
-	}
-	header nav ul li a {
-		text-decoration: none;
-		color: #333;
-		font-size: 18px;
-		transition: all 0.3s ease;
-	}
-	header nav ul li a:hover {
-		color: #00bcd4;
-		
-	}
+	
+Navigation Bar HTML CSS
 
+
+Ismail Helali
+Code source with html and css , nav bar  , that containe Home , liste des produits , Devenir Client , WhatsApp icon and Instagram icon 
+
+Here is an example of a simple navigation bar with a home link, a "liste des produits" link, a "Devenir Client" link, a WhatsApp icon, and an Instagram icon:
+
+HTML:
+
+Copy code
+<nav>
+  <a href="/">Home</a>
+  <a href="/products">Liste des produits</a>
+  <a href="/become-a-client">Devenir Client</a>
+  <a href="https://wa.me/1234567890"><img src="/whatsapp-icon.png" alt="WhatsApp icon"></a>
+  <a href="https://instagram.com/your_username"><img src="/instagram-icon.png" alt="Instagram icon"></a>
+</nav>
+CSS:
+
+Copy code
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: #333;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-right: 1em;
+}
+
+nav img {
+  height: 1.5em;
+  margin-right: 0.5em;
+}
+This code will create a navigation bar with a dark background and white text. The links and icons are centered within the nav element and are evenly spaced apart. The WhatsApp and Instagram icons are included as images and have a margin applied to them to separate them from the text links.
+
+Note that this is just one way to create a navigation bar with these elements and there are many other ways you could style it. You can customize the appearance of the nav bar by adjusting the CSS styles to suit your needs.
+
+
+
+
+Ismail Helali
+Style it
+
+To style the navigation bar, you can add additional CSS rules to the stylesheet. Here are a few examples of ways you could customize the appearance of the nav bar:
+
+Change the background color:
+Copy code
+nav {
+  background-color: #your-color-code;
+}
+Change the text color:
+Copy code
+nav a {
+  color: #your-color-code;
+}
+Add a hover effect to the links:
+Copy code
+nav a:hover {
+  color: #your-color-code;
+}
+Change the font of the links:
+Copy code
+nav a {
+  font-family: your-font-name;
+}
+Add a border to the nav bar:
+Copy code
+nav {
+  border-bottom: 1px solid #your-color-code;
+}
+These are just a few examples of the many ways you can style the navigation bar. You can use any CSS properties and values to customize the appearance of the nav bar to suit your needs.
+
+
+
+
+Ismail Helali
+Code source with html and css , nav bar  , that containe Home , liste des produits , Devenir Client , WhatsApp icon and Instagram icon , must containe à hoover option , must be responsive , with moste fréquente colors 
+
+Here is an example of a responsive navigation bar with a hover effect, a home link, a "liste des produits" link, a "Devenir Client" link, a WhatsApp icon, and an Instagram icon, using some of the most common colors:
+
+HTML:
+
+Copy code
+<nav>
+  <a href="/">Home</a>
+  <a href="/products">Liste des produits</a>
+  <a href="/become-a-client">Devenir Client</a>
+  <a href="https://wa.me/1234567890"><img src="/whatsapp-icon.png" alt="WhatsApp icon"></a>
+  <a href="https://instagram.com/your_username"><img src="/instagram-icon.png" alt="Instagram icon"></a>
+</nav>
+CSS:
+
+Copy code
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: #333;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-right: 1em;
+}
+
+nav a:hover {
+  color: #0066ff;
+}
+
+nav img {
+  height: 1.5em;
+  margin-right: 0.5em;
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav a {
+    margin: 0.5em 0;
+  }
+}
 </style>
 
 
