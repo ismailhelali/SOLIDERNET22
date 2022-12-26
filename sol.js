@@ -9,7 +9,7 @@
 </head>
 	
 <body>
-	<!--nav bar and whatsapp-->
+	
 	
 	<header>
 		<nav>
@@ -55,7 +55,7 @@ color: #00a655;
 	}
 </style>
 
-<!--end of nav bar and whatsapp-->
+>
 	
 		<div class="promo-text">
 		<h1>Vous voulez offrir le meilleur à vos clients? Faites confiance à notre expertise!</h1>
@@ -84,8 +84,7 @@ color: #00a655;
 
 </style>
 	
-	
-	<!--slide show-->
+
 	
 	<div class="slider">
 	<div><img src="https://drive.google.com/file/d/1JOm27UDfwV90L2yaANdM1b13miGeg1ek/view?usp=share_link" alt="image1"></div>
