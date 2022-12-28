@@ -33,8 +33,10 @@ $mail->Subject = $subject;
 $mail->Body = $message;
 $mail->AddAddress($to);
 if(!$mail->Send()) {
+    header('Location: contact.php');
   echo 'Error sending email: ' . $mail->ErrorInfo;
 } else {
+  header('Location: contact.php');
   echo 'Email sent successfully!';
 }
 
