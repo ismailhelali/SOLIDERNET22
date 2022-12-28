@@ -12,18 +12,17 @@
 </head>	<meta name="keywords" content="produits alimentaires, emballage, restaurants, qualité, prix compétitifs">
 
 <body>
-	
-		<div id="contact-form">
+	<div id="contact-form">
 		<form action="#" method="post">
-			<label for="name">Name:</label><br>
+			<label for="name">Nom:</label><br>
 			<input type="text" name="name" id="name" required><br>
 			<label for="email">Email:</label><br>
 			<input type="email" name="email" id="email" required><br>
-			<label for="subject">Subject:</label><br>
+			<label for="subject">Sujet:</label><br>
 			<input type="text" name="subject" id="subject" required><br>
 			<label for="message">Message:</label><br>
 			<textarea name="message" id="message" required></textarea><br>
-			<input type="submit" value="Send Message">
+			<input type="submit" value="Envoyer le message">
 		</form>
 	</div>
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -31,14 +30,14 @@
 		function sendEmail() {
 			Email.send({
 				Host: "smtp.gmail.com",
-				Username: "solidernet.client@gmail.comL",
-				Password: "solidernet@1990",
+				Username: "solidernet.client@gmail.com",
+				Password: "solidernet@1990", // Replace with secure password
 				To: 'solidernet.client@gmail.com',
 				From: document.getElementById('email').value,
 				Subject: document.getElementById('subject').value,
 				Body: document.getElementById('message').value
 			}).then(
-				alert("Email sent successfully")
+				alert("Email envoyé avec succès")
 			);
 		}
 		document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -46,8 +45,6 @@
 			sendEmail();
 		});
 	</script>
-
-
 	
 <style>
 header {
