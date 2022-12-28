@@ -1,16 +1,20 @@
 <?php
-  // Get the form data
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $message = $_POST['message'];
 
-  // Set the recipient email address
-  $to = "helaliismail@email.com";
+if(isset($_POST['submit'])) {
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$message = $_POST['message'];
 
-  // Set the email subject and body
-  $subject = "Message from $name";
-  $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+	$to = "helaliismail@gmail.com";
+	$subject = "Contact Form Submission";
+	$body = "Name: $name\nEmail: $email\nMessage: $message";
+	$headers = "From: $email";
 
-  // Send the email
-  mail($to, $subject, $body);
+	if(mail($to, $subject, $body, $headers)) {
+		echo "Success";
+	} else {
+		echo "Error";
+	}
+}
+
 ?>
