@@ -75,7 +75,8 @@
       </form>
     </div>
     <script>
-      // Add an event listener to the form to handle the submission of the user's name and company
+     
+	       // Add an event listener to the form to handle the submission of the user's name and company
       const nameForm = document.getElementById("name-form");
       nameForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent the form from refreshing the page
@@ -85,33 +86,11 @@
         const phone = nameForm.elements.phone.value;
         // Add a message to the chat interface with the user's name and company
         const messageContainer = document.createElement("div");
-        messageContainer.	
-	
-	   messageContainer.classList.add("message", "user");
+        messageContainer.classList.add("message", "user");
         messageContainer.innerHTML = `<p class="message-text">My name is ${name} and I work for ${company}.</p>`;
         document.querySelector(".chat-container").appendChild(messageContainer);
-        // Add a message from the virtual assistant asking for the user's product needs
-        const assistantMessage = document.createElement("div");
-        assistantMessage.classList.add("message", "assistant");
-        assistantMessage.innerHTML = `<p class="message-text">Thanks for sharing your information, ${name}! What products do you need?</p>`;
-        document.querySelector(".chat-container").appendChild(assistantMessage);
-        // Add a form for the user to input their product needs
-        const needsForm = document.createElement("form");
-        needsForm.id = "needs-form";
-        needsForm.innerHTML = `
-          <div class="input-container">
-            <textarea name="needs" placeholder="Product needs" class="input-field"></textarea>
-            <button type="submit" class="input-button">Send</button>
-          </div>
-        `;
-        document.querySelector(".chat-container").appendChild(needsForm);
-        // Add an event listener to the form to handle the submission of the user's product needs
-        const needsForm = document.getElementById("needs-form");
-        needsForm.addEventListener("submit", (event) => {
-          event.preventDefault(); // Prevent the form from refreshing the page
-          // Get the user's product needs from the form input field
-          const needs = needsForm.elements.needs.value;
-          // Add a message to the chat interface with the user's product needs
+	      
+	// Add a message to the chat interface with the user's product needs
           const messageContainer = document.createElement("div");
           messageContainer.classList.add("message", "user");
           messageContainer.innerHTML = `<p class="message-text">${needs}</p>`;
@@ -126,12 +105,15 @@
           sendButton.innerText = "Send to WhatsApp";
           sendButton.addEventListener("click", () => {
             // Use the WhatsApp API to open a chat with the specified number and send the message
-            window.open(`https://wa.me/+21262726274?text=${encodeURIComponent(needs)}`, "_blank");
+            window.open(`https://wa.me/+21262726274?text=${encodeURIComponent(`${name} from ${company} (${phone}): ${needs}`)}`, "_blank");
           });
           document.querySelector(".input-container").appendChild(sendButton);
         });
       });
-    </script>
+    </script>      
+	
+	      
+	    
   </body>
 
 </html>
