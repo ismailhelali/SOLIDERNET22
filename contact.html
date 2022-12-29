@@ -116,8 +116,41 @@
 	
 
   function sendTableToWhatsApp() {
-    // Send the table data to a WhatsApp number using the WhatsApp API
+  // Get the table data as a string
+  var tableData = getTableDataAsString();
+
+  // Send the table data to a WhatsApp number using the WhatsApp API
+  var url = 'https://api.whatsapp.com/send?phone=<+212677146992>&text=' + encodeURIComponent(tableData);
+  window.open(url, '_blank');
+}
+
+function getTableDataAsString() {
+  // Get the table element
+  var table = document.querySelector('table');
+
+  // Get the rows of the table
+  var rows = table.querySelectorAll('tr');
+
+  // Initialize an empty string to store the table data
+  var tableData = '';
+
+  // Iterate through each row of the table
+  for (var i = 0; i < rows.length; i++) {
+    // Get the cells of the row
+    var cells = rows[i].querySelectorAll('td');
+
+    // Iterate through each cell of the row
+    for (var j = 0; j < cells.length; j++) {
+      // Append the cell data to the table data string, separated by a tab character
+      tableData += cells[j].textContent + '\t';
+    }
+
+    // Append a newline character to the table data string after each row
+    tableData += '\n';
   }
+
+  return tableData;
+}
 </script>
 	  
 </html>
