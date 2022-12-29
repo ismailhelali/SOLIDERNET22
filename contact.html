@@ -13,49 +13,25 @@
 
 <body>
 	
-	<div id="contact-form">
-	<form action="#" method="post">
-		<label for="name">Name:</label><br>
-		<input type="text" name="name" id="name" required><br>
-		<label for="email">Email:</label><br>
-		<input type="email" name="email" id="email" required><br>
-		<label for="subject">Subject:</label><br>
-		<input type="text" name="subject" id="subject" required><br>
-		<label for="message">Message:</label><br>
-		<textarea name="message" id="message" required></textarea><br>
-		<input type="submit" value="Send Message">
-	</form>
-</div>
-<script src="https://cdn.sendgrid.com/sendgrid-web-js/latest/sendgrid-web.min.js"></script>
+	<form>
+  <label for="to">To:</label><br>
+  <input type="text" id="to" name="to"><br>
+  <label for="subject">Subject:</label><br>
+  <input type="text" id="subject" name="subject"><br><br>
+  <label for="body">Message:</label><br>
+  <textarea id="body" name="body"></textarea><br><br>
+  <button type="button" onclick="sendEmail()">Send</button>
+</form>
+
 <script>
-	function sendEmail() {
-		var to = 'solidernet.client@gmail.com';
-		var from = document.getElementById('email').value;
-		var subject = document.getElementById('subject').value;
-		var body = document.getElementById('message').value;
-
-		var data = {
-			to: to,
-			from: from,
-			subject: subject,
-			body: body,
-			api_key: ''
-		};
-
-		sendgrid.send(data, function(response) {
-			if (response.statusCode === 202) {
-				alert('Email sent successfully');
-			} else {
-				console.log(response);
-				alert('Error sending email');
-			}
-		});
-	}
-	document.getElementById('contact-form').addEventListener('submit', function(e) {
-		e.preventDefault();
-		sendEmail();
-	});
+  function sendEmail() {
+    const to = document.getElementById("to").value;
+    const subject = document.getElementById("subject").value;
+    const body = document.getElementById("body").value;
+    window.open(`mailto:${to}?subject=${subject}&body=${body}`);
+  }
 </script>
+	
 	
 <style>
 header {
