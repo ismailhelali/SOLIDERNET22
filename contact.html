@@ -2,173 +2,111 @@
 <html>
 <head>
   <title>Virtual Assistant Chat</title>
-  <meta name="description" content="SOLIDERNET est une entreprise spécialisée dans la distribution de produits alimentaires et d'emballage pour restaurants. Nous proposons une large gamme de produits de qualité supérieure à des prix compétitifs.">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
-	
-	
-	
-	
-	
-	  <style>
+  <style>
     /* Add some styling for the chat interface */
-		  
-		  body {
-  font-family: sans-serif;
-}
-    .chat-container {
+    .chat {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      width: 50%;
+      width: 500px;
+      height: 500px;
+      border: 1px solid #ccc;
       margin: 0 auto;
+      padding: 20px;
     }
-    .message {
-      border: 1px solid lightgray;
-      border-radius: 5px;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    .message.user {
-      align-self: flex-start;
-    }
-    .message.assistant {
-      align-self: flex-end;
-      background-color: lightblue;
-    }
-    .message-text {
-      margin: 0;
-    }
-    .input-container {
+    .chat-message {
       display: flex;
-      align-items: center;
-      width: 100%;
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
-    .input-field {
-      border: 1px solid lightgray;
-      border-radius: 5px;
+    .chat-message img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .chat-message p {
+      font-size: 14px;
+      margin: 0 0 0 10px;
+      padding: 5px 10px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      max-width: 75%;
+    }
+    .chat-form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .chat-form input[type="text"],
+    .chat-form input[type="email"],
+    .chat-form input[type="tel"] {
+      font-size: 14px;
       padding: 10px;
-      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
-    .input-button {
+    .chat-form input[type="submit"] {
+      font-size: 14px;
+      padding: 10px 20px;
       border: none;
-      background-color: lightblue;
-      color: white;
       border-radius: 5px;
-      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <!-- Create a container for the chat interface -->
-  <div class="chat-container">
-    <!-- Add a greeting message from the virtual assistant -->
-    <div class="message assistant">
-      <p class="message-text">Hello! I'm a virtual assistant here to help you with your product needs. What's your name and the name of your company?</p>
+  <div class="chat">
+    <!-- Display a greeting message from the virtual assistant -->
+    <div class="chat-message">
+      <img src="https://via.placeholder.com/50x50" alt="Virtual Assistant profile picture">
+      <p>Hello! How can I help you today?</p>
     </div>
-    <!-- Add a form for the user to input their name and company -->
-    <form id="name-form">
-      <div class="input-container">
-        <input type="text" name="name" placeholder="Name" class="input-field">
-        <input type="text" name="company" placeholder="Company" class="input-field">
-        <input type="tel" name="phone" placeholder="Phone" class="input-field">
-        <button type="submit" class="input-button">Submit</button>
-      </div>
+    
+    <!-- Form for the user to input their name, company name, and phone number -->
+    <form class="chat-form">
+      <input type="text" placeholder="Name" required>
+      <input type="text" placeholder="Company" required>
+      <input type="tel" placeholder="Phone number" required>
     </form>
-  </div>
-	
-<form id="product-form">
-  <div class="input-container">
-    <input type="text" name="products" placeholder="Products" class="input-field">
-    <button type="submit" class="input-button">Submit</button>
-  </div>
-</form>
-
-	
-	<!-- Add a table element to the HTML -->
-<table id="product-table">
+    
+    <!-- Form for the user to input a list of products -->
+    <form class="chat-form">
+      <input type="text" placeholder="Product 1" required>
+      <input type="text" placeholder="Product 2" required>
+      <input type="text" placeholder="Product 3" required>
+      <!-- Add a button to add more product fields to the form -->
+      <button type="button" onclick="addProductField()">Add product</button>
+    </form>
+	  
+	  <!-- Table element to display product information -->
+<table>
   <thead>
     <tr>
-      <th>Product Name</th>
+      <th>Product</th>
+      <th>Quantity</th>
       <th>Price</th>
-      <th>Description</th>
     </tr>
   </thead>
-  <tbody>
-    <!-- This tbody element will be used to add rows to the table dynamically using JavaScript -->
+  <tbody id="product-table">
+    <!-- Add a row to the table for each product -->
+    <!-- You can use JavaScript to populate the table with the product information -->
   </tbody>
 </table>
-	
-	<!-- Add a button element to the HTML -->
-<button id="send-button">Send</button>
-	
-	<script>
-	// Add an event listener to the form to handle the submission of the user's product needs
-const productForm = document.getElementById("product-form");
-productForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent the form from refreshing the page
-  // Get the user's product needs from the form input field
-  const products = productForm.elements.products.value;
-  // Remove the form from the page
-  productForm.remove();
-  //
-	</script>
-	
-	
-	<script>
-		// Add an event listener to the send button to handle the submission of the table
-const sendButton = document.getElementById("send-button");
-sendButton.addEventListener("click", () => {
-  // Get the product table element
-  const productTable = document.getElementById("product-table");
-  // Get the HTML of the table
-  const tableHTML = productTable.outerHTML;
-  // Send the table HTML to the server or email it to the desired recipient
-  // ...
-});
-	</script>
-  <script>
-    // Add an event listener to the form to handle the submission of the user's product needs
-    const productForm = document.getElementById("product-form");
-    productForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent the form from refreshing the page
-      // Get the user's product needs from the form input field
-      const products = productForm.elements.products.value;
-      // Remove the form from the page
-      productForm.remove();
-      // Add a message to the chat interface thanking the user for their submission and providing a link to send the product list via WhatsApp
-      const assistantMessage = document.createElement("div");
-      assistantMessage.classList.add("message", "assistant");
-      assistantMessage.innerHTML = `<p class="message-text">Thank you for your submission, ${name} from ${company}! Your phone number is ${phone}. To send us your product list, please click <a href="https://wa.me/+212662726274?text=${encodeURIComponent(products)}">here</a> to send it via WhatsApp. Have a great day!</p>`;
-      document.querySelector(".chat-container").appendChild(assistantMessage);
-    });
-  </script>
-	
-	
-	
-	<script>
-	
-	// Add an event listener to the form to handle the submission of the user's product needs
-const productForm = document.getElementById("product-form");
-productForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent the form from refreshing the page
-  // Get the user's product needs from the form input field
-  const products = productForm.elements.products.value;
-  // Remove the form from the page
-  productForm.remove();
-  // Add a message to the chat interface thanking the user for their submission and providing a link to send the product list via WhatsApp
-  const assistantMessage = `Thank you for your submission. You can send your product list to our WhatsApp number at +212662726274 by clicking <a href="https://api.whatsapp.com/send?phone=+212662726274&text=${products}">here</a>.`;
-  const messageElement = document.createElement("div");
-  messageElement.classList.add("message", "assistant");
-  messageElement.innerHTML = `<p class="message-text">${assistantMessage}</p>`;
-  chatContainer.appendChild(messageElement);
-	
-});
+
+<!-- Button to send the table to a WhatsApp number -->
+<button type="button" onclick="sendTableToWhatsApp()">Send to WhatsApp</button>
+
+<!-- Add a script tag to include your JavaScript code -->
+<script>
+  function addProductField() {
+    // Add a new product field to the form
+  }
+
+  function sendTableToWhatsApp() {
+    // Send the table data to a WhatsApp number using the WhatsApp API
+  }
 </script>
-</body>
+	  
 </html>
