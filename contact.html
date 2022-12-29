@@ -12,141 +12,77 @@
 </head>	<meta name="keywords" content="produits alimentaires, emballage, restaurants, qualité, prix compétitifs">
 
 <body>
-	
-	<form>
-  <label for="to">To:</label><br>
-  <input type="text" id="to" name="to"><br>
-  <label for="subject">Subject:</label><br>
-  <input type="text" id="subject" name="subject"><br><br>
-  <label for="body">Message:</label><br>
-  <textarea id="body" name="body"></textarea><br><br>
-  <button type="button" onclick="sendEmail()">Send</button>
-</form>
 
-<script>
-  function sendEmail() {
-    const to = document.getElementById("to").value;
-    const subject = document.getElementById("subject").value;
-    const body = document.getElementById("body").value;
-    window.open(`mailto:${to}?subject=${subject}&body=${body}`);
-  }
-</script>
-	
-	
-<style>
-header {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header nav {
-  display: flex;
-}
-
-header a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-header a:hover {
-  color: #ccc;
-}
-
-header .fa-instagram,
-header .fa-whatsapp {
-  font-size: 18px;
-  margin-left: 10px;
-}
-
-</style>
-	</header>
-	
-	
-<style>
-	
-	.whatsapp-icon {
-display: inline-block;
-color: #25d366;
-font-size: 36px;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-.whatsapp-icon:hover {
-color: #00a655;
-}
-
-</style>
-	
-
-		
-
-	
-	<a href="#top" class="back-to-top">Back to Top</a>
-
-<footer>
-  <div class="footer-container">
-    <nav>
-      <a href="/">Home</a>
-      <a href="fiche">Devenir Client</a>
-      <a href="https://www.instagram.com/solidernet/?hl=fr"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a>Copyright &copy; 2022 SOLIDERNET SARL</a>
-
-    </nav>
+<form id="contact-form" method="post" action="/send-email">
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
   </div>
-</footer>
-
-<style>
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-footer nav {
-  display: flex;
-}
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Send</button>
+</form>
 	
-
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-footer a:hover {
-  color: #ccc;
-}
-
-footer .fa-instagram,
-footer .fa-whatsapp {
-  font-size: 18px;
-  margin-left: 10px;
-}
-
-</style>
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script>
 	
-</body>
+const express = require('express');
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+
+const app = express();
+
+// Parse request bodies as JSON
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Set up the nodemailer transport
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'solidernet.client@gmail.com',
+    pass: 'solidernet@1990',
+  },
+});
+
+// Set up the POST route for the form submission
+app.post('/send-email', (req, res) => {
+  // Extract the form data from the request body
+  const { name, email, message } = req.body;
+
+  // Set the email options
+  const mailOptions = {
+    from: `${name} <${email}>`,
+    to: 'solidernet.client@gmail.com',
+    subject: 'New Contact Form Submission',
+    text: message,
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.json({ success: false });
+    } else {
+      console.log(`Email sent: ${info.response}`
+		  );
+res.json({ success: true });
+}
+});
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+console.log(Server listening on port ${port});
+});
+	</script>
+	
+	</body>
 </html>
