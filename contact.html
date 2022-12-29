@@ -1,35 +1,137 @@
 <!DOCTYPE html>
 <html>
-<head>	<title>Nos Contacter</title>
-		<meta name="description" content="SOLIDERNET est une entreprise spécialisée dans la distribution de produits alimentaires et d'emballage pour restaurants. Nous proposons une large gamme de produits de qualité supérieure à des prix compétitifs.">
+<head>	<title>Virtual Assistant Chat</title>
+	<meta name="description" content="SOLIDERNET est une entreprise spécialisée dans la distribution de produits alimentaires et d'emballage pour restaurants. Nous proposons une large gamme de produits de qualité supérieure à des prix compétitifs.">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
-
-</head>	<meta name="keywords" content="produits alimentaires, emballage, restaurants, qualité, prix compétitifs">
+ <style>
+      /* Add some styling for the chat interface */
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        margin: 0 auto;
+      }
+      .message {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .message.user {
+        align-self: flex-start;
+      }
+      .message.assistant {
+        align-self: flex-end;
+        background-color: lightblue;
+      }
+      .message-text {
+        margin: 0;
+      }
+      .input-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .input-field {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        padding: 10px;
+        width: 80%;
+      }
+      .input-button {
+        border: none;
+        background-color: lightblue;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+        </head>	
+	<meta name="keywords" content="SOLIDERNET, SOLIDERNET TEMARA, produits alimentaires, emballage, restaurants, qualité, prix compétitifs">
 
 <body>
 
-<form id="contact-form" method="post" action="/send-email">
-<div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" required>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" required>
-  </div>
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Send</button>
-</form>
+ <!-- Create a container for the chat interface -->
+    <div class="chat-container">
+      <!-- Add a greeting message from the virtual assistant -->
+      <div class="message assistant">
+        <p class="message-text">Hello! I'm a virtual assistant here to help you with your product needs. What's your name and the name of your company?</p>
+      </div>
+      <!-- Add a form for the user to input their name and company -->
+      <form id="name-form">
+        <div class="input-container">
+          <input type="text" name="name" placeholder="Name" class="input-field">
+          <input type="text" name="company" placeholder="Company" class="input-field">
+          <input type="tel" name="phone" placeholder="Phone" class="input-field">
+          <button type="submit" class="input-button">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Add an event listener to the form to handle the submission of the user's name and company
+      const nameForm = document.getElementById("name-form");
+      nameForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the form from refreshing the page
+        // Get the user's name and company from the form input fields
+        const name = nameForm.elements.name.value;
+        const company = nameForm.elements.company.value;
+        const phone = nameForm.elements.phone.value;
+        // Add a message to the chat interface with the user's name and company
+        const messageContainer = document.createElement("div");
+        messageContainer.	
 	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	   messageContainer.classList.add("message", "user");
+        messageContainer.innerHTML = `<p class="message-text">My name is ${name} and I work for ${company}.</p>`;
+        document.querySelector(".chat-container").appendChild(messageContainer);
+        // Add a message from the virtual assistant asking for the user's product needs
+        const assistantMessage = document.createElement("div");
+        assistantMessage.classList.add("message", "assistant");
+        assistantMessage.innerHTML = `<p class="message-text">Thanks for sharing your information, ${name}! What products do you need?</p>`;
+        document.querySelector(".chat-container").appendChild(assistantMessage);
+        // Add a form for the user to input their product needs
+        const needsForm = document.createElement("form");
+        needsForm.id = "needs-form";
+        needsForm.innerHTML = `
+          <div class="input-container">
+            <textarea name="needs" placeholder="Product needs" class="input-field"></textarea>
+            <button type="submit" class="input-button">Send</button>
+          </div>
+        `;
+        document.querySelector(".chat-container").appendChild(needsForm);
+        // Add an event listener to the form to handle the submission of the user's product needs
+        const needsForm = document.getElementById("needs-form");
+        needsForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the form from refreshing the page
+          // Get the user's product needs from the form input field
+          const needs = needsForm.elements.needs.value;
+          // Add a message to the chat interface with the user's product needs
+          const messageContainer = document.createElement("div");
+          messageContainer.classList.add("message", "user");
+          messageContainer.innerHTML = `<p class="message-text">${needs}</p>`;
+          document.querySelector(".chat-container").appendChild(messageContainer);
+          // Add a message from the virtual assistant confirming the receipt of the user's product needs
+          const assistantMessage = document.createElement("div");
+          assistantMessage.classList.add("message", "assistant");
+          assistantMessage.innerHTML = `<p class="message-text">Thanks for sharing your product needs, ${name}! I'll make sure to send them to our team.</p>`;
+          document.querySelector(".chat-container").appendChild(assistantMessage);
+          // Add a button to send the product needs to a WhatsApp number
+          const sendButton = document.createElement("button");
+          sendButton.innerText = "Send to WhatsApp";
+          sendButton.addEventListener("click", () => {
+            // Use the WhatsApp API to open a chat with the specified number and send the message
+            window.open(`https://wa.me/+21262726274?text=${encodeURIComponent(needs)}`, "_blank");
+          });
+          document.querySelector(".input-container").appendChild(sendButton);
+        });
+      });
+    </script>
+  </body>
 
-	</body>
 </html>
