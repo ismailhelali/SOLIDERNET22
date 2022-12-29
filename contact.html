@@ -100,7 +100,7 @@
 
 <!-- Add a script tag to include your JavaScript code -->
 <script>
- function addProductField() {
+function addProductField() {
   // Get the parent element of the product fields (the form element)
   var form = document.querySelector('.chat-form');
 
@@ -112,7 +112,40 @@
 
   // Add the input element to the form
   form.appendChild(input);
+
+  // Get the table element
+  var table = document.querySelector('table');
+
+  // Get the tbody element of the table
+  var tbody = table.querySelector('tbody');
+
+  // Create a new row element for the table
+  var row = document.createElement('tr');
+
+  // Create a new cell element for the product name
+  var cell1 = document.createElement('td');
+  cell1.textContent = input.value;
+
+  // Create a new cell element for the quantity
+  var cell2 = document.createElement('td');
+  cell2.innerHTML = '<input type="number" min="1" value="1">';
+
+  // Create a new cell element for the price
+  var cell3 = document.createElement('td');
+  cell3.innerHTML = '<input type="number" min="0" value="0">';
+
+  // Add the cells to the row
+  row.appendChild(cell1);
+  row.appendChild(cell2);
+  row.appendChild(cell3);
+
+  // Add the row to the table
+  tbody.appendChild(row);
 }
+	
+	  </script>
+	  
+	  <script>
 	
 
   function sendTableToWhatsApp() {
