@@ -92,7 +92,7 @@
       // Add a message to the chat interface thanking the user for their submission and providing a link to send the product list via WhatsApp
       const assistantMessage = document.createElement("div");
       assistantMessage.classList.add("message", "assistant");
-      assistantMessage.innerHTML = `<p class="message-text">Thank you for your submission, ${name} from ${company}! Your phone number is ${phone}. To send us your product list, please click <a href="https://wa.me/+21262726274?text=${encodeURIComponent(products)}">here</a> to send it via WhatsApp. Have a great day!</p>`;
+      assistantMessage.innerHTML = `<p class="message-text">Thank you for your submission, ${name} from ${company}! Your phone number is ${phone}. To send us your product list, please click <a href="https://wa.me/+212662726274?text=${encodeURIComponent(products)}">here</a> to send it via WhatsApp. Have a great day!</p>`;
       document.querySelector(".chat-container").appendChild(assistantMessage);
     });
   </script>
@@ -104,7 +104,8 @@
     <input type="text" name="products" placeholder="Product needs" class="input-field">
     <button type="submit" class="input-button">Submit</button>
   </div>
-	
+</form>
+	<script>
 	
 	// Add an event listener to the form to handle the submission of the user's product needs
 const productForm = document.getElementById("product-form");
@@ -115,12 +116,13 @@ productForm.addEventListener("submit", (event) => {
   // Remove the form from the page
   productForm.remove();
   // Add a message to the chat interface thanking the user for their submission and providing a link to send the product list via WhatsApp
-  const assistantMessage = `Thank you for your submission. You can send your product list to our WhatsApp number at +21262726274 by clicking <a href="https://api.whatsapp.com/send?phone=+21262726274&text=${products}">here</a>.`;
+  const assistantMessage = `Thank you for your submission. You can send your product list to our WhatsApp number at +212662726274 by clicking <a href="https://api.whatsapp.com/send?phone=+212662726274&text=${products}">here</a>.`;
   const messageElement = document.createElement("div");
   messageElement.classList.add("message", "assistant");
   messageElement.innerHTML = `<p class="message-text">${assistantMessage}</p>`;
   chatContainer.appendChild(messageElement);
+	</scriptW
 });
-</form>
+
 </body>
 </html>
