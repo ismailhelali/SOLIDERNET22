@@ -100,9 +100,20 @@
 
 <!-- Add a script tag to include your JavaScript code -->
 <script>
-  function addProductField() {
-    // Add a new product field to the form
-  }
+ function addProductField() {
+  // Get the parent element of the product fields (the form element)
+  var form = document.querySelector('.chat-form');
+
+  // Create a new input element for the product
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'Product';
+  input.required = true;
+
+  // Add the input element to the form
+  form.appendChild(input);
+}
+	
 
   function sendTableToWhatsApp() {
     // Send the table data to a WhatsApp number using the WhatsApp API
