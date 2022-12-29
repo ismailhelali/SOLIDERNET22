@@ -15,6 +15,10 @@
 	
 	  <style>
     /* Add some styling for the chat interface */
+		  
+		  body {
+  font-family: sans-serif;
+}
     .chat-container {
       display: flex;
       flex-direction: column;
@@ -92,5 +96,31 @@
       document.querySelector(".chat-container").appendChild(assistantMessage);
     });
   </script>
+	
+	
+	
+<form id="product-form">
+  <div class="input-container">
+    <input type="text" name="products" placeholder="Product needs" class="input-field">
+    <button type="submit" class="input-button">Submit</button>
+  </div>
+	
+	
+	// Add an event listener to the form to handle the submission of the user's product needs
+const productForm = document.getElementById("product-form");
+productForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent the form from refreshing the page
+  // Get the user's product needs from the form input field
+  const products = productForm.elements.products.value;
+  // Remove the form from the page
+  productForm.remove();
+  // Add a message to the chat interface thanking the user for their submission and providing a link to send the product list via WhatsApp
+  const assistantMessage = `Thank you for your submission. You can send your product list to our WhatsApp number at +21262726274 by clicking <a href="https://api.whatsapp.com/send?phone=+21262726274&text=${products}">here</a>.`;
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("message", "assistant");
+  messageElement.innerHTML = `<p class="message-text">${assistantMessage}</p>`;
+  chatContainer.appendChild(messageElement);
+});
+</form>
 </body>
 </html>
