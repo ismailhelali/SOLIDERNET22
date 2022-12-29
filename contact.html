@@ -88,8 +88,50 @@
     <button type="submit" class="input-button">Submit</button>
   </div>
 </form>
+
+	
+	<!-- Add a table element to the HTML -->
+<table id="product-table">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- This tbody element will be used to add rows to the table dynamically using JavaScript -->
+  </tbody>
+</table>
+	
+	<!-- Add a button element to the HTML -->
+<button id="send-button">Send</button>
+	
+	<script>
+	// Add an event listener to the form to handle the submission of the user's product needs
+const productForm = document.getElementById("product-form");
+productForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent the form from refreshing the page
+  // Get the user's product needs from the form input field
+  const products = productForm.elements.products.value;
+  // Remove the form from the page
+  productForm.remove();
+  //
+	</script>
 	
 	
+	<script>
+		// Add an event listener to the send button to handle the submission of the table
+const sendButton = document.getElementById("send-button");
+sendButton.addEventListener("click", () => {
+  // Get the product table element
+  const productTable = document.getElementById("product-table");
+  // Get the HTML of the table
+  const tableHTML = productTable.outerHTML;
+  // Send the table HTML to the server or email it to the desired recipient
+  // ...
+});
+	</script>
   <script>
     // Add an event listener to the form to handle the submission of the user's product needs
     const productForm = document.getElementById("product-form");
