@@ -106,9 +106,17 @@
     return;
   }
 
+    // Get the loading indicator element
+  var loadingIndicator = document.getElementById("loading-indicator");
+
+  // Check if the loading indicator element exists
+  if (loadingIndicator == null) {
+    console.error("The loading indicator element was not found in the document.");
+    return;
+  }
+
   // Show the loading indicator
   loadingIndicator.style.display = "block";
-
   try {
     // Use html2canvas to convert the table to a canvas element
     html2canvas(productsTable).then(function(canvas) {
