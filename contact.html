@@ -73,18 +73,22 @@
           cell.innerHTML = productName;
         }
       }
-  function sendJPEG() {
+function sendJPEG() {
   // Get the user's name
   var name = document.getElementById("name").value;
   // Get the products table
   var productsTable = document.getElementById("products");
   // Use html2canvas to convert the table to a canvas element
-  html2canvas(productsTable).then(function(canvas) {
-    // Convert the canvas to a JPEG image
-    var jpeg = canvas.toDataURL("image/jpeg");
-    // Send the image in WhatsApp
-    window.open("https://wa.me/+212677146992?text=" + encodeURIComponent(jpeg));
-  });
+  try {
+    html2canvas(productsTable).then(function(canvas) {
+      // Convert the canvas to a JPEG image
+      var jpeg = canvas.toDataURL("image/jpeg");
+      // Send the image in WhatsApp
+      window.open("https://wa.me/+212677146992?text=" + encodeURIComponent(jpeg));
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
     </script>
   </body>
