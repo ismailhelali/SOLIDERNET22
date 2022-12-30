@@ -48,17 +48,15 @@
       <input type="text" id="name" style="width: 50%;" />
       <!-- Add a button to add a product to the table -->
       <button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>
-      
+      <!-- Add a button to send the list to WhatsApp -->
       <button type="button" onclick="sendToWhatsApp()" style="margin-top: 1em;">Send to WhatsApp</button>
       
-       <!-- Create a table to display the products -->
+      <!-- Create a table to display the products -->
       <table id="products" style="margin-top: 1em;">
         <tr>
           <th>Product Name</th>
         </tr>
       </table>
-      <!-- Add a button to send the list as a PDF to a WhatsApp number -->
-      <button type="button" onclick="sendJPEG()" style="margin-top: 1em;">Send List</button>
     </form>
 
     <script>
@@ -77,9 +75,8 @@
           cell.innerHTML = productName;
         }
       }
-
       
-function sendToWhatsApp() {
+      function sendToWhatsApp() {
   // Get the name of the recipient from the user
   var recipientName = prompt("Enter the name of the recipient:");
   // Check if the user entered a name
@@ -103,6 +100,6 @@ function sendToWhatsApp() {
     }
   }
 }
+      
     </script>
-    
     </html>
