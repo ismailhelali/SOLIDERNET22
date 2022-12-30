@@ -94,8 +94,12 @@ function sendPDF() {
   pdf.text(pdfContent, 10, 10);
   // Encode the PDF as a data URL
   var pdfData = pdf.output('datauristring');
-  // Open the PDF in WhatsApp
-  window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfData));
+  // Create a link to the PDF
+  var pdfLink = document.createElement('a');
+  pdfLink.href = pdfData;
+  pdfLink.download = 'products.pdf';
+  // Send the link in WhatsApp
+  window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink.href));
 }
     </script>
   </body>
