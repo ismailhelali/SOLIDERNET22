@@ -82,13 +82,13 @@
         pdfContent += "Products:\n";
         for (var i = 1; i < productsTable.rows.length; i++) {
           pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
-        }
+  }
         // Encode the PDF content as a data URL
         var pdfData = btoa(unescape(encodeURIComponent(pdfContent)));
         // Create a link to the PDF
-        var pdfLink = "data:application/pdf;base64," + pdfData;
+       var pdfLink = "document.pdf";
         // Open the PDF in WhatsApp
-        window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink));
+      window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink));
       }
     </script>
   </body>
