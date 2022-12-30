@@ -58,18 +58,29 @@
 
     <script>
       // Add a product to the table
-      function addProduct() {
-        // Get the product name from the user
-        var productName = prompt("Enter the product name:");
-        // Get the table element
-        var table = document.getElementById("products");
-        // Create a new row for the product
-        var row = table.insertRow();
-        // Create a cell for the product name
-        var cell = row.insertCell();
-        // Set the cell's text to the product name
-        cell.innerHTML = productName;
-      }
+function addProduct() {
+  // Get the product name from the user
+  var productName = prompt("Enter the product name:");
+  // Check if the user entered a product name
+  if (productName) {
+    // Get the table element
+    var table = document.getElementById("products");
+    // Create a new row for the product
+    var row = table.insertRow();
+    // Create a cell for the product name
+    var cell = row.insertCell();
+    // Set the cell's text to the product name
+    cell.innerHTML = productName;
+  }
+}
+
+function addProduct() {
+  // Get the product name from the user
+  var productName = prompt("Enter the product name:");
+  //
+
+
+
 
      
       // Send the list as a PDF to a WhatsApp number
