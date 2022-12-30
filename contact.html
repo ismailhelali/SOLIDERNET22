@@ -73,7 +73,7 @@
           cell.innerHTML = productName;
         }
       }
-     function sendJPEG() {
+  function sendJPEG() {
   // Get the user's name
   var name = document.getElementById("name").value;
   // Get the products table
@@ -82,17 +82,8 @@
   html2canvas(productsTable).then(function(canvas) {
     // Convert the canvas to a JPEG image
     var jpeg = canvas.toDataURL("image/jpeg");
-    // Create a link to the image
-    var imageLink = document.createElement('a');
-    imageLink.href = jpeg;
-    imageLink.download = 'products.jpeg';
-    // Set the link's text to "Download JPEG"
-    imageLink.textContent = "Download JPEG";
-    // Add some styling to the link
-    imageLink.style.color = "blue";
-    imageLink.style.textDecoration = "underline";
-    // Send the link in WhatsApp
-    window.open("https://wa.me/?text=" + encodeURIComponent(imageLink.outerHTML));
+    // Send the image in WhatsApp
+    window.open("https://wa.me/?text=" + encodeURIComponent(jpeg));
   });
 }
     </script>
