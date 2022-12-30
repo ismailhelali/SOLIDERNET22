@@ -13,13 +13,19 @@
         margin: 0.5em;
       }
 
-      button[type="submit"] {
+      button[type="submit"], button[type="button"] {
         padding: 0.5em;
         margin: 0.5em;
+        cursor: pointer;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        font-size: 16px;
       }
 
       table {
         border-collapse: collapse;
+        width: 100%;
       }
 
       td, th {
@@ -27,23 +33,27 @@
         text-align: left;
         padding: 8px;
       }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
     </style>
   </head>
   <body>
     <form id="form">
       <!-- Ask for the user's name or the name of the company -->
-      <label for="name">Name:</label>
-      <input type="text" id="name" />
+      <label for="name" style="font-weight: bold;">Name:</label>
+      <input type="text" id="name" style="width: 50%;" />
       <!-- Add a button to add a product to the table -->
-      <button type="button" onclick="addProduct()">Add Product</button>
+      <button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>
       <!-- Create a table to display the products -->
-      <table id="products">
+      <table id="products" style="margin-top: 1em;">
         <tr>
           <th>Product Name</th>
         </tr>
       </table>
       <!-- Add a button to send the list as a PDF to a WhatsApp number -->
-      <button type="submit" onclick="sendPDF()">Send List</button>
+      <button type="submit" onclick="sendPDF()" style="margin-top: 1em;">Send List</button>
     </form>
 
     <script>
@@ -71,8 +81,8 @@
         var pdfContent = "Name: " + name + "\n\n";
         pdfContent += "Products:\n";
         for (var i = 1; i < productsTable.rows.length; i++) {
-          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
-        }
+          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n
+                  }
         // Encode the PDF content as a data URL
         var pdfData = btoa(unescape(encodeURIComponent(pdfContent)));
         // Create a link to the PDF
