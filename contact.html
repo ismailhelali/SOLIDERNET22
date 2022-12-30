@@ -81,8 +81,8 @@
         var pdfContent = "Name: " + name + "\n\n";
         pdfContent += "Products:\n";
         for (var i = 1; i < productsTable.rows.length; i++) {
-          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n
-                  }
+          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
+        }
         // Encode the PDF content as a data URL
         var pdfData = btoa(unescape(encodeURIComponent(pdfContent)));
         // Create a link to the PDF
