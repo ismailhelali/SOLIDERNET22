@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
       /* Add some styling for the form and table */
       form {
@@ -54,8 +55,7 @@
         </tr>
       </table>
       <!-- Add a button to send the list as a PDF to a WhatsApp number -->
-      <button type="button" onclick="sendPDF();" style="margin-top: 1em;">Send List</button>
-    </form>
+<button type="button" onclick="sendJPEG();" style="margin-top: 1em;">Send List</button>    </form>
 
     <script>
       function addProduct() {
@@ -73,35 +73,28 @@
           cell.innerHTML = productName;
         }
       }
-       function sendPDF() {
-        // Get the user's name
-        var name = document.getElementById("name").value;
-        // Get the products table
-        var productsTable = document.getElementById("products");
-        // Initialize the PDF object
-        var pdf = new jsPDF();
-        // Build the PDF content
-        var pdfContent = "Name: " + name + "\n\n";
-        pdfContent += "Products:\n";
-        for (var i = 1; i < productsTable.rows.length; i++) {
-          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
-        }
-        // Add the PDF content to the PDF object
-        pdf.text(pdfContent, 10, 10);
-        // Encode the PDF as a data URL
-        var pdfData = pdf.output('datauristring');
-        // Create a link to the PDF
-        var pdfLink = document.createElement('a');
-        pdfLink.href = pdfData;
-        pdfLink.download = 'products.pdf';
-        // Set the link's text to "Download PDF"
-        pdfLink.textContent = "Download PDF";
-        // Add some styling to the link
-        pdfLink.style.color = "blue";
-        pdfLink.style.textDecoration = "underline";
-        // Send the link in WhatsApp
-        window.open("https://wa.me/?text=" + encodeURIComponent(pdfLink.outerHTML));
-      }
+       function sendJPEG() {
+  // Get the user's name
+  var name = document.getElementById("name").value;
+  // Get the products table
+  var productsTable = document.getElementById("products");
+  // Use html2canvas to convert the table to a canvas element
+  html2canvas(productsTable).then(function(canvas) {
+    // Convert the canvas to a JPEG image
+    var jpeg = canvas.toDataURL("image/jpeg");
+    // Create a link to the image
+    var imageLink = document.createElement('a');
+    imageLink.href = jpeg;
+    imageLink.download = 'products.jpeg';
+    // Set the link's text to "Download Image"
+    imageLink.textContent = "Download Image";
+    // Add some styling to the link
+    imageLink.style.color = "blue";
+    imageLink.style.textDecoration = "underline";
+    // Send the link in WhatsApp
+    window.open("https://wa.me/?text=" + encodeURIComponent(imageLink.outerHTML));
+  });
+}
     </script>
   </body>
 </html>
