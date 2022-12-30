@@ -1,121 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <style>
-      /* Add some styling for the form and table */
-      form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      input[type="text"] {
-        padding: 0.5em;
-        margin: 0.5em;
-      }
-
-      button[type="submit"], button[type="button"] {
-        padding: 0.5em;
-        margin: 0.5em;
-        cursor: pointer;
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        font-size: 16px;
-      }
-
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-    </style>
-  </head>
-  <body>
-    <form id="form">
-      <!-- Ask for the user's name or the name of the company -->
-      <label for="name" style="font-weight: bold;">Name:</label>
-      <input type="text" id="name" style="width: 50%;" />
-      <!-- Add a button to add a product to the table -->
-<button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>                                                           <!-- Add a button to send the list to WhatsApp -->
-      <button type="button" onclick="sendToWhatsApp()" style="margin-top: 1em;">Send to WhatsApp</button>
-      
-      <!-- Create a table to display the products -->
-      <table id="products" style="margin-top: 1em;">
-        <tr>
-          <th>Product Name</th>
-        </tr>
-      </table>
-    </form>
-
-    <script>
-      function addProduct() {
-        // Get the product name from the user
-        var productName = prompt("Enter the product name:");
-        // Check if the user entered a product name
-        if (productName) {
-          // Get the table element
-          var table = document.getElementById("products");
-          // Create a new row for the product
-          var row = table.insertRow();
-          // Create a cell for the product name
-          var cell = row.insertCell();
-          // Set the cell's text to the product name
-          cell.innerHTML = productName;
-        }
-      }
-
-      function sendToWhatsApp() {
-        // Get the name of the recipient from the user
-        var recipientName = prompt("Enter the name of the recipient:");
-        // Check if the user entered a name
-        if (recipientName) {
-          // Get the recipient's phone number from the user
-          var recipientPhone = prompt("Enter the recipient's phone number:");
-          // Check if the user entered a phone number
-          if (recipientPhone) {
-            // Create a new PDF document
-            var doc = new jsPDF();
-            // Get the user's name or the name of the company
-            var senderName = document.getElementById("name").value;
-            // Add the sender's name to the PDF
-            doc.text(20, 20, senderName);
-                              // Add a line break
-            doc.text("\n", 20, 30);
-            // Get the table element
-            var table = document.getElementById("products");
-            // Get the number of rows in the table
-            var rowCount = table.rows.length;
-            // Set the initial Y position for the table
-            var y = 35;
-            // Iterate through the rows in the table
-            for (var i = 1; i < rowCount; i++) {
-              // Get the current row
-              var row = table.rows[i];
-              // Get the cell in the current row
-              var cell = row.cells[0];
-              // Add the cell's text to the PDF
-              doc.text(20, y, cell.innerHTML);
-              // Increment the Y position
-              y += 5;
-            }
-            // Save the PDF
-            doc.save("list.pdf");
-            // Open the PDF in WhatsApp
-            window.open("https://wa.me/" + recipientPhone + "?text=Hello%20" + recipientName + "%2C%20I%20am%20sending%20you%20a%20list.%20Please%20find%20the%20attached%20PDF%20file.%0A%0A" + senderName);
-          }
-        }
-      }
-    </script>
-  </body>
+<head>
+  <title>Chat Script</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Chat Script</h1>
+  <p>Enter your name or company name:</p>
+  <input type="text" id="name">
+  <br>
+  <br>
+  <p>Enter the products you need:</p>
+  <div id="product-list"></div>
+  <br>
+  <button onclick="addProduct()">Add Product</button>
+  <button onclick="sendTable()" id="send-button" style="display: none;">Send Table</button>
+</body>
+<script src="script.js"></script>
 </html>
-                             
