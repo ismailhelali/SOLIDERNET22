@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat </title>
+<body>
+</head>
+
+<!-- HTML for the chat box -->
+<div id="chat-box">
+  <div id="chat-header">
+    <h3>L'objectif de ce chat et de collecter les besoins client pour créer un Devis personnalisé, vous pouvez indiqué votre liste de produit ou votre spécialité</h3>
+  </div>
+  <div id="chat-body">
+    <form id="chat-form">
+      <label for="name">Name or company name:</label><br>
+      <input type="text" id="name"><br>
+      <label for="products">Products:</label><br>
+      <input type="text" id="products"><br>
+      <input type="button" value="Done" onclick="storeTable()">
+    </form>
+  </div>
+</div>
+
+<!-- CSS for styling the chat box -->
+<style>
+  #chat-box {
+    width: 500px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  #chat-header {
+    background-color: lightblue;
+    border-bottom: 1px solid black;
+    padding: 10px;
+  }
+
+  #chat-body {
+    padding: 10px;
+  }
+
+  #chat-form {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<!-- JavaScript for storing and sending the table -->
+<script>
+  // Function to store the table in the browser
+  function storeTable() {
+    // Get the name and products from the form
+    var name = document.getElementById("name").value;
+    var products = document.getElementById("products").value;
+
+    // Create a new row for the table
+    var row = document.createElement("tr");
+
+    // Create cells for the name and products
+    var nameCell = document.createElement("td");
+    var productsCell = document.createElement("td");
+
+    // Set the values of the cells
+    nameCell.innerHTML = name;
+    productsCell.innerHTML = products;
+
+    // Append the cells to the row
+    row.appendChild(nameCell);
+    row.appendChild(productsCell);
+
+    // Get the table element
+    var table = document.getElementById("chat-table");
+
+    // Append the row to the table
+    table.appendChild(row);
+  }
+
+  // Function to send the table via WhatsApp
+  function sendViaWhatsApp() {
+    // Get the table as a string
+    var tableString = document.getElementById("chat-table").outerHTML;
+
+    // Encode the table string for use in a URL
+    var encodedTable = encodeURIComponent(tableString);
+
+    // Generate the WhatsApp URL
+    var whatsAppUrl = "https://api.whatsapp.com/send?text=" + encodedTable;
+
+    // Open the WhatsApp web client
+    window.open(whatsAppUrl);
+  }
+</script>
+
+<!-- HTML for the table -->
+<table id="chat-table">
+  <tr>
+      <th>Name or company name</th>
+  <th>Products</th>
+</tr>
+</table>
+<!-- HTML for the button to send the table via WhatsApp -->
+<input type="button" value="Send via WhatsApp" onclick="sendViaWhatsApp()">
+</html>
+
