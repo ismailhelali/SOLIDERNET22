@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <style>
       /* Add some styling for the form and table */
       form {
@@ -71,25 +72,31 @@
         cell.innerHTML = productName;
       }
 
+     
       // Send the list as a PDF to a WhatsApp number
-      function sendPDF() {
-        // Get the user's name
-        var name = document.getElementById("name").value;
-        // Get the products table
-        var productsTable = document.getElementById("products");
-        // Build the PDF content
-        var pdfContent = "Name: " + name + "\n\n";
-        pdfContent += "Products:\n";
-        for (var i = 1; i < productsTable.rows.length; i++) {
-          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
+      
+function sendPDF() {
+  // Get the user's name
+  var name = document.getElementById("name").value;
+  // Get the products table
+  var productsTable = document.getElementById("products");
+  // Initialize the PDF object
+  var pdf = new jsPDF();
+  // Build the PDF content
+  var pdfContent = "Name: " + name + "\n\n";
+  pdfContent += "Products:\n";
+  for (var i = 1; i < productsTable.rows.length; i++) {
+    pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
   }
-        // Encode the PDF content as a data URL
-        var pdfData = btoa(unescape(encodeURIComponent(pdfContent)));
-        // Create a link to the PDF
-       var pdfLink = "document.pdf";
-        // Open the PDF in WhatsApp
-      window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink));
-      }
+  
+  // Add the PDF content to the PDF object
+  pdf.text(pdfContent, 10, 10);
+  // Encode the PDF as a data URL
+  var pdfData = pdf.output('datauristring');
+  // Open the PDF in WhatsApp
+  window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfData));
+}
+This c
     </script>
   </body>
 </html>
