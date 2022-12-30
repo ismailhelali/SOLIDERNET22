@@ -48,7 +48,10 @@
       <input type="text" id="name" style="width: 50%;" />
       <!-- Add a button to add a product to the table -->
       <button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>
-      <!-- Create a table to display the products -->
+      
+      
+      
+       <!-- Create a table to display the products -->
       <table id="products" style="margin-top: 1em;">
         <tr>
           <th>Product Name</th>
@@ -75,57 +78,55 @@
         }
       }
       
+      function sendJPEG() {
+        // Get the user's name
+        var name = document.getElementById("name").value;
+        // Get the products table
+        var productsTable = document.getElementById("products");
+        // Get the loading indicator element
+        var loadingIndicator = document.getElementById("loading-indicator");
+
+        // Check if the user has entered a name
+        if (!name) {
+          alert("Please enter your name or the name of the company.");
+          return;
+        }
+
+        // Check if there are any products in the table
+        if (productsTable.rows.length <= 1) {
+          alert("Please add at least one product to the list.");
+          return;
+        }
+
+        // Check if the window.open function is supported
+        if (!window.open) {
+          alert("Your browser does not support the window.open function. Please try a different browser or device.");
+          return;
+        }
+
+        // Show the loading indicator
+        loadingIndicator.style.display = "block";
+
+        try {
+          // Use html2canvas to convert the table to a canvas element
+          html2canvas(productsTable).then(function(canvas) {
+            // Convert the canvas to a JPEG image
+            var jpeg = canvas.toDataURL("image/jpeg");
+            // Create a new PDF document
+            var pdf = new jsPDF("p", "mm", "a4");
+            // Add the JPEG image to the PDF document
+            pdf.addImage(jpeg, "JPEG", 0, 0);
+            // Save the PDF document
+            pdf.save("products.pdf");
+            // Open a new window with the WhatsApp URL and the PDF document as an attachment
+            window.open(`whatsapp://send?text=&attach=${encodeURIComponent(pdf.output("blob"))}`);
+            // Hide the loading indicator
+            loadingIndicator.style.display = "none";
+          });
+        } catch (error) {
+          // If an error occurs, hide the loading indicator and show an error message
+          loadingIndicator.style.display = "
+          
     </script>
     
-    <script>
-     function sendJPEG() {
-  // Get the user's name
-  var name = document.getElementById("name").value;
-  // Get the products table
-  var productsTable = document.getElementById("products");
-  // Get the loading indicator element
-  var loadingIndicator = document.getElementById("loading-indicator");
-
-  // Check if the user has entered a name
-  if (!name) {
-    alert("Please enter your name or the name of the company.");
-    return;
-  }
-
-  // Check if there are any products in the table
-  if (productsTable.rows.length <= 1) {
-    alert("Please add at least one product to the list.");
-    return;
-  }
-
-  // Check if the window.open function is supported
-  if (!window.open) {
-    alert("Your browser does not support the window.open function. Please try a different browser or device.");
-    return;
-  }
-
-  // Show the loading indicator
-  loadingIndicator.style.display = "block";
-
-  try {
-    // Use html2canvas to convert the table to a canvas element
-    html2canvas(productsTable).then(function(canvas) {
-      // Convert the canvas to a JPEG image
-      var jpeg = canvas.toDataURL("image/jpeg");
-      // Send the image in WhatsApp
-      window.open("https://wa.me/+212677146992?text=" + encodeURIComponent(jpeg));
-      // Hide the loading indicator
-      loadingIndicator.style.display = "none";
-    });
-  } catch (error) {
-    // Handle the error
-    console.error("Error while converting table to canvas:", error);
-    // Hide the loading indicator
-    loadingIndicator.style.display = "none";
-    // Send a message to the WhatsApp number even if an error occurs
-    window.open("https://wa.me/+212677146992?text=" + encodeURIComponent("An error occurred while trying to send the list. Please try again later."));
-  }
-}
-    </script>
-  </body>
-</html>
+    </html>
