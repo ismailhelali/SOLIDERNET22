@@ -73,7 +73,7 @@
           cell.innerHTML = productName;
         }
       }
-       function sendJPEG() {
+     function sendJPEG() {
   // Get the user's name
   var name = document.getElementById("name").value;
   // Get the products table
@@ -86,8 +86,8 @@
     var imageLink = document.createElement('a');
     imageLink.href = jpeg;
     imageLink.download = 'products.jpeg';
-    // Set the link's text to "Download Image"
-    imageLink.textContent = "Download Image";
+    // Set the link's text to "Download JPEG"
+    imageLink.textContent = "Download JPEG";
     // Add some styling to the link
     imageLink.style.color = "blue";
     imageLink.style.textDecoration = "underline";
