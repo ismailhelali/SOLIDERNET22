@@ -54,57 +54,54 @@
         </tr>
       </table>
       <!-- Add a button to send the list as a PDF to a WhatsApp number -->
-<button type="button" onclick="sendPDF();" style="margin-top: 1em;">Send List</button>    </form>
+      <button type="button" onclick="sendPDF();" style="margin-top: 1em;">Send List</button>
+    </form>
 
     <script>
-function addProduct() {
-  // Get the product name from the user
-  var productName = prompt("Enter the product name:");
-  // Check if the user entered a product name
-  if (productName) {
-    // Get the table element
-    var table = document.getElementById("products");
-    // Create a new row for the product
-    var row = table.insertRow();
-    // Create a cell for the product name
-    var cell = row.insertCell();
-    // Set the cell's text to the product name
-    cell.innerHTML = productName;
-  }
-}
-
-     
-      // Send the list as a PDF to a WhatsApp number
-      
-function sendPDF() {
-  // Get the user's name
-  var name = document.getElementById("name").value;
-  // Get the products table
-  var productsTable = document.getElementById("products");
-  // Initialize the PDF object
-  var pdf = new jsPDF();
-  // Build the PDF content
-  var pdfContent = "Name: " + name + "\n\n";
-  pdfContent += "Products:\n";
-  for (var i = 1; i < productsTable.rows.length; i++) {
-    pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
-  }
-  
-  // Add the PDF content to the PDF object
-  pdf.text(pdfContent, 10, 10);
-  // Encode the PDF as a data URL
-var pdfData = pdf.output('datauristring');
-// Create a link to the PDF
-var pdfLink = document.createElement('a');
-pdfLink.href = pdfData;
-pdfLink.download = 'products.pdf';
-// Set the link's text to "Download PDF"
-pdfLink.textContent = "Download PDF";
-// Add some styling to the link
-pdfLink.style.color = "blue";
-pdfLink.style.textDecoration = "underline";
-// Send the link in WhatsApp
-window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink.outerHTML));
+      function addProduct() {
+        // Get the product name from the user
+        var productName = prompt("Enter the product name:");
+        // Check if the user entered a product name
+        if (productName) {
+          // Get the table element
+          var table = document.getElementById("products");
+          // Create a new row for the product
+          var row = table.insertRow();
+          // Create a cell for the product name
+          var cell = row.insertCell();
+          // Set the cell's text to the product name
+          cell.innerHTML = productName;
+        }
+      }
+       function sendPDF() {
+        // Get the user's name
+        var name = document.getElementById("name").value;
+        // Get the products table
+        var productsTable = document.getElementById("products");
+        // Initialize the PDF object
+        var pdf = new jsPDF();
+        // Build the PDF content
+        var pdfContent = "Name: " + name + "\n\n";
+        pdfContent += "Products:\n";
+        for (var i = 1; i < productsTable.rows.length; i++) {
+          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
+        }
+        // Add the PDF content to the PDF object
+        pdf.text(pdfContent, 10, 10);
+        // Encode the PDF as a data URL
+        var pdfData = pdf.output('datauristring');
+        // Create a link to the PDF
+        var pdfLink = document.createElement('a');
+        pdfLink.href = pdfData;
+        pdfLink.download = 'products.pdf';
+        // Set the link's text to "Download PDF"
+        pdfLink.textContent = "Download PDF";
+        // Add some styling to the link
+        pdfLink.style.color = "blue";
+        pdfLink.style.textDecoration = "underline";
+        // Send the link in WhatsApp
+        window.open("https://wa.me/?text=" + encodeURIComponent(pdfLink.outerHTML));
+      }
     </script>
   </body>
-</html> 
+</html>
