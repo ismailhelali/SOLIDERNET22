@@ -93,14 +93,18 @@ function sendPDF() {
   // Add the PDF content to the PDF object
   pdf.text(pdfContent, 10, 10);
   // Encode the PDF as a data URL
-  var pdfData = pdf.output('datauristring');
-  // Create a link to the PDF
-  var pdfLink = document.createElement('a');
-  pdfLink.href = pdfData;
-  pdfLink.download = 'products.pdf';
-  // Send the link in WhatsApp
-  window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink.href));
-}
+var pdfData = pdf.output('datauristring');
+// Create a link to the PDF
+var pdfLink = document.createElement('a');
+pdfLink.href = pdfData;
+pdfLink.download = 'products.pdf';
+// Set the link's text to "Download PDF"
+pdfLink.textContent = "Download PDF";
+// Add some styling to the link
+pdfLink.style.color = "blue";
+pdfLink.style.textDecoration = "underline";
+// Send the link in WhatsApp
+window.open("https://wa.me/+212667041734?text=" + encodeURIComponent(pdfLink.outerHTML));
     </script>
   </body>
 </html> 
