@@ -74,21 +74,56 @@
           cell.innerHTML = productName;
         }
       }
+      
+    </script>
+    
+    <script>
      function sendJPEG() {
   // Get the user's name
   var name = document.getElementById("name").value;
   // Get the products table
   var productsTable = document.getElementById("products");
-  // Use html2canvas to convert the table to a canvas element
+  // Get the loading indicator element
+  var loadingIndicator = document.getElementById("loading-indicator");
+
+  // Check if the user has entered a name
+  if (!name) {
+    alert("Please enter your name or the name of the company.");
+    return;
+  }
+
+  // Check if there are any products in the table
+  if (productsTable.rows.length <= 1) {
+    alert("Please add at least one product to the list.");
+    return;
+  }
+
+  // Check if the window.open function is supported
+  if (!window.open) {
+    alert("Your browser does not support the window.open function. Please try a different browser or device.");
+    return;
+  }
+
+  // Show the loading indicator
+  loadingIndicator.style.display = "block";
+
   try {
+    // Use html2canvas to convert the table to a canvas element
     html2canvas(productsTable).then(function(canvas) {
       // Convert the canvas to a JPEG image
       var jpeg = canvas.toDataURL("image/jpeg");
       // Send the image in WhatsApp
       window.open("https://wa.me/+212677146992?text=" + encodeURIComponent(jpeg));
+      // Hide the loading indicator
+      loadingIndicator.style.display = "none";
     });
-  }  catch (error) {
-    console.error(error);
+  } catch (error) {
+    // Handle the error
+    console.error("Error while converting table to canvas:", error);
+    // Hide the loading indicator
+    loadingIndicator.style.display = "none";
+    // Send a message to the WhatsApp number even if an error occurs
+    window.open("https://wa.me/+212677146992?text=" + encodeURIComponent("An error occurred while trying to send the list. Please try again later."));
   }
 }
     </script>
