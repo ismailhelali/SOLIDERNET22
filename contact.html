@@ -2,7 +2,6 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
       /* Add some styling for the form and table */
       form {
@@ -47,8 +46,8 @@
       <label for="name" style="font-weight: bold;">Name:</label>
       <input type="text" id="name" style="width: 50%;" />
       <!-- Add a button to add a product to the table -->
-      <button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>
-      <!-- Add a button to send the list to WhatsApp -->
+      <button type="button" onclick="addProduct()" style="margin-top: 1em;
+                                                           <!-- Add a button to send the list to WhatsApp -->
       <button type="button" onclick="sendToWhatsApp()" style="margin-top: 1em;">Send to WhatsApp</button>
       
       <!-- Create a table to display the products -->
@@ -75,35 +74,49 @@
           cell.innerHTML = productName;
         }
       }
-      
-     function sendToWhatsApp() {
-  // Get the name of the recipient from the user
-  var recipientName = prompt("Enter the name of the recipient:");
-  // Check if the user entered a name
-  if (recipientName) {
-    // Get the phone number of the recipient from the user
-    var recipientNumber = prompt("Enter the phone number of the recipient (including the country code):");
-    // Check if the user entered a phone number
-    if (recipientNumber) {
-      // Create a temporary element to hold the table data
-      var tempElement = document.createElement("div");
-      // Copy the table data to the temporary element
-      tempElement.innerHTML = document.getElementById("products").outerHTML;
-      // Add some styling to the temporary element
-      tempElement.style.cssText = "display: block; width: 100%;";
-      // Create a PDF file from the temporary element using jsPDF
-      var pdf = new jsPDF("p", "mm", "a4");
-      pdf.addHTML(tempElement, function() {
-        // Generate the PDF file
-        var pdfFile = pdf.output("blob");
-        // Create a URL object that points to the PDF file
-        var url = URL.createObjectURL(pdfFile);
-        // Open the WhatsApp web interface in a new window, with the recipient's phone number and the PDF file as parameters
-        window.open(`https://web.whatsapp.com/send?phone=${recipientNumber}&text=&file=${url}`, "_blank");
-      });
-    }
-  }
-}
-      
+
+      function sendToWhatsApp() {
+        // Get the name of the recipient from the user
+        var recipientName = prompt("Enter the name of the recipient:");
+        // Check if the user entered a name
+        if (recipientName) {
+          // Get the recipient's phone number from the user
+          var recipientPhone = prompt("Enter the recipient's phone number:");
+          // Check if the user entered a phone number
+          if (recipientPhone) {
+            // Create a new PDF document
+            var doc = new jsPDF();
+            // Get the user's name or the name of the company
+            var senderName = document.getElementById("name").value;
+            // Add the sender's name to the PDF
+            doc.text(20, 20, senderName);
+                              // Add a line break
+            doc.text("\n", 20, 30);
+            // Get the table element
+            var table = document.getElementById("products");
+            // Get the number of rows in the table
+            var rowCount = table.rows.length;
+            // Set the initial Y position for the table
+            var y = 35;
+            // Iterate through the rows in the table
+            for (var i = 1; i < rowCount; i++) {
+              // Get the current row
+              var row = table.rows[i];
+              // Get the cell in the current row
+              var cell = row.cells[0];
+              // Add the cell's text to the PDF
+              doc.text(20, y, cell.innerHTML);
+              // Increment the Y position
+              y += 5;
+            }
+            // Save the PDF
+            doc.save("list.pdf");
+            // Open the PDF in WhatsApp
+            window.open("https://wa.me/" + recipientPhone + "?text=Hello%20" + recipientName + "%2C%20I%20am%20sending%20you%20a%20list.%20Please%20find%20the%20attached%20PDF%20file.%0A%0A" + senderName);
+          }
+        }
+      }
     </script>
-    </html>
+  </body>
+</html>
+                             
