@@ -49,7 +49,7 @@
       <!-- Add a button to add a product to the table -->
       <button type="button" onclick="addProduct()" style="margin-top: 1em;">Add Product</button>
       
-      
+      <button type="button" onclick="sendToWhatsApp()" style="margin-top: 1em;">Send to WhatsApp</button>
       
        <!-- Create a table to display the products -->
       <table id="products" style="margin-top: 1em;">
@@ -79,23 +79,29 @@
       }
 
       
-      
- function sendJPEG() {
-  // Select the table element
-  var table = document.getElementById("products");
-  // Convert the table to a canvas element
-  html2canvas(table).then(function(canvas) {
-    // Convert the canvas to a JPEG image
-    var jpegUrl = canvas.toDataURL("image/jpeg");
-    // Create a link element
-    var link = document.createElement("a");
-    // Set the link's href attribute to the WhatsApp URL for sending messages, including the phone number and the image data as query parameters
-    link.href = "https://api.whatsapp.com/send?phone=+1234567890&text=" + encodeURIComponent(jpegUrl);
-    // Append the link element to the body of the document
-    document.body.appendChild(link);
-    // Click the link to open the WhatsApp web page with the message pre-filled
-    link.click();
-  });
+function sendToWhatsApp() {
+  // Get the name of the recipient from the user
+  var recipientName = prompt("Enter the name of the recipient:");
+  // Check if the user entered a name
+  if (recipientName) {
+    // Get the phone number of the recipient from the user
+    var recipientNumber = prompt("Enter the phone number of the recipient (including the country code):");
+    // Check if the user entered a phone number
+    if (recipientNumber) {
+      // Convert the table to a JPEG image using html2canvas and jsPDF
+      html2canvas(document.getElementById("products"), { scale: 2 }).then(canvas => {
+        var imgData = canvas.toDataURL("image/jpeg");
+        var pdf = new jsPDF("p", "mm", "a4");
+        pdf.addImage(imgData, "JPEG", 0, 0);
+        // Generate the PDF file
+        var pdfFile = pdf.output("blob");
+        // Create a URL object that points to the PDF file
+        var url = URL.createObjectURL(pdfFile);
+        // Open the WhatsApp web interface in a new window, with the recipient's phone number and the PDF file as parameters
+        window.open(`https://web.whatsapp.com/send?phone=${recipientNumber}&text=&file=${url}`, "_blank");
+      });
+    }
+  }
 }
     </script>
     
