@@ -55,7 +55,8 @@
         </tr>
       </table>
       <!-- Add a button to send the list as a PDF to a WhatsApp number -->
-<button type="button" onclick="sendJPEG()" style="margin-top: 1em;">Send List</button>    </form>
+      <button type="button" onclick="sendJPEG()" style="margin-top: 1em;">Send List</button>
+    </form>
 
     <script>
       function addProduct() {
@@ -73,7 +74,7 @@
           cell.innerHTML = productName;
         }
       }
-function sendJPEG() {
+     function sendJPEG() {
   // Get the user's name
   var name = document.getElementById("name").value;
   // Get the products table
@@ -86,7 +87,7 @@ function sendJPEG() {
       // Send the image in WhatsApp
       window.open("https://wa.me/+212677146992?text=" + encodeURIComponent(jpeg));
     });
-  } catch (error) {
+  }  catch (error) {
     console.error(error);
   }
 }
