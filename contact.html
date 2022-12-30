@@ -80,60 +80,23 @@
 
       
       
-      function sendJPEG() {
-  // Get the user's name
-  var name = document.getElementById("name").value;
-  // Get the products table
-  var productsTable = document.getElementById("products");
-  // Get the loading indicator element
-  var loadingIndicator = document.getElementById("loading-indicator");
-
-  // Check if the user has entered a name
-  if (!name) {
-    alert("Please enter your name or the name of the company.");
-    return;
-  }
-
-  // Check if there are any products in the table
-  if (productsTable.rows.length <= 1) {
-    alert("Please add at least one product to the list.");
-    return;
-  }
-
-  // Check if the window.open function is supported
-  if (!window.open) {
-    alert("Your browser does not support the window.open function. Please try a different browser or device.");
-    return;
-  }
-
-    // Get the loading indicator element
-  var loadingIndicator = document.getElementById("loading-indicator");
-
-  // Check if the loading indicator element exists
-  if (loadingIndicator == null) {
-    console.error("The loading indicator element was not found in the document.");
-    return;
-  }
-
-  // Show the loading indicator
-  loadingIndicator.style.display = "block";
-  try {
-    // Use html2canvas to convert the table to a canvas element
-    html2canvas(productsTable).then(function(canvas) {
-      // Convert the canvas to a JPEG image
-      var jpeg = canvas.toDataURL("image/jpeg");
-      // Create a new PDF document
-      var pdf = new jsPDF("p", "mm", "a4");
-      // Add the JPEG image to the PDF document
-      pdf.addImage(jpeg, "JPEG", 0, 0);
-      // Save the PDF document
-      pdf.save("products.pdf");
-    });
-  } catch (error) {
-    console.error(error);
-  }
+ function sendJPEG() {
+  // Select the table element
+  var table = document.getElementById("products");
+  // Convert the table to a canvas element
+  html2canvas(table).then(function(canvas) {
+    // Convert the canvas to a JPEG image
+    var jpegUrl = canvas.toDataURL("image/jpeg");
+    // Create a link element
+    var link = document.createElement("a");
+    // Set the link's href attribute to the WhatsApp URL for sending messages, including the phone number and the image data as query parameters
+    link.href = "https://api.whatsapp.com/send?phone=+1234567890&text=" + encodeURIComponent(jpegUrl);
+    // Append the link element to the body of the document
+    document.body.appendChild(link);
+    // Click the link to open the WhatsApp web page with the message pre-filled
+    link.click();
+  });
 }
-      
     </script>
     
     </html>
