@@ -1,189 +1,85 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Virtual Assistant Chat</title>
-  <style>
-    /* Add some styling for the chat interface */
-    .chat {
-      display: flex;
-      flex-direction: column;
-      width: 500px;
-      height: 500px;
-      border: 1px solid #ccc;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .chat-message {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-    .chat-message img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-    .chat-message p {
-      font-size: 14px;
-      margin: 0 0 0 10px;
-      padding: 5px 10px;
-      background-color: #f1f1f1;
-      border-radius: 10px;
-      max-width: 75%;
-    }
-    .chat-form {
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
-    }
-    .chat-form input[type="text"],
-    .chat-form input[type="email"],
-    .chat-form input[type="tel"] {
-      font-size: 14px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-    .chat-form input[type="submit"] {
-      font-size: 14px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background-color: #4caf50;
-      color: #fff;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="chat">
-    <!-- Display a greeting message from the virtual assistant -->
-    <div class="chat-message">
-      <img src="https://via.placeholder.com/50x50" alt="Virtual Assistant profile picture">
-      <p>Hello! How can I help you today?</p>
-    </div>
-    
-    <!-- Form for the user to input their name, company name, and phone number -->
-    <form class="chat-form">
-      <input type="text" placeholder="Name" required>
-      <input type="text" placeholder="Company" required>
-      <input type="tel" placeholder="Phone number" required>
+  <head>
+    <style>
+      /* Add some styling for the form and table */
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input[type="text"] {
+        padding: 0.5em;
+        margin: 0.5em;
+      }
+
+      button[type="submit"] {
+        padding: 0.5em;
+        margin: 0.5em;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <!-- Ask for the user's name or the name of the company -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" />
+      <!-- Add a button to add a product to the table -->
+      <button type="button" onclick="addProduct()">Add Product</button>
+      <!-- Create a table to display the products -->
+      <table id="products">
+        <tr>
+          <th>Product Name</th>
+        </tr>
+      </table>
+      <!-- Add a button to send the list as a PDF to a WhatsApp number -->
+      <button type="submit" onclick="sendPDF()">Send List</button>
     </form>
-    
-    <!-- Form for the user to input a list of products -->
-    <form class="chat-form">
-      <input type="text" placeholder="Product 1" required>
-      <input type="text" placeholder="Product 2" required>
-      <input type="text" placeholder="Product 3" required>
-      <!-- Add a button to add more product fields to the form -->
-      <button type="button" onclick="addProductField()">Add product</button>
-    </form>
-	  
-	  <!-- Table element to display product information -->
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody id="product-table">
-    <!-- Add a row to the table for each product -->
-    <!-- You can use JavaScript to populate the table with the product information -->
-  </tbody>
-</table>
 
-<!-- Button to send the table to a WhatsApp number -->
-<button type="button" onclick="sendTableToWhatsApp()">Send to WhatsApp</button>
+    <script>
+      // Add a product to the table
+      function addProduct() {
+        // Get the product name from the user
+        var productName = prompt("Enter the product name:");
+        // Get the table element
+        var table = document.getElementById("products");
+        // Create a new row for the product
+        var row = table.insertRow();
+        // Create a cell for the product name
+        var cell = row.insertCell();
+        // Set the cell's text to the product name
+        cell.innerHTML = productName;
+      }
 
-<!-- Add a script tag to include your JavaScript code -->
-<script>
-function addProductField() {
-  // Get the parent element of the product fields (the form element)
-  var form = document.querySelector('.chat-form');
-
-  // Create a new input element for the product
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'Product';
-  input.required = true;
-
-  // Add the input element to the form
-  form.appendChild(input);
-
-  // Get the table element
-  var table = document.querySelector('table');
-
-  // Get the tbody element of the table
-  var tbody = table.querySelector('tbody');
-
-  // Create a new row element for the table
-  var row = document.createElement('tr');
-
-  // Create a new cell element for the product name
-  var cell1 = document.createElement('td');
-  cell1.textContent = input.value;
-
-  // Create a new cell element for the quantity
-  var cell2 = document.createElement('td');
-  cell2.innerHTML = '<input type="number" min="1" value="1">';
-
-  // Create a new cell element for the price
-  var cell3 = document.createElement('td');
-  cell3.innerHTML = '<input type="number" min="0" value="0">';
-
-  // Add the cells to the row
-  row.appendChild(cell1);
-  row.appendChild(cell2);
-  row.appendChild(cell3);
-
-  // Add the row to the table
-  tbody.appendChild(row);
-}
-	
-	  </script>
-	  
-	  <script>
-	
-
-function sendTableToWhatsApp() {
-  // Get the table data as a string
-  var tableData = getTableDataAsString();
-
-  // Send the table data to a WhatsApp number using the WhatsApp API
-  var url = 'https://api.whatsapp.com/send?phone=<+212677146992>&text=' + encodeURIComponent(tableData);
-  window.open(url, '_blank');
-}
-
-function getTableDataAsString() {
-  // Get the table element
-  var table = document.querySelector('table');
-
-  // Get the rows of the table
-  var rows = table.querySelectorAll('tr');
-
-  // Initialize an empty string to store the table data
-  var tableData = '';
-
-  // Iterate through each row of the table
-  for (var i = 0; i < rows.length; i++) {
-    // Get the cells of the row
-    var cells = rows[i].querySelectorAll('td');
-
-    // Iterate through each cell of the row
-    for (var j = 0; j < cells.length; j++) {
-      // Append the cell data to the table data string, separated by a tab character
-      tableData += cells[j].textContent + '\t';
-    }
-
-    // Append a newline character to the table data string after each row
-    tableData += '\n';
-  }
-
-  return tableData;
-}
-</script>
-	  
+      // Send the list as a PDF to a WhatsApp number
+      function sendPDF() {
+        // Get the user's name
+        var name = document.getElementById("name").value;
+        // Get the products table
+        var productsTable = document.getElementById("products");
+        // Build the PDF content
+        var pdfContent = "Name: " + name + "\n\n";
+        pdfContent += "Products:\n";
+        for (var i = 1; i < productsTable.rows.length; i++) {
+          pdfContent += productsTable.rows[i].cells[0].innerHTML + "\n";
+        }
+        // Encode the PDF content as a data URL
+        var pdfData = btoa(unescape(encodeURIComponent(pdfContent)));
+        // Create a link to the PDF
+        var pdfLink = "data:application/pdf;base64," + pdfData;
+        // Open the PDF in WhatsApp
+        window.open("https://wa.me/+21262726274?text=" + encodeURIComponent(pdfLink));
+      }
+    </script>
+  </body>
 </html>
