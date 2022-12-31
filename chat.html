@@ -109,7 +109,7 @@
 }
      </style>
     <script>
-  const chatBox = document.getElementById('chat-box');
+const chatBox = document.getElementById('chat-box');
 
 // Minimize chat box when minimize button is clicked
 const minimizeButton = document.getElementById('minimize-button');
@@ -125,7 +125,10 @@ closeButton.addEventListener('click', () => {
 
 // Add new product row to table when add product button is clicked
 const addProductButton = document.getElementById('add-product-button');
-addProductButton.addEventListener('click', () => {
+addProductButton.addEventListener('click', (event) => {
+  // Prevent page refresh
+  event.preventDefault();
+  
   const productTable = document.getElementById('product-table');
   const newRow = document.createElement('tr');
   newRow.innerHTML = `
@@ -139,23 +142,26 @@ addProductButton.addEventListener('click', () => {
   productTable.appendChild(newRow);
 });
 
-// Submit form and send data via WhatsApp when submit button is clicked
-const submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', (event) => {
+// Handle form submission
+const chatForm = document.getElementById('chat-form');
+chatForm.addEventListener('submit', (event) => {
+  // Prevent page refresh
   event.preventDefault();
-
-  // Get company name and product list from form
+  
+  // Get company name and product list
   const companyName = document.getElementById('company-name').value;
-  const productList = [];
-  const productRows = document.querySelectorAll('#product-table tr:not(:first-child)');
-  productRows.forEach((row) => {
-    const productName = row.querySelector('.product-name').value;
-    const productQuantity = row.querySelector('.product-quantity').value;
-    productList.push(`${productName} (${productQuantity})`);
-  });
-
-  // Build message to send via WhatsApp
-  const message = `Bonjour, je souhaiterais obtenir un devis pour mon entreprise ${companyName}. Voici ma liste de produits et besoins:\n\n${productList.join('\n')}`;
+  const productList = document.querySelectorAll('#product-table .product-name');
+  const productQuantities = document.querySelectorAll('#product-table .product-quantity');
+  
+  // Build message
+  let message = `Bonjour, je suis intéressé par vos produits. Voici les informations de ma demande:\n\n`;
+  message += `Nom de l'entreprise: ${companyName}\n\n`;
+  message += `Liste de produits:\n`;
+  for (let i = 0; i < productList.length; i++) {
+    const productName = productList[i].value;
+    const productQuantity = productQuantities[i].value;
+    message += `- ${productName}: ${productQuantity}\n`;
+  }
 
   // Check if WhatsApp is installed on the user's device
   if (navigator.userAgent.match(/Android/i)) {
