@@ -31,21 +31,38 @@
           </td>
         </tr>
       </table>
-      <button id="add-product-button">Ajouter un produit</button>
+      
+      <div id="chat-box">
+  <!-- Other elements -->
+  <div id="chat-footer">
+    
+   <button id="add-product-button">Ajouter un produit</button>
   <br><br><br>
         <button type="submit" id="submit-button">Envoyer</button>
       </form>
+  </div>
+</div>
+      
     </div>
   </div>
    <style>
+       #chat-footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+     
      #chat-box {
+  border: 5px solid #00ff00; /* Add a thick, green border */
+  border-radius: 20px; /* Add rounded corners to the border */
   position: fixed;
   bottom: 0;
   right: 0;
   width: 300px;
   height: 500px;
-  background-color: #f8f9fa; /* Add a background color */
-  border: 1px solid black;
+  background-color: #ff00ff;  border: 1px solid black;
   transition: height 0.2s ease; /* Add a transition for the height change */
 }
 
