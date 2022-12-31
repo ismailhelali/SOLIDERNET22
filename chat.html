@@ -57,6 +57,8 @@
   }
      
      #chat-box {
+         background-color: #3498db; /* Add a custom blue color */
+
   border: 5px solid #00ff00; /* Add a thick, green border */
   border-radius: 20px; /* Add rounded corners to the border */
   position: fixed;
@@ -75,6 +77,25 @@
   background-color: black;
   color: white;
   padding: 10px;
+}
+#chat-header {
+  transition: background-color 0.2s ease; /* Add a transition for the hover effect */
+}
+
+#chat-header:hover {
+  background-color: #2ecc71; /* Change the header color on hover */
+}
+#chat-form {
+  animation: fade-out 0.5s ease-in-out;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 #minimize-button, #close-button {
@@ -99,6 +120,7 @@
   display: flex;
   margin-bottom: 10px;
 }
+     
 
 #product-table .product-name {
   width: 150px;
