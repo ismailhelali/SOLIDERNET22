@@ -1,155 +1,204 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chat </title>
-
+  <title>Chat</title>
 </head>
 <body>
   <div id="chat-box">
-  <div id="chat-header">
-    <button id="minimize-button">-</button>
-    <button id="close-button">x</button>
-  </div>
-  <div id="chat-body">
-    <div id="greeting">
-      Bonjour! Le but de ce chat est de collecter les informations du client afin de permettre à notre équipe de créer un devis personnalisé.
+    <div id="chat-header">
+      <button id="minimize-button">-</button>
+      <button id="close-button">x</button>
     </div>
-    <form id="chat-form">
-      <label for="company-name">Nom de votre entreprise:</label><br>
-      <input type="text" id="company-name"><br>
-      <label for="product-list">Liste de produits et besoins:</label><br>
-      <div id="product-list">
-        <div class="product">
-          <input type="text" class="product-name" placeholder="Nom du produit">
-          <input type="number" class="product-quantity" placeholder="Quantité">
-        </div>
+    <div id="chat-body">
+      <div id="greeting">
+        Bonjour! Le but de ce chat est de collecter les informations du client afin de permettre à notre équipe de créer un devis personnalisé.
       </div>
-      <button id="add-product-button">Ajouter un produit</button><br>
-      <button type="submit" id="submit-button">Envoyer</button>
-    </form>
+      <form id="chat-form">
+        <label for="company-name">Nom de votre entreprise:</label><br>
+        <input type="text" id="company-name"><br>
+        <label for="product-list">Liste de produits et besoins:</label><br>
+        <table id="product-table">
+          <tr>
+            <th>Nom du produit</th>
+            <th>Quantité</th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" class="product-name" placeholder="Nom du produit">
+            </td>
+            <td>
+              <input type="number" class="product-quantity" placeholder="Quantité">
+            </td>
+          </tr>
+        </table>
+        <button id="add-product-button">Ajouter un produit</button><brC
+        <button type="submit" id="submit-button">Envoyer</button<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+</head>
+<body>
+  <div id="chat-box">
+    <div id="chat-header">
+      <button id="minimize-button">-</button>
+      <button id="close-button">x</button>
+    </div>
+    <div id="chat-body">
+      <div id="greeting">
+        Bonjour! Le but de ce chat est de collecter les informations du client afin de permettre à notre équipe de créer un devis personnalisé.
+      </div>
+      <form id="chat-form">
+        <label for="company-name">Nom de votre entreprise:</label><br>
+        <input type="text" id="company-name"><br>
+        <label for="product-list">Liste de produits et besoins:</label><br>
+        <table id="product-table">
+          <tr>
+            <th>Nom du produit</th>
+            <th>Quantité</th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" class="product-name" placeholder="Nom du produit">
+            </td>
+            <td>
+              <input type="number" class="product-quantity" placeholder="Quantité">
+            </td>
+          </tr>
+        </table>
+        <button id="add-product-button">Ajouter un produit</button><br>
+        <button type="submit" id="submit-button">Envoyer</button>
+        
+         </form>
+    </div>
   </div>
-</div>
-  
+
   <style>
-    
     #chat-box {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 300px;
-  height: 500px;
-  background-color: white;
-  border: 1px solid black;
-}
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 300px;
+      height: 500px;
+      background-color: white;
+      border: 1px solid black;
+    }
 
-#chat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  color: white;
-  padding: 10px;
-}
+    #chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      color: white;
+      padding: 10px;
+    }
 
-#chat-body {
-  padding: 10px;
-}
+    #chat-body {
+      padding: 10px;
+    }
 
-#minimize-button {
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
-  background-color: transparent;
-  border: none;
-  color: white;
-}
+    #minimize-button {
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      background-color: transparent;
+      border: none;
+      color: white;
+    }
 
-#close-button {
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
-  background-color: transparent;
-  border: none;
-  color: white;
-}
+    #close-button {
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      background-color: transparent;
+      border: none;
+      color: white;
+    }
 
-#product-list .product {
-  display: flex;
-  margin-bottom: 10px;
-}
+    #product-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-#product-list .product-name {
-  width: 150px;
-}
+    #product-table th {
+      text-align: left;
+      border: 1px solid black;
+      padding: 5px;
+    }
 
-#product-list .product-quantity {
-  width: 50px;
-}
+    #product-table td {
+      border: 1px solid black;
+      padding: 5px;
+    }
 
-#add-product-button {
-  width: 150px;
-  height: 30px;
-  background-color: black;
-  color: white;
-  border: none;
-}
+    #add-product-button {
+      width: 150px;
+      height: 30px;
+      background-color: black;
+      color: white;
+      border: none;
+    }
 
-#submit-button {
-  width: 150px;
-  height: 30px;
-  background-color: black;
-  color: white;
-  border: none;
-}
+    #submit-button {
+      width: 150px;
+      height: 30px;
+      background-color: black;
+      color: white;
+      border: none;
+    }
   </style>
-  
-   <script>
-     const chatBox = document ;
-// Minimize chat box when minimize button is clicked
-const minimizeButton = document.getElementById('minimize-button');
-minimizeButton.addEventListener('click', () => {
-  chatBox.style.height = '30px';
-});
 
-// Close chat box when close button is clicked
-const closeButton = document.getElementById('close-button');
-closeButton.addEventListener('click', () => {
-  chatBox.style.display = 'none';
-});
+  <script>
+    const chatBox = document;
 
-// Add new product field when add product button is clicked
-const addProductButton = document.getElementById('add-product-button');
-addProductButton.addEventListener('click', () => {
-  const productList = document.getElementById('product-list');
-  const newProduct = document.createElement('div');
-  newProduct.innerHTML = `
-    <input type="text" class="product-name" placeholder="Nom du produit">
-    <input type="number" class="product-quantity" placeholder="Quantité">
-  `;
-  productList.appendChild(newProduct);
-});
+    // Minimize chat box when minimize button is clicked
+    const minimizeButton = document.getElementById('minimize-button');
+    minimizeButton.addEventListener('click', () => {
+      chatBox.style.height = '30px';
+    });
 
-// Send product list via WhatsApp when submit button is clicked
-const submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', (event) => {
-  event.preventDefault();
+    // Close chat box when close button is clicked
+    
+     const closeButton = document.getElementById('close-button');
+  closeButton.addEventListener('click', () => {
+    chatBox.style.display = 'none';
+  });
 
-  // Build product list message
-  const companyName = document.getElementById('company-name').value;
-  let message = `Liste de produits pour ${companyName}:\n`;
-  const productNameInputs = document.querySelectorAll('.product-name');
-  const productQuantityInputs = document.querySelectorAll('.product-quantity');
-  for (let i = 0; i < productNameInputs.length; i++) {
-    const name = productNameInputs[i].value;
-    const quantity = productQuantityInputs[i].value;
-    message += `- ${name} (quantité: ${quantity})\n`;
-  }
+  // Add new product field when add product button is clicked
+  const addProductButton = document.getElementById('add-product-button');
+  addProductButton.addEventListener('click', () => {
+    const productTable = document.getElementById('product-table');
+    const newProductRow = document.createElement('tr');
+    newProductRow.innerHTML = `
+      <td>
+        <input type="text" class="product-name" placeholder="Nom du produit">
+      </td>
+      <td>
+        <input type="number" class="product-quantity" placeholder="Quantité">
+      </td>
+    `;
+    productTable.appendChild(newProductRow);
+  });
 
-  // Open WhatsApp web with product list message
-  const url = encodeURI(`https://wa.me/?text=${message}`);
-  window.open(url, '_blank');
-});
-      </script>
-  </body>
+  // Send product list via WhatsApp when submit button is clicked
+  const submitButton = document.getElementById('submit-button');
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Build product list message
+    const companyName = document.getElementById('company-name').value;
+    let message = `Liste de produits pour ${companyName}:\n`;
+    const productNameInputs = document.querySelectorAll('.product-name');
+    const productQuantityInputs = document.querySelectorAll('.product-quantity');
+    for (let i = 0; i < productNameInputs.length; i++) {
+      const name = productNameInputs[i].value;
+      const quantity = productQuantityInputs[i].value;
+      message += `- ${name} (quantité: ${quantity})\n`;
+    }
+
+    // Open WhatsApp web with product list message
+    const url = encodeURI(`https://wa.me/?text=${message}`);
+    window.open(url, '_blank');
+  });
+  </script>
+</body>
 </html>
-
