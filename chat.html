@@ -2,104 +2,154 @@
 <html>
 <head>
   <title>Chat </title>
-<body>
-</head>
 
-<!-- HTML for the chat box -->
-<div id="chat-box">
+</head>
+<body>
+  <div id="chat-box">
   <div id="chat-header">
-    <h3>L'objectif de ce chat et de collecter les besoins client pour créer un Devis personnalisé, vous pouvez indiqué votre liste de produit ou votre spécialité</h3>
+    <button id="minimize-button">-</button>
+    <button id="close-button">x</button>
   </div>
   <div id="chat-body">
+    <div id="greeting">
+      Bonjour! Le but de ce chat est de collecter les informations du client afin de permettre à notre équipe de créer un devis personnalisé.
+    </div>
     <form id="chat-form">
-      <label for="name">Name or company name:</label><br>
-      <input type="text" id="name"><br>
-      <label for="products">Products:</label><br>
-      <input type="text" id="products"><br>
-      <input type="button" value="Done" onclick="storeTable()">
+      <label for="company-name">Nom de votre entreprise:</label><br>
+      <input type="text" id="company-name"><br>
+      <label for="product-list">Liste de produits et besoins:</label><br>
+      <div id="product-list">
+        <div class="product">
+          <input type="text" class="product-name" placeholder="Nom du produit">
+          <input type="number" class="product-quantity" placeholder="Quantité">
+        </div>
+      </div>
+      <button id="add-product-button">Ajouter un produit</button><br>
+      <button type="submit" id="submit-button">Envoyer</button>
     </form>
   </div>
 </div>
+  
+  <style>
+    
+    #chat-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  border: 1px solid black;
+}
 
-<!-- CSS for styling the chat box -->
-<style>
-  #chat-box {
-    width: 500px;
-    height: 400px;
-    border: 1px solid black;
-    border-radius: 5px;
+#chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+#chat-body {
+  padding: 10px;
+}
+
+#minimize-button {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+#close-button {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+#product-list .product {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#product-list .product-name {
+  width: 150px;
+}
+
+#product-list .product-quantity {
+  width: 50px;
+}
+
+#add-product-button {
+  width: 150px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+#submit-button {
+  width: 150px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+  </style>
+  
+   <script>
+     const chatBox = document ;
+// Minimize chat box when minimize button is clicked
+const minimizeButton = document.getElementById('minimize-button');
+minimizeButton.addEventListener('click', () => {
+  chatBox.style.height = '30px';
+});
+
+// Close chat box when close button is clicked
+const closeButton = document.getElementById('close-button');
+closeButton.addEventListener('click', () => {
+  chatBox.style.display = 'none';
+});
+
+// Add new product field when add product button is clicked
+const addProductButton = document.getElementById('add-product-button');
+addProductButton.addEventListener('click', () => {
+  const productList = document.getElementById('product-list');
+  const newProduct = document.createElement('div');
+  newProduct.innerHTML = `
+    <input type="text" class="product-name" placeholder="Nom du produit">
+    <input type="number" class="product-quantity" placeholder="Quantité">
+  `;
+  productList.appendChild(newProduct);
+});
+
+// Send product list via WhatsApp when submit button is clicked
+const submitButton = document.getElementById('submit-button');
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  // Build product list message
+  const companyName = document.getElementById('company-name').value;
+  let message = `Liste de produits pour ${companyName}:\n`;
+  const productNameInputs = document.querySelectorAll('.product-name');
+  const productQuantityInputs = document.querySelectorAll('.product-quantity');
+  for (let i = 0; i < productNameInputs.length; i++) {
+    const name = productNameInputs[i].value;
+    const quantity = productQuantityInputs[i].value;
+    message += `- ${name} (quantité: ${quantity})\n`;
   }
 
-  #chat-header {
-    background-color: lightblue;
-    border-bottom: 1px solid black;
-    padding: 10px;
-  }
-
-  #chat-body {
-    padding: 10px;
-  }
-
-  #chat-form {
-    display: flex;
-    flex-direction: column;
-  }
-</style>
-
-<!-- JavaScript for storing and sending the table -->
-<script>
-  // Function to store the table in the browser
-  function storeTable() {
-    // Get the name and products from the form
-    var name = document.getElementById("name").value;
-    var products = document.getElementById("products").value;
-
-    // Create a new row for the table
-    var row = document.createElement("tr");
-
-    // Create cells for the name and products
-    var nameCell = document.createElement("td");
-    var productsCell = document.createElement("td");
-
-    // Set the values of the cells
-    nameCell.innerHTML = name;
-    productsCell.innerHTML = products;
-
-    // Append the cells to the row
-    row.appendChild(nameCell);
-    row.appendChild(productsCell);
-
-    // Get the table element
-    var table = document.getElementById("chat-table");
-
-    // Append the row to the table
-    table.appendChild(row);
-  }
-
-  // Function to send the table via WhatsApp
-  function sendViaWhatsApp() {
-    // Get the table as a string
-    var tableString = document.getElementById("chat-table").outerHTML;
-
-    // Encode the table string for use in a URL
-    var encodedTable = encodeURIComponent(tableString);
-
-    // Generate the WhatsApp URL
-    var whatsAppUrl = "https://api.whatsapp.com/send?text=" + encodedTable;
-
-    // Open the WhatsApp web client
-    window.open(whatsAppUrl);
-  }
-</script>
-
-<!-- HTML for the table -->
-<table id="chat-table">
-  <tr>
-      <th>Name or company name</th>
-  <th>Products</th>
-</tr>
-</table>
-<!-- HTML for the button to send the table via WhatsApp -->
-<input type="button" value="Send via WhatsApp" onclick="sendViaWhatsApp()">
+  // Open WhatsApp web with product list message
+  const url = encodeURI(`https://wa.me/?text=${message}`);
+  window.open(url, '_blank');
+});
+      </script>
+  </body>
 </html>
 
