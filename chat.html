@@ -38,7 +38,7 @@
     </div>
   </div>
    <style>
-  #chat-box {
+     #chat-box {
   position: fixed;
   bottom: 0;
   right: 0;
@@ -107,10 +107,9 @@
   color: white;
   border: none;
 }
-      </style>
-        <script>
-  
-const chatBox = document.getElementById('chat-box');
+     </style>
+    <script>
+  const chatBox = document.getElementById('chat-box');
 
 // Minimize chat box when minimize button is clicked
 const minimizeButton = document.getElementById('minimize-button');
@@ -140,62 +139,33 @@ addProductButton.addEventListener('click', () => {
   productTable.appendChild(newRow);
 });
 
-// Build product list message when form is submitted
+// Handle form submission
 const chatForm = document.getElementById('chat-form');
 chatForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const companyName = document.getElementById('company-name').value;
-  const productTable = document.getElementById('product-table');
-  const products = [...productTable.querySelectorAll('.product')];
-  const productListMessage = `Bonjour, nous avons besoin de ${companyName} pour:
-
-${products.map((product) => {
-    const productName = product.querySelector('.product-name').value;
-    const productQuantity = product.querySelector('.product-quantity').value;
-    return `- ${productQuantity}x ${productName}`;
-  }).join('\n')}
-
-Merci de nous envoyer un devis le plus rapidement possible.`;
-
-  alert(productListMessage);
-});
-        // Submit form when submit button is clicked
-const submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', (event) => {
-  event.preventDefault();
-
+  // Get company name and products
   const companyName = document.getElementById('company-name').value;
   const productRows = document.querySelectorAll('#product-table tr:not(:first-child)');
   const products = [];
-
   for (const row of productRows) {
     const name = row.querySelector('.product-name').value;
     const quantity = row.querySelector('.product-quantity').value;
     products.push({ name, quantity });
   }
-// Build product list
-const buildProductList = () => {
-const productTable = document.getElementById('product-table');
-const rows = productTable.querySelectorAll('tr');
-const products = [];
-for (const row of rows) {
-const productName = row.querySelector('.product-name').value;
-const productQuantity = row.querySelector('.product-quantity').value;
-products.push({ name: productName, quantity: productQuantity });
-}
-return products;
-};
 
-// Submit form
-const chatForm = document.getElementById('chat-form');
-chatForm.addEventListener('submit', (event) => {
-event.preventDefault();
-const companyName = document.getElementById('company-name').value;
-const products = buildProductList();
-console.log(companyName, products);
+  // Build message
+  let message = `Bonjour, je suis intéressé par un devis pour les produits suivants:\n`;
+  message += `Nom de l'entreprise: ${companyName}\n`;
+  message += `Liste de produits:\n`;
+  for (const product of products) {
+    message += `- ${product.name} (quantité: ${product.quantity})\n`;
+  }
+
+  // Send message via WhatsApp or WhatsApp Business
+  window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`);
 });
-
-</script>
-</body>
-</html>
+      </script>
+  
+        </body>
+      </html>
