@@ -11,7 +11,7 @@
     <!-- Category titles will be inserted here -->
   </div>
   <script>
-    const data = {
+   const data = {
   categories: [
     {
       title: 'Category 1',
@@ -62,58 +62,25 @@ function getCategoryHtml(category) {
     </div>
   `;
 }
+  
+  function render() {
+  // Filter the categories and products based on the search query
+  const searchQuery = searchInput.value.toLowerCase();
+  let categories = data.categories;
+  if (searchQuery.trim() !== '') {
+    categories = categories.map((category) => {
+      const products = category.products.filter((product) => {
+        return product.title.toLowerCase().includes(searchQuery);
+      });
+      return { ...category, products };
+    });
+  }
 
-// Function to render the categories and products
-function render() {
-const searchQuery = searchInput.value.toLowerCase();
-let categoriesToRender = data.categories;
-
-if (searchQuery.trim() !== '') {
-categoriesToRender = categoriesToRender.map((category) => {
-const newCategory = { ...category };
-newCategory.products = newCategory.products.filter((product) => {
-return product.title.toLowerCase().includes(searchQuery);
-});
-return newCategory;
-});
+  // Generate the HTML for the categories and products
+  const categoriesHtml = categories.map(getCategoryHtml).join('');
+  const categoriesElement = document.getElementById('categories');
+  categoriesElement.innerHTML = categoriesHtml;
 }
-
-const categoriesHtml = categoriesToRender.map(getCategoryHtml).join('');
-const categoriesElement = document.getElementById('categories');
-categoriesElement.innerHTML = categoriesHtml;
-}
-
-// Initial render
-render();
-
-searchInput.addEventListener('input', () => {
-render();
-});
-
-const checkboxInput = document.querySelector('.product-checkbox');
-checkboxInput.addEventListener('change', (event) => {
-const checkbox = event.target;
-const productElement = checkbox.parentElement;
-const categoryElement = productElement.parentElement;
-
-// Find the index of the product and category in the data object
-const productIndex = Array.from(productElement.parentElement.children).indexOf(productElement);
-const categoryIndex = Array.from(categoryElement.parentElement.children).indexOf(categoryElement);
-
-// Update the checked property of the product object
-data.categories[categoryIndex].products[productIndex].checked = checkbox.checked;
-
-// Re-render the categories and products
-render();
-});
-
-const searchInput = document.getElementById('search');
-const clearSearchButton = document.getElementById('clear-search');
-
-clearSearchButton.addEventListener('click', () => {
-searchInput.value = '';
-render();
-});
     
   </script>
   </html>
