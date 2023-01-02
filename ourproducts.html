@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
   <title>SOLIDERNET products List</title>
   <style>
     /* Add some styling for the product list */
@@ -94,6 +96,29 @@ document.querySelector("#save-pdf").addEventListener("click", () => {
   });
   // Save the PDF
   pdf.save("selected-products.pdf");
+});
+    
+    document.querySelector("#share-whatsapp").addEventListener("click", () => {
+  // Generate the message to be shared
+  let message = "Selected products:\n";
+  selectedProducts.forEach((product) => {
+    message += `- ${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}\n`;
+  });
+
+  // Create the WhatsApp URL
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  // Open the URL in a new tab
+  window.open(whatsappUrl, "_blank");
+});
+    
+document.querySelector("#share-whatsapp").addEventListener("click", () => {
+let message = "Selected products:\n";
+selectedProducts.forEach((product) => {
+message += - ${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}\n;
+});
+const whatsappUrl = https://wa.me/?text=${encodeURIComponent(message)};
+window.open(whatsappUrl, "_blank");
 });
     
 </script>
