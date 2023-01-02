@@ -104,39 +104,29 @@ $search.on('input', () => {
     renderCategories(data.categories);
   </script>
   
-<script>
-  function downloadPdf() {
-    const doc = new jsPDF();
-    const selectedProducts = data.categories
-      .map((category) => category.products)
-      .flat()
-      .filter((product) => product.checked);
 
-    if (selectedProducts.length === 0) {
-      alert('No products selected');
-      return;
-    }
+  <script>
+  $('#save-pdf').on('click', () => {
+  // Create a new PDF document
+  const doc = new jsPDF();
 
-    doc.text('Selected Products', 10, 10);
-    doc.line(10, 11, 200, 11);
+  // Get the selected products
+  const selectedProducts = data.categories
+    .map((category) => {
+      return category.products.filter((product) => product.checked);
+    })
+    .reduce((acc, products) => acc.concat(products), []);
 
-    let y = 20;
-    selectedProducts.forEach((product) => {
-      doc.text(product.title, 10, y);
-      doc.text(product.quantity, 60, y);
-      doc.text(product.unit, 100, y);
-      y += 10;
-    });
+  // Add the selected products to the PDF
+  doc.text('Selected Products:', 10, 10);
+  selectedProducts.forEach((product, index) => {
+    doc.text(`${index + 1}. ${product.title}`, 10, 15 + (index * 5));
+  });
 
-    doc.save('selected-products.pdf');
-  }
-</script>
-<script>
-const $savePdf = $('#save-pdf');
-
-$savePdf.on('click', () => {
-  downloadPdf();
+  // Save the PDF
+  doc.save('selected-products.pdf');
 });
-  </script>
+</script>
+
 </body>
 </html>
