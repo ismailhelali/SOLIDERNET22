@@ -4,77 +4,107 @@
   <title>Product List</title>
 </head>
 <body>
+  
+  <input type="text" id="search">
+
   <h1>Categories</h1>
   <div id="categories">
     <!-- Category titles will be inserted here -->
   </div>
 
   <script>
-    // Example data
     const data = {
-      categories: [
-        {
-          title: 'Category 1',
-          products: [
-            { title: 'Product 1' },
-            { title: 'Product 2' }
-          ]
-        },
-        {
-          title: 'Category 2',
-          products: [
-            { title: 'Product 3' },
-            { title: 'Product 4' }
-          ]
-        }
+  categories: [
+    {
+      title: 'Category 1',
+      products: [
+        { title: 'Product 1', checked: false },
+        { title: 'Product 2', checked: false }
       ]
-    };
-
-    // Function to create a DOM element from a template string
-    function createElement(template) {
-      const div = document.createElement('div');
-      div.innerHTML = template;
-      return div.firstElementChild;
+    },
+    {
+      title: 'Category 2',
+      products: [
+        { title: 'Product 3', checked: false },
+        { title: 'Product 4', checked: false }
+      ]
     }
+  ]
+};
 
-    // Function to generate the HTML for a product item
-    function getProductItemHtml(product) {
-      return `
-        <div class="product-item">
-          <input type="checkbox" class="product-checkbox">
-          <span class="product-title">${product.title}</span>
-          <label>
-            Quantity:
-            <input type="number" class="product-quantity">
-          </label>
-          <label>
-            Unit:
-            <input type="text" class="product-unit">
-          </label>
-        </div>
-      `;
-    }
+function createElement(template) {
+  const div = document.createElement('div');
+  div.innerHTML = template;
+  return div.firstElementChild;
+}
 
-    // Function to generate the HTML for a category
-    function getCategoryHtml(category) {
-      const productsHtml = category.products.map(getProductItemHtml).join('');
-      return `
-        <div class="category">
-          <h2 class="category-title">${category.title}</h2>
-          <div class="category-products">${productsHtml}</div>
-        </div>
-      `;
-    }
+function getProductItemHtml(product) {
+  return `
+    <div class="product-item">
+      <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
+      <span class="product-title">${product.title}</span>
+      <label>
+        Quantity:
+        <input type="number" class="product-quantity">
+      </label>
+      <label>
+        Unit:
+        <input type="text" class="product-unit">
+      </label>
+    </div>
+  `;
+}
 
-    // Function to render the categories and products
-    function render() {
-      const categoriesHtml = data.categories.map(getCategoryHtml).join('');
-      const categoriesElement = document.getElementById('categories');
-      categoriesElement.innerHTML = categoriesHtml;
-    }
+function getCategoryHtml(category) {
+  const productsHtml = category.products.map(getProductItemHtml).join('');
+  return `
+    <div class="category">
+      <h2 class="category-title">${category.title}</h2>
+      <div class="category-products">${productsHtml}</div>
+    </div>
+  `;
+}
 
-    // Initial render
-    render();
+function render() {
+  const categoriesHtml = data.categories.map(getCategoryHtml).join('');
+  const categoriesElement = document.getElementById('categories');
+  categoriesElement.innerHTML = categoriesHtml;
+}
+
+// Initial render
+render();
+
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', (event) => {
+  const searchQuery = event.target.value.toLowerCase();
+
+  // Filter the products
+  data.categories.forEach((category) => {
+    category.products = category.products.filter((product) => {
+      return product.title.toLowerCase().includes(searchQuery);
+    });
+  });
+
+  // Re-render the categories and products
+  render();
+});
+
+const checkboxInput = document.querySelector('.product-checkbox');
+checkboxInput.addEventListener('change', (event) => {
+  const checkbox = event.target;
+  const productElement = checkbox.parentElement;
+  const categoryElement = productElement.parentElement;
+
+  // Find the index of the product and category in the data object
+  const productIndex = Array.from(productElement.parentElement.children).indexOf(productElement);
+  const categoryIndex = Array.from(categoryElement.parentElement.children).indexOf(categoryElement);
+
+  // Update the checked property of the product object
+  data.categories[categoryIndex].products[productIndex].checked = checkbox.checked;
+
+  // Re-render the categories and products
+  render();
+});
   </script>
 </body>
 </html>
