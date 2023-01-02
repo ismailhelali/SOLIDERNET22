@@ -3,7 +3,7 @@
 <head>
   <title>Product List</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.5.5/jspdf.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
@@ -69,21 +69,21 @@
       $categories.html(template({ categories }));
     }
 
-    $search.on('input', () => {
-      const searchQuery = $search.val().toLowerCase();
-      let categories = data.categories;
+    
+$search.on('input', () => {
+  const searchQuery = $search.val().toLowerCase();
+  let categories = data.categories;
 
-      if (searchQuery.trim() !== '') {
-        categories = categories.map((category) => {
-          const products = category.products.filter((product) => {
-            return product.title.toLowerCase().includes(searchQuery);
-          });
-          return { ...category, products };
-        });
-      }
+  if (searchQuery.trim() !== '') {
+    categories = categories.map((category) => {
+      const products = category.products.filter((product) => {
+        return product.title.toLowerCase().includes(searchQuery);
+      });
+      return { ...category, products };
+    });
+  }
 
-      renderCategories(categories);
-   
+  renderCategories(categories);
 });
 
     $clearSearch.on('click', () => {
