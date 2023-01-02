@@ -4,83 +4,82 @@
   <title>Product List</title>
 </head>
 <body>
-<input type="text" id="search">
-<button id="clear-search">Show All</button>
+  <input type="text" id="search">
+  <button id="clear-search">Show All</button>
+
   <h1>Categories</h1>
   <div id="categories">
     <!-- Category titles will be inserted here -->
   </div>
+
   <script>
-   const data = {
-  categories: [
-    {
-      title: 'Category 1',
-      products: [
-        { title: 'Product 1', checked: false },
-        { title: 'Product 2', checked: false }
+    const data = {
+      categories: [
+        {
+          title: 'Category 1',
+          products: [
+            { title: 'Product 1', checked: false },
+            { title: 'Product 2', checked: false }
+          ]
+        },
+        {
+          title: 'Category 2',
+          products: [
+            { title: 'Product 3', checked: false },
+            { title: 'Product 4', checked: false }
+          ]
+        }
       ]
-    },
-    {
-      title: 'Category 2',
-      products: [
-        { title: 'Product 3', checked: false },
-        { title: 'Product 4', checked: false }
-      ]
+    };
+
+    function createElement(template) {
+      const div = document.createElement('div');
+      div.innerHTML = template;
+      return div.firstElementChild;
     }
-  ]
-};
 
-function createElement(template) {
-  const div = document.createElement('div');
-  div.innerHTML = template;
-  return div.firstElementChild;
-}
+    function getProductItemHtml(product) {
+      return `
+        <div class="product-item">
+          <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
+          <span class="product-title">${product.title}</span>
+          <label>
+            Quantity:
+            <input type="number" class="product-quantity">
+          </label>
+          <label>
+            Unit:
+            <input type="text" class="product-unit">
+          </label>
+        </div>
+      `;
+    }
 
-function getProductItemHtml(product) {
-  return `
-    <div class="product-item">
-      <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
-      <span class="product-title">${product.title}</span>
-      <label>
-        Quantity:
-        <input type="number" class="product-quantity">
-      </label>
-      <label>
-        Unit:
-        <input type="text" class="product-unit">
-      </label>
-    </div>
-  `;
-}
+    function getCategoryHtml(category) {
+      const productsHtml = category.products.map(getProductItemHtml).join('');
+      return `
+        <div class="category">
+          <h2 class="category-title">${category.title}</h2>
+          <div class="category-products">${productsHtml}</div>
+        </div>
+      `;
+    }
 
-function getCategoryHtml(category) {
-  const productsHtml = category.products.map(getProductItemHtml).join('');
-  return `
-    <div class="category">
-      <h2 class="category-title">${category.title}</h2>
-      <div class="category-products">${productsHtml}</div>
-    </div>
-  `;
-}
-  
-  function render() {
-  // Filter the categories and products based on the search query
-  const searchQuery = searchInput.value.toLowerCase();
-  let categories = data.categories;
-  if (searchQuery.trim() !== '') {
-    categories = categories.map((category) => {
-      const products = category.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchQuery);
-      });
-      return { ...category, products };
-    });
-  }
+    function render() {
+      // Filter the categories and products based on the search query
+      const searchQuery = searchInput.value.toLowerCase();
+      let categories = data.categories;
+      if (searchQuery.trim() !== '') {
+        categories = categories.map((category) => {
+          const products = category.products.filter((product) => {
+            return product.title.toLowerCase().includes(searchQuery);
+          });
+          return { ...category, products };
+        });
+      }
 
-  // Generate the HTML for the categories and products
-  const categoriesHtml = categories.map(getCategoryHtml).join('');
-  const categoriesElement = document.getElementById('categories');
-  categoriesElement.innerHTML = categoriesHtml;
-}
-    
+      // Generate the HTML for the categories and products
+      const categoriesHtml = categories.map(getCategoryHtml).join('');
+      const categoriesElement = document.getElementById
   </script>
   </html>
