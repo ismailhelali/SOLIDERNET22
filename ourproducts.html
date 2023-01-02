@@ -8,55 +8,8 @@
 </head>
 <body>
   <h1>Product List</h1>
- <!-- HTML -->
-<ul id="categories">
-  <li>
-    <h3>Category 1</h3>
-    <ul class="products">
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 1</span>
-      </li>
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 2</span>
-      </li>
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 3</span>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <h3>Category 2</h3>
-    <ul class="products">
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 4</span>
-      </li>
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 5</span>
-      </li>
-      <li>
-        <input type="checkbox">
-        <input type="number" min="1" value="1">
-        <input type="text">
-        <span>Product 6</span>
-      </li>
-    </ul>
-  </li>
-</ul>
+<!-- HTML -->
+<ul id="categories"></ul>
 
 <form id="search-form">
   <input type="text" placeholder="Search for a product or category">
@@ -65,31 +18,153 @@
 
 <button id="save-pdf">Save as PDF</button>
 <button id="share-whatsapp">Share via WhatsApp</button>
-<script>
+
 <!-- JavaScript -->
-const categories = document.querySelectorAll("#categories > li");
+  <script>
+const categories = [
+  {
+    name: "Category 1",
+    products: [
+      { name: "Product 1", quantity: 1, unit: "" },
+      { name: "Product 2", quantity: 1, unit: "" },
+      { name: "Product 3", quantity: 1, unit: "" },
+    ],
+  },
+  {
+    name: "Category 2",
+    products: [
+      { name: "Product 4", quantity: 1, unit: "" },
+      { name: "Product 5", quantity: 1, unit: "" },
+      { name: "Product 6", quantity: 1, unit: "" },
+    ],
+  },
+];
+
+const categoriesList = document.querySelector("#categories");
+
+const pdf = new jsPDF();
 
 categories.forEach((category) => {
-  const products = category.querySelectorAll(".products > li");
-  products.forEach((product) => {
-    const checkbox = product.querySelector("input[type=checkbox]");
+  const categoryElement = document.createElement("li");
+  const categoryName = document.createElement("h3");
+  categoryName.textContent = category.name;
+  categoryElement.appendChild(categoryName);
+  const productsList = document.createElement("ul");
+  productsList.classList.add("products");
+  category.products.forEach((product) => {
+    const productElement = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    productElement.appendChild(checkbox);
     checkbox.addEventListener("change", (event) => {
       // Keep track of selected products
     });
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.min = "1";
+    quantityInput.value = product.quantity;
+    productElement.appendChild(quantityInput);
+    const unitInput = document.createElement("input");
+    unitInput.type = "text";
+    unitInput.value = product.unit;
+    productElement.appendChild(unitInput);
+    const productName = document.createElement("span");
+    productName.textContent = product.name;
+    productElement.appendChild(productName);
+    productsList.appendChild(productElement);
   });
+  categoryElement.appendChild(productsList);
+  categoriesList.appendChild(categoryElement);
 });
+
+function search(query) {
+  // Reset all categories and products
+  categoriesList.querySelectorAll("li").forEach((category) => {
+    category.style.display = "none";
+    const products = category.querySelectorAll(".products > li");
+    products.forEach((product) => {
+      product.style.display = "none";
+    });
+  });
+
+  // Filter categories and products
+  const searchResults = [];
+  categoriesList.querySelectorAll("li").forEach((category) => {
+    const categoryName = category.querySelector("h3").textContent.toLowerCase();
+    if (!categoryName.includes(query)) {
+      return;
+    }
+    searchResults.push(categoryName);
+    category.style.display = "block";
+    const products = category.querySelectorAll(".products > li");
+    products.forEach((product) => {
+      const productName = product.querySelector("span").textContent.toLowerCase();
+      if (!productName.includes(query)) {
+        return;
+      }
+      searchResults.push(productName);
+      product.style.display = "block";
+    });
+  });
+
+  if (searchResults.length === 0) {
+    alert("No matching products or categories were found.");
+  }
+
+  return searchResults;
+}
 
 document.querySelector("#search-form").addEventListener("submit", (event) => {
   event.preventDefault();
-  // Search for products or categories
+  const query = event.target.querySelector("input").value.toLowerCase();
+  search(query);
 });
 
 document.querySelector("#save-pdf").addEventListener("click", () => {
-  // Save selected products as PDF
+  let selectedProducts = false;
+  categoriesList.querySelectorAll("li").forEach((category) => {
+    const categoryName = category.querySelector("h3").textContent;
+    pdf.text(categoryName, 10, 10);
+    const products = category.querySelectorAll(".products > li");
+    products.forEach((product) => {
+      const checkbox = product.querySelector("input[type=checkbox]");
+      if (!checkbox.checked) {
+        return;
+      }
+      selectedProducts = true;
+      const quantity = product.querySelector("input[type=number]").value;
+      const unit = product.querySelector("input[type=text]").value;
+      const productName = product.querySelector("span").textContent;
+      pdf.text(`${quantity} ${unit} ${productName}`, 10, 20);
+    });
+  });
+ 
+if (!selectedProducts) {
+    alert("Please select at least one product to save as a PDF.");
+    return;
+  }
+  pdf.save("products.pdf");
 });
 
 document.querySelector("#share-whatsapp").addEventListener("click", () => {
-  // Share selected products via WhatsApp
+  let message = "Selected products:\n";
+  categoriesList.querySelectorAll("li").forEach((category) => {
+    const categoryName = category.querySelector("h3").textContent;
+    message += `\n${categoryName}\n`;
+    const products = category.querySelectorAll(".products > li");
+    products.forEach((product) => {
+      const checkbox = product.querySelector("input[type=checkbox]");
+      if (!checkbox.checked) {
+        return;
+      }
+      const quantity = product.querySelector("input[type=number]").value;
+      const unit = product.querySelector("input[type=text]").value;
+      const productName = product.querySelector("span").textContent;
+      message += `${quantity} ${unit} ${productName}\n`;
+    });
+  });
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, "_blank");
 });
 </script>
 </body>
