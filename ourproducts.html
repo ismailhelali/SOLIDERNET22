@@ -4,8 +4,8 @@
   <title>Product List</title>
 </head>
 <body>
-  
-  <input type="text" id="search">
+<input type="text" id="search">
+<button id="clear-search">Show All</button>
 
   <h1>Categories</h1>
   <div id="categories">
@@ -74,9 +74,13 @@ function render() {
 // Initial render
 render();
 
-const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', (event) => {
   const searchQuery = event.target.value.toLowerCase();
+
+  if (searchQuery.trim() === '') {
+    render();
+    return;
+  }
 
   // Filter the products
   data.categories.forEach((category) => {
@@ -105,6 +109,15 @@ checkboxInput.addEventListener('change', (event) => {
   // Re-render the categories and products
   render();
 });
+    
+const searchInput = document.getElementById('search');
+const clearSearchButton = document.getElementById('clear-search');
+
+clearSearchButton.addEventListener('click', () => {
+  searchInput.value = '';
+  render();
+});
+    
   </script>
 </body>
 </html>
