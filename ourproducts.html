@@ -3,6 +3,7 @@
 <head>
   <title>Product List</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
@@ -34,6 +35,10 @@
       </div>
     {{/each}}
   </script>
+  
+<button id="save-pdf">Save as PDF</button>
+
+
   <script>
     const data = {
       categories: [
@@ -97,6 +102,41 @@
     });
 
     renderCategories(data.categories);
+  </script>
+  
+<script>
+  function downloadPdf() {
+    const doc = new jsPDF();
+    const selectedProducts = data.categories
+      .map((category) => category.products)
+      .flat()
+      .filter((product) => product.checked);
+
+    if (selectedProducts.length === 0) {
+      alert('No products selected');
+      return;
+    }
+
+    doc.text('Selected Products', 10, 10);
+    doc.line(10, 11, 200, 11);
+
+    let y = 20;
+    selectedProducts.forEach((product) => {
+      doc.text(product.title, 10, y);
+      doc.text(product.quantity, 60, y);
+      doc.text(product.unit, 100, y);
+      y += 10;
+    });
+
+    doc.save('selected-products.pdf');
+  }
+</script>
+<script>
+const $savePdf = $('#save-pdf');
+
+$savePdf.on('click', () => {
+  downloadPdf();
+});
   </script>
 </body>
 </html>
