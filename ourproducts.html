@@ -64,9 +64,11 @@ function getCategoryHtml(category) {
 }
   
   function render() {
+  // Set the categories and products to the original data
+  let categories = data.categories;
+
   // Filter the categories and products based on the search query
   const searchQuery = searchInput.value.toLowerCase();
-  let categories = data.categories;
   if (searchQuery.trim() !== '') {
     categories = categories.map((category) => {
       const products = category.products.filter((product) => {
@@ -81,7 +83,6 @@ function getCategoryHtml(category) {
   const categoriesElement = document.getElementById('categories');
   categoriesElement.innerHTML = categoriesHtml;
 }
-
 
   // Initial render
   render();
@@ -129,15 +130,7 @@ function getCategoryHtml(category) {
     render();
   });
     
-// Initial render
-render();
 
-// Update the search input value to an empty string
-searchInput.value = '';
-
-// Re-render the categories and products
-render();    
-    
 </script>
 </body>
 </html>
