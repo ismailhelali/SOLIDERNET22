@@ -8,95 +8,89 @@
 </head>
 <body>
   <h1>Product List</h1>
-  <form id="product-form">
-    <input type="text" id="search" placeholder="Search for a product">
-    <button type="submit">Search</button>
-  </form>
-  <br>
-  <form id="category-form">
-    <label for="category-select">Filter by category:</label>
-    <select id="category-select">
-      <option value="all">All</option>
-      <!-- Add options for each category here -->
-    </select>
-    <button type="submit">Filter</button>
-  </form>
-  <br>
-  <ul id="product-list">
-    <!-- Add list items for each product here -->
-  </ul>
-  <br>
-  <button id="send-whatsapp">Send to WhatsApp</button>
-  <button id="save-pdf">Save as PDF</button>
-  <script>
-    // Get a reference to the form elements
-    const productForm = document.getElementById('product-form');
-    const categoryForm = document.getElementById('category-form');
-    const searchInput = document.getElementById('search');
-    const categorySelect = document.getElementById('category-select');
-    const productList = document.getElementById('product-list');
-    const sendWhatsAppButton = document.getElementById('send-whatsapp');
-    const savePdfButton = document.getElementById('save-pdf');
+ <!-- HTML -->
+<ul id="categories">
+  <li>
+    <h3>Category 1</h3>
+    <ul class="products">
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 1</span>
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 2</span>
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 3</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>Category 2</h3>
+    <ul class="products">
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 4</span>
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 5</span>
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="number" min="1" value="1">
+        <input type="text">
+        <span>Product 6</span>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-    // An array to store the products
-    const products = [
-      { name: 'Product 1', category: 'Category A' },
-      { name: 'Product 2', category: 'Category B' },
-      // Add more products here
-    ];
+<form id="search-form">
+  <input type="text" placeholder="Search for a product or category">
+  <button type="submit">Search</button>
+</form>
 
-    // A function to render the product list
-    function renderProductList() {
-      // Clear the product list
-      productList.innerHTML = '';
+<button id="save-pdf">Save as PDF</button>
+<button id="share-whatsapp">Share via WhatsApp</button>
+<script>
+<!-- JavaScript -->
+const categories = document.querySelectorAll("#categories > li");
 
-      // Get the search query and selected category
-      const searchQuery = searchInput.value.toLowerCase();
-      const selectedCategory = categorySelect.value;
-
-      // Loop through the products and add a list item for each one
-      products.forEach(product => {
-        if (
-          (selectedCategory === 'all' || product.category === selectedCategory) &&
-          (searchQuery === '' || product.name.toLowerCase().includes(searchQuery))
-        ) {
-          const listItem = document.createElement('li');
-          listItem.innerHTML = `
-            <input type="checkbox" name="${product.name}" value="${product.name}">
-            ${product.name} (${product.category})
-          `;
-          productList.appendChild(listItem);
-        }
-      });
-    }
-
-    // Render the product list when the page loads
-    renderProductList();
-
-    // Re-render the product list when the search form is submitted
-    productForm.addEventListener('submit', event => {
-      event.preventDefault();
-      renderProductList();
-
+categories.forEach((category) => {
+  const products = category.querySelectorAll(".products > li");
+  products.forEach((product) => {
+    const checkbox = product.querySelector("input[type=checkbox]");
+    checkbox.addEventListener("change", (event) => {
+      // Keep track of selected products
+    });
   });
+});
 
-  // Re-render the product list when the category form is submitted
-  categoryForm.addEventListener('submit', event => {
-    event.preventDefault();
-    renderProductList();
-  });
+document.querySelector("#search-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  // Search for products or categories
+});
 
-  // Send a message with the checked products to WhatsApp when the button is clicked
-  sendWhatsAppButton.addEventListener('click', () => {
-    const checkedProducts = productList.querySelectorAll('input:checked');
-    const message = Array.from(checkedProducts).map(p => p.value).join(', ');
-    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
-  });
+document.querySelector("#save-pdf").addEventListener("click", () => {
+  // Save selected products as PDF
+});
 
-  // Save the checked products as a PDF when the button is clicked
-  savePdfButton.addEventListener('click', () => {
-    // Use a library like jsPDF to generate the PDF
-  });
+document.querySelector("#share-whatsapp").addEventListener("click", () => {
+  // Share selected products via WhatsApp
+});
 </script>
 </body>
 </html> 
