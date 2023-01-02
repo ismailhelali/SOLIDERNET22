@@ -23,10 +23,9 @@
 
   <!-- JavaScript -->
   <script>
-   const pdf = new jsPDF();
+const pdf = new jsPDF();
 
-    
-    const categories = [
+const categories = [
   {
     name: "Category 1",
     products: [
@@ -98,30 +97,6 @@ document.querySelector("#save-pdf").addEventListener("click", () => {
   // Save the PDF
   pdf.save("selected-products.pdf");
 });
-    
-    document.querySelector("#share-whatsapp").addEventListener("click", () => {
-  // Generate the message to be shared
-  let message = "Selected products:\n";
-  selectedProducts.forEach((product) => {
-    message += `- ${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}\n`;
-  });
-
-  // Create the WhatsApp URL
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-
-  // Open the URL in a new tab
-  window.open(whatsappUrl, "_blank");
-});
-    
-document.querySelector("#share-whatsapp").addEventListener("click", () => {
-let message = "Selected products:\n";
-selectedProducts.forEach((product) => {
-message += - ${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}\n;
-});
-const whatsappUrl = https://wa.me/?text=${encodeURIComponent(message)};
-window.open(whatsappUrl, "_blank");
-});
-    
 </script>
 </body>
 </html>
