@@ -21,7 +21,8 @@
 
   <!-- JavaScript -->
   <script>
-    const categories = [
+    
+      const categories = [
       {
         name: "Category 1",
         products: [
@@ -59,31 +60,27 @@
         checkbox.addEventListener("change", (event) => {
           if (event.target.checked) {
             selectedProducts.add(product);
-
-
-document.querySelector("#save-pdf").addEventListener("click", () => {
-  // Add a title to the PDF
-  pdf.text("Selected products", 10, 10);
-  // Add the list of selected products to the PDF
-  let y = 20;
-  selectedProducts.forEach((product) => {
-    pdf.text(`${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}`, 10, y);
-    y += 10;
-  });
-  // Save the PDF
-  pdf.save("selected-products.pdf");
-});
-
-document.querySelector("#share-whatsapp").addEventListener("click", () => {
-  let message = "Selected products:\n";
-  selectedProducts.forEach((product) => {
-    message += `- ${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}\n`;
-  });
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-  window.open(whatsappUrl, "_blank");
-});
-</script>
-</script>
-</body>
-</html>
-
+          } else {
+            selectedProducts.delete(product);
+          }
+        });
+        const quantityInput = document.createElement("input");
+        quantityInput.type = "number";
+        quantityInput.min = "1";
+        quantityInput.value = product.quantity;
+        productElement.appendChild(quantityInput);
+        const unitInput = document.createElement("input");
+        unitInput.type = "text";
+        unitInput.value = product.unit;
+        productElement.appendChild(unitInput);
+        const productName = document.createElement("span");
+        productName.textContent = product.name;
+        productElement.appendChild(productName);
+        productsList.appendChild(productElement);
+      });
+      categoryElement.appendChild(productsList);
+      categoriesList.appendChild(categoryElement);
+    });
+    
+  </script>
+  </html>
