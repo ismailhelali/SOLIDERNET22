@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 
   <title>SOLIDERNET products List</title>
   <style>
@@ -11,7 +12,7 @@
 <body>
   <h1>Product List</h1>
   <!-- HTML -->
-  <ul id="categories"></ul>
+<ul id="categories"></ul>
 
   <form id="search-form">
     <input type="text" placeholder="Search for a product or category">
@@ -23,24 +24,24 @@
   <!-- JavaScript -->
   <script>
 const pdf = new jsPDF();
-
+    
 const categories = [
   {
     name: "Category 1",
     products: [
       { name: "Product 1", quantity: 1, unit: "" },
       { name: "Product 2", quantity: 1, unit: "" },
-      { name: "Product 3", quantity: 1, unit: "" },
-    ],
+      { name: "Product 3", quantity: 1, unit: "" }
+    ]
   },
   {
     name: "Category 2",
     products: [
       { name: "Product 4", quantity: 1, unit: "" },
       { name: "Product 5", quantity: 1, unit: "" },
-      { name: "Product 6", quantity: 1, unit: "" },
-    ],
-  },
+      { name: "Product 6", quantity: 1, unit: "" }
+    ]
+  }
 ];
 
 const categoriesList = document.querySelector("#categories");
@@ -59,13 +60,13 @@ categories.forEach((category) => {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     productElement.appendChild(checkbox);
-    checkbox.addEventListener("change", (event) => {
-      if (event.target.checked) {
-        selectedProducts.add(product);
-      } else {
-        selectedProducts.delete(product);
-      }
-    });
+checkbox.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    selectedProducts.add(product);
+  } else {
+    selectedProducts.delete(product);
+  }
+});
     const quantityInput = document.createElement("input");
     quantityInput.type = "number";
     quantityInput.min = "1";
