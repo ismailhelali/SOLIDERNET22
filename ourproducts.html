@@ -2,106 +2,101 @@
 <html>
 <head>
   <title>Product List</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 <body>
-<input type="text" id="search">
-<button id="clear-search">Show All</button>
+  <input type="text" id="search">
+  <button id="clear-search">Show All</button>
   <h1>Categories</h1>
-  <div id="categories">
-    <!-- Category titles will be inserted here -->
-  </div>
-  <script>
-<script>
-  // Data
-  const data = {
-    categories: [
-      {
-        title: 'Category 1',
-        products: [
-          { title: 'Product 1', checked: false },
-          { title: 'Product 2', checked: false }
-        ]
-      },
-      {
-        title: 'Category 2',
-        products: [
-          { title: 'Product 3', checked: false },
-          { title: 'Product 4', checked: false }
-        ]
-      }
-    ]
-  };
-
-  // DOM elements
-  const $categories = $('#categories');
-  const $search = $('#search');
-  const $clearSearch = $('#clear-search');
-
-  // Template functions
-  function getProductItemHtml(product) {
-    return `
-      <div class="product-item">
-        <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
-        <span class="product-title">${product.title}</span>
-        <label>
-          Quantity:
-          <input type="number" class="product-quantity">
-        </label>
-        <label>
-          Unit:
-          <input type="text" class="product-unit">
-        </label>
-      </div>
-    `;
-  }
-
-  function getCategoryHtml(category) {
-    const productsHtml = category.products.map(getProductItemHtml).join('');
-    return `
+  <div id="categories"></div>
+  <script id="category-template" type="text/x-handlebars-template">
+    {{#each categories}}
       <div class="category">
-        <h2 class="category-title">${category.title}</h2>
-        <div class="category-products">${productsHtml}</div>
+        <h2 class="category-title">{{this.title}}</h2>
+        <div class="category-products">
+          {{#each this.products}}
+            <div class="product-item">
+              <input type="checkbox" class="product-checkbox" {{#if this.checked}}checked{{/if}}>
+              <span class="product-title">{{this.title}}</span>
+              <label>
+                Quantity:
+                <input type="number" class="product-quantity">
+              </label>
+              <label>
+                Unit:
+                <input type="text" class="product-unit">
+              </label>
+            </div>
+          {{/each}}
+        </div>
       </div>
-    `;
-  }
+    {{/each}}
+  </script>
+  <script>
+    const data = {
+      categories: [
+        {
+          title: 'Category 1',
+          products: [
+            { title: 'Product 1', checked: false },
+            { title: 'Product 2', checked: false }
+          ]
+        },
+        {
+          title: 'Category 2',
+          products: [
+            { title: 'Product 3', checked: false },
+            { title: 'Product 4', checked: false }
+          ]
+        }
+      ]
+    };
 
-  // Event handlers
-  $search.on('input', () => {
-    const searchQuery = $search.val().toLowerCase();
-    let categories = data.categories;
+    const $categories = $('#categories');
+    const $search = $('#search');
+    const $clearSearch = $('#clear-search');
+    const source = $('#category-template').html();
+    const template = Handlebars.compile(source);
 
-    if (searchQuery.trim() !== '') {
-      categories = categories.map((category) => {
-        const products = category.products.filter((product) => {
-          return product.title.toLowerCase().includes(searchQuery);
-        });
-        return { ...category, products };
-      });
+    function renderCategories(categories) {
+      $categories.html(template({ categories }));
     }
 
-    $categories.html(categories.map(getCategoryHtml).join(''));
-  });
+    $search.on('input', () => {
+      const searchQuery = $search.val().toLowerCase();
+      let categories = data.categories;
 
-  $clearSearch.on('click', () => {
-    $search.val('');
-    $search.trigger('input');
-  });
+      if (searchQuery.trim() !== '') {
+        categories = categories.map((category) => {
+          const products = category.products.filter((product) => {
+            return product.title.toLowerCase().includes(searchQuery);
+          });
+          return { ...category, products };
+        });
+      }
 
-  $categories.on('change', '.product-checkbox', (event) => {
-    const $checkbox = $(event.target);
-    const $productItem = $checkbox.closest('.product-item');
-    const $category = $productItem.closest('.category');
-    const productIndex = $productItem.index();
-    const categoryIndex = $category.index();
+      renderCategories(categories);
+   
+});
 
-    data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
-  });
+    $clearSearch.on('click', () => {
+      $search.val('');
+      $search.trigger('input');
+    });
 
-  // Initial render
-  $search.trigger('input');
-</script>
-</script>
+    $categories.on('change', '.product-checkbox', (event) => {
+      const $checkbox = $(event.target);
+      const $productItem = $checkbox.closest('.product-item');
+      const $category = $productItem.closest('.category');
+      const productIndex = $productItem.index();
+      const categoryIndex = $category.index();
+
+      data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
+    });
+
+    renderCategories(data.categories);
+  </script>
 </body>
 </html>
