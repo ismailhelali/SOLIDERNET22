@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>solidernet</title>
+</head>
+<body>
+
+<div class="image">
+  <div class="background">
+    <div class="plant plant-1"></div>
+    <div class="plant plant-2"></div>
+    <div class="plant plant-3"></div>
+    <!-- Add more plants here -->
+  </div>
+  <div class="foreground">
+    <div class="food food-1"></div>
+    <div class="food food-2"></div>
+    <div class="food food-3"></div>
+    <!-- Add more food items here -->
+  </div>
+</div>
+
+<style>
+  .image {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00FF00; /* A bright green color */
+}
+
+.plant {
+  position: absolute;
+  background-color: #008000; /* A darker green color */
+}
+
+.plant-1 {
+  top: 10px;
+  left: 20px;
+  width: 50px;
+  height: 100px;
+  border-radius: 25px;
+}
+
+.plant-2 {
+  top: 50px;
+  left: 70px;
+  width: 30px;
+  height: 80px;
+  border-radius: 15px;
+}
+
+.plant-3 {
+  top: 30px;
+  right: 20px;
+  width: 40px;
+  height: 60px;
+  border-radius: 20px;
+}
+
+/* Add more styles for additional plants here */
+
+.foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.food {
+  position: absolute;
+  background-color: #FFFFFF; /* White color */
+}
+
+.food-1 {
+  top: 60px;
+  left: 40px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.food-2 {
+  top: 70px;
+  left: 70px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.food-3 {
+  top: 80px;
+  left: 100px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+/* Add more styles for additional food items here */
+  
+</style>
+
+<script>
+  const plants = document.querySelectorAll('.plant');
+
+// Add a pulsing animation to each plant
+plants.forEach(plant => {
+  plant.style.animation = 'pulse 5s ease-in-out infinite';
+});
+
+const food = document.querySelectorAll('.food');
+
+// Add a rotating animation to each food item
+food.forEach(item => {
+  item.style.animation = 'rotate 5s ease-in-out infinite';
+});
+
+// Set the color of the food items to match their corresponding background color
+food.forEach((item, index) => {
+  const color = getComputedStyle(plants[index]).backgroundColor;
+  item.style.backgroundColor = color;
+});
+</script>
+  
+  </body>
+</html>
