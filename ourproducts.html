@@ -11,7 +11,8 @@
     <!-- Category titles will be inserted here -->
   </div>
   <script>
-   const data = {
+  
+    const data = {
   categories: [
     {
       title: 'Category 1',
@@ -62,9 +63,8 @@ function getCategoryHtml(category) {
     </div>
   `;
 }
-  
-  
-  function render() {
+
+function render() {
   // Set the categories and products to the original data
   let categories = data.categories;
 
@@ -85,52 +85,30 @@ function getCategoryHtml(category) {
   categoriesElement.innerHTML = categoriesHtml;
 }
 
-  // Initial render
+// Initial render
+render();
+
+searchInput.addEventListener('input', (event) => {
   render();
+});
 
-  searchInput.addEventListener('input', (event) => {
-    render();
-  });
+const checkboxInput = document.querySelector('.product-checkbox');
+checkboxInput.addEventListener('change', (event) => {
+  const checkbox = event.target;
+  const productElement = checkbox.parentElement;
+  const categoryElement = productElement.parentElement;
 
-  const checkboxInput = document.querySelector('.product-checkbox');
-  checkboxInput.addEventListener('change', (event) => {
-    const checkbox = event.target;
-    const productElement = checkbox.parentElement;
-    const categoryElement = productElement.parentElement;
+  // Find the index of the product and category in the data object
+  const productIndex = Array.from(productElement.parentElement.children).indexOf(productElement);
+  const categoryIndex = Array.from(categoryElement.parentElement.children).indexOf(categoryElement);
 
-    // Find the index of the product and category in the data object
-    const productIndex = Array.from(productElement.parentElement.children).indexOf(productElement);
-    const categoryIndex = Array.from(categoryElement.parentElement.children).indexOf(categoryElement);
+ 
+const clearSearchButton = document.getElementById('clear-search');
 
-    // Update the checked property of the product object
-    data.categories[categoryIndex].products[productIndex].checked = checkbox.checked;
-
-    // Re-render the categories and products
-    render();
-  });
-
-  const searchInput = document.getElementById('search');
-  searchInput.addEventListener('input', (event) => {
-    const searchQuery = event.target.value.toLowerCase();
-
-    // Filter the products
-    data.categories.forEach((category) => {
-      category.products = category.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchQuery);
-      });
-    });
-
-    // Re-render the categories and products
-    render();
-  });
-
-  const clearSearchButton = document.getElementById('clear-search');
-
-  clearSearchButton.addEventListener('click', () => {
-    searchInput.value = '';
-    render();
-  });
-    
+clearSearchButton.addEventListener('click', () => {
+  searchInput.value = '';
+  render();
+});
 
 </script>
 </body>
