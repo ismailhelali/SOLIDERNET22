@@ -13,6 +13,7 @@
   </div>
 
   <script>
+    
     const data = {
   categories: [
     {
@@ -73,44 +74,8 @@ function render() {
 
 // Initial render
 render();
-
-searchInput.addEventListener('input', (event) => {
-  const searchQuery = event.target.value.toLowerCase();
-
-  if (searchQuery.trim() === '') {
-    render();
-    return;
-  }
-
-  // Filter the products
-  data.categories.forEach((category) => {
-    category.products = category.products.filter((product) => {
-      return product.title.toLowerCase().includes(searchQuery);
-    });
-  });
-
-  // Re-render the categories and products
-  render();
-});
-
-const checkboxInput = document.querySelector('.product-checkbox');
-checkboxInput.addEventListener('change', (event) => {
-  const checkbox = event.target;
-  const productElement = checkbox.parentElement;
-  const categoryElement = productElement.parentElement;
-
-  // Find the index of the product and category in the data object
-  const productIndex = Array.from(productElement.parentElement.children).indexOf(productElement);
-  const categoryIndex = Array.from(categoryElement.parentElement.children).indexOf(categoryElement);
-
-  // Update the checked property of the product object
-  data.categories[categoryIndex].products[productIndex].checked = checkbox.checked;
-
-  // Re-render the categories and products
-  render();
-});
-    
-const searchInput = document.getElementById('search');
+   
+    const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', (event) => {
   const searchQuery = event.target.value.toLowerCase();
 
@@ -133,5 +98,4 @@ clearSearchButton.addEventListener('click', () => {
 });
     
   </script>
-</body>
-</html>
+  </html>
