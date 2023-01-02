@@ -13,98 +13,95 @@
     <!-- Category titles will be inserted here -->
   </div>
   <script>
+<script>
+  // Data
   const data = {
-  categories: [
-    {
-      title: 'Category 1',
-      products: [
-        { title: 'Product 1', checked: false },
-        { title: 'Product 2', checked: false }
-      ]
-    },
-    {
-      title: 'Category 2',
-      products: [
-        { title: 'Product 3', checked: false },
-        { title: 'Product 4', checked: false }
-      ]
-    }
-  ]
-};
+    categories: [
+      {
+        title: 'Category 1',
+        products: [
+          { title: 'Product 1', checked: false },
+          { title: 'Product 2', checked: false }
+        ]
+      },
+      {
+        title: 'Category 2',
+        products: [
+          { title: 'Product 3', checked: false },
+          { title: 'Product 4', checked: false }
+        ]
+      }
+    ]
+  };
 
-function render() {
-  // Set the categories and products to the original data
-  let categories = data.categories;
+  // DOM elements
+  const $categories = $('#categories');
+  const $search = $('#search');
+  const $clearSearch = $('#clear-search');
 
-  // Filter the categories and products based on the search query
-  const searchQuery = $('#search').val().toLowerCase();
-  if (searchQuery.trim() !== '') {
-    categories = categories.map((category) => {
-      const products = category.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchQuery);
-      });
-      return { ...category, products };
-    });
+  // Template functions
+  function getProductItemHtml(product) {
+    return `
+      <div class="product-item">
+        <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
+        <span class="product-title">${product.title}</span>
+        <label>
+          Quantity:
+          <input type="number" class="product-quantity">
+        </label>
+        <label>
+          Unit:
+          <input type="text" class="product-unit">
+        </label>
+      </div>
+    `;
   }
 
-  // Generate the HTML for the categories and products
-  const categoriesHtml = categories.map((category) => {
-    const productsHtml = category.products.map((product) => {
-      return `
-        <div class="product-item">
-          <input type="checkbox" class="product-checkbox" ${product.checked ? 'checked' : ''}>
-          <span class="product-title">${product.title}</span>
-          <label>
-            Quantity:
-            <input type="number" class="product-quantity">
-          </label>
-          <label>
-            Unit:
-            <input type="text" class="product-unit">
-          </label>
-        </div>
-      `;
-    }).join('');
-
+  function getCategoryHtml(category) {
+    const productsHtml = category.products.map(getProductItemHtml).join('');
     return `
       <div class="category">
         <h2 class="category-title">${category.title}</h2>
         <div class="category-products">${productsHtml}</div>
       </div>
     `;
-  }).join('');
+  }
 
-  $('#categories').html(categoriesHtml);
-}
+  // Event handlers
+  $search.on('input', () => {
+    const searchQuery = $search.val().toLowerCase();
+    let categories = data.categories;
 
-// Initial render
-render();
+    if (searchQuery.trim() !== '') {
+      categories = categories.map((category) => {
+        const products = category.products.filter((product) => {
+          return product.title.toLowerCase().includes(searchQuery);
+        });
+        return { ...category, products };
+      });
+    }
 
-$('#search').on('input', () => {
-  render();
-});
+    $categories.html(categories.map(getCategoryHtml).join(''));
+  });
 
-$(document).on('change', '.product-checkbox', (event) => {
-  const checkbox = $(event.target);
-  const productElement = checkbox.parent();
-  const categoryElement = productElement.parent();
+  $clearSearch.on('click', () => {
+    $search.val('');
+    $search.trigger('input');
+  });
 
-  // Find the index of the product and category in the data object
-  const productIndex = productElement.index();
-  const categoryIndex = categoryElement.index();
+  $categories.on('change', '.product-checkbox', (event) => {
+    const $checkbox = $(event.target);
+    const $productItem = $checkbox.closest('.product-item');
+    const $category = $productItem.closest('.category');
+    const productIndex = $productItem.index();
+    const categoryIndex = $category.index();
 
-  // Update the checked property of the product object
-  data.categories[categoryIndex].products[productIndex].checked = checkbox.prop('checked');
+    data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
+  });
 
-  // Re-render the categories and products
-  render();
-});
-
-$('#clear-search').on('click', () => {
-  $('#search').val('');
-  render();
-});
-
+  // Initial render
+  $search.trigger('input');
+</script>
 </script>
 </body>
 </html>
