@@ -111,6 +111,20 @@ checkboxInput.addEventListener('change', (event) => {
 });
     
 const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', (event) => {
+  const searchQuery = event.target.value.toLowerCase();
+
+  // Filter the products
+  data.categories.forEach((category) => {
+    category.products = category.products.filter((product) => {
+      return product.title.toLowerCase().includes(searchQuery);
+    });
+  });
+
+  // Re-render the categories and products
+  render();
+});    
+    
 const clearSearchButton = document.getElementById('clear-search');
 
 clearSearchButton.addEventListener('click', () => {
