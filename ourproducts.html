@@ -2,121 +2,82 @@
 <html>
 <head>
   <title>Product List</title>
-  <style>
-    /* Add some styling for the product list */
-  </style>
 </head>
 <body>
-  <h1>Product List</h1>
-  <!-- HTML -->
-  <ul id="categories"></ul>
-
-  <form id="search-form">
-    <input type="text" placeholder="Search for a product or category">
-    <button type="submit">Search</button>
-  </form>
-
-  <button id="save-pdf">Save as PDF</button>
-
-  <!-- JavaScript -->
+  <h1>Categories</h1>
+  <div id="categories">
+    <!-- Category titles will be inserted here -->
+  </div>
+  <h1>Products</h1>
+  <div id="products">
+    <!-- Product lists will be inserted here -->
+  </div>
   <script>
-const categories = [
-  {
-    name: "Category 1",
-    products: [
-      { name: "Product 1", quantity: 1, unit: "" },
-      { name: "Product 2", quantity: 1, unit: "" },
-      { name: "Product 3", quantity: 1, unit: "" }
-    ]
-  },
-  {
-    name: "Category 2",
-    products: [
-      { name: "Product 4", quantity: 1, unit: "" },
-      { name: "Product 5", quantity: 1, unit: "" },
-      { name: "Product 6", quantity: 1, unit: "" }
-    ]
-  }
-];
+    // Example data
+    const data = {
+      categories: [
+        {
+          title: 'Category 1',
+          products: [
+            { title: 'Product 1' },
+            { title: 'Product 2' }
+          ]
+        },
+        {
+          title: 'Category 2',
+          products: [
+            { title: 'Product 3' },
+            { title: 'Product 4' }
+          ]
+        }
+      ]
+    };
 
-const categoriesList = document.querySelector("#categories");
+    // Function to create a DOM element from a template string
+    function createElement(template) {
+      const div = document.createElement('div');
+      div.innerHTML = template;
+      return div.firstElementChild;
+    }
 
-let selectedProducts = new Set();
+    // Function to generate the HTML for a product item
+    function getProductItemHtml(product) {
+      return `
+        <div class="product-item">
+          <input type="checkbox" class="product-checkbox">
+          <span class="product-title">${product.title}</span>
+          <label>
+            Quantity:
+            <input type="number" class="product-quantity">
+          </label>
+          <label>
+            Unit:
+            <input type="text" class="product-unit">
+          </label>
+        </div>
+      `;
+    }
 
-categories.forEach((category) => {
-  const categoryElement = document.createElement("li");
-  const categoryName = document.createElement("h3");
-  categoryName.textContent = category.name;
-  categoryElement.appendChild(categoryName);
-  const productsList = document.createElement("ul");
-  productsList.classList.add("products");
-  category.products.forEach((product) => {
-    const productElement = document.createElement("li");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    productElement.appendChild(checkbox);
-checkbox.addEventListener("change", (e) => {
-  if (e.target.checked) {
-    selectedProducts.add(product);
-  } else {
-    selectedProducts.delete(product);
-  }
-});
-    const quantityInput = document.createElement("input");
-    quantityInput.type = "number";
-    quantityInput.min = "1";
-    quantityInput.value = product.quantity;
-    productElement.appendChild(quantityInput);
-    const unitInput = document.createElement("input");
-    unitInput.type = "text";
-    unitInput.value = product.unit;
-    productElement.appendChild(unitInput);
-    const productName = document.createElement("span");
-    productName.textContent = product.name;
-    productElement.appendChild(productName);
-    productsList.appendChild(productElement);
-  });
-  categoryElement.appendChild(productsList);
-  categoriesList.appendChild(categoryElement);
-  
+    // Function to generate the HTML for a category
+    function getCategoryHtml(category) {
+      const productsHtml = category.products.map(getProductItemHtml).join('');
+      return `
+        <div class="category">
+          <h2 class="category-title">${category.title}</h2>
+          <div class="category-products">${productsHtml}</div>
+        </div>
+      `;
+    }
 
-checkbox.addEventListener("change", (e) => {
-  if (e.target.checked) {
-    selectedProducts.add(product);
-  } else {
-    selectedProducts.delete(product);
-  }
-});
-    const quantityInput = document.createElement("input");
-    quantityInput.type = "number";
-    quantityInput.min = "1";
-    quantityInput.value = product.quantity;
-    productElement.appendChild(quantityInput);
-    const unitInput = document.createElement("input");
-    unitInput.type = "text";
-    unitInput.value = product.unit;
-    productElement.appendChild(unitInput);
-    const productName = document.createElement("span");
-    productName.textContent = product.name;
-    productElement.appendChild(productName);
-    productsList.appendChild(productElement);
-  });
-  categoryElement.appendChild(productsList);
-  categoriesList.appendChild(categoryElement);
-});
+    // Function to render the categories and products
+    function render() {
+      const categoriesHtml = data.categories.map(getCategoryHtml).join('');
+      const categoriesElement = document.getElementById('categories');
+      categoriesElement.innerHTML = categoriesHtml;
+    }
 
-document.querySelector("#save-pdf").addEventListener("click", () => {
-  // Add a title to the PDF
-  pdf.text("Selected products", 10, 10);
-  // Add the list of selected products to the PDF
-  let y = 20;
-  selectedProducts.forEach((product) => {
-    pdf.text(`${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}`, 10, y);
-    y += 10;
-  });
-  // Save the PDF
-  pdf.save("selected-products.pdf");
-});
-</script>
+    // Initial render
+    render();
+  </script>
 </body>
 </html>
