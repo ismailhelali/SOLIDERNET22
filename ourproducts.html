@@ -21,66 +21,81 @@
 
   <!-- JavaScript -->
   <script>
+   
     
-      const categories = [
-      {
-        name: "Category 1",
-        products: [
-          { name: "Product 1", quantity: 1, unit: "" },
-          { name: "Product 2", quantity: 1, unit: "" },
-          { name: "Product 3", quantity: 1, unit: "" },
-        ],
-      },
-      {
-        name: "Category 2",
-        products: [
-          { name: "Product 4", quantity: 1, unit: "" },
-          { name: "Product 5", quantity: 1, unit: "" },
-          { name: "Product 6", quantity: 1, unit: "" },
-        ],
-      },
-    ];
+    const categories = [
+  {
+    name: "Category 1",
+    products: [
+      { name: "Product 1", quantity: 1, unit: "" },
+      { name: "Product 2", quantity: 1, unit: "" },
+      { name: "Product 3", quantity: 1, unit: "" },
+    ],
+  },
+  {
+    name: "Category 2",
+    products: [
+      { name: "Product 4", quantity: 1, unit: "" },
+      { name: "Product 5", quantity: 1, unit: "" },
+      { name: "Product 6", quantity: 1, unit: "" },
+    ],
+  },
+];
 
-    const categoriesList = document.querySelector("#categories");
+const categoriesList = document.querySelector("#categories");
 
-    let selectedProducts = new Set();
+let selectedProducts = new Set();
 
-    categories.forEach((category) => {
-      const categoryElement = document.createElement("li");
-      const categoryName = document.createElement("h3");
-      categoryName.textContent = category.name;
-      categoryElement.appendChild(categoryName);
-      const productsList = document.createElement("ul");
-      productsList.classList.add("products");
-      category.products.forEach((product) => {
-        const productElement = document.createElement("li");
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        productElement.appendChild(checkbox);
-        checkbox.addEventListener("change", (event) => {
-          if (event.target.checked) {
-            selectedProducts.add(product);
-          } else {
-            selectedProducts.delete(product);
-          }
-        });
-        const quantityInput = document.createElement("input");
-        quantityInput.type = "number";
-        quantityInput.min = "1";
-        quantityInput.value = product.quantity;
-        productElement.appendChild(quantityInput);
-        const unitInput = document.createElement("input");
-        unitInput.type = "text";
-        unitInput.value = product.unit;
-        productElement.appendChild(unitInput);
-        const productName = document.createElement("span");
-        productName.textContent = product.name;
-        productElement.appendChild(productName);
-        productsList.appendChild(productElement);
-      });
-      categoryElement.appendChild(productsList);
-      categoriesList.appendChild(categoryElement);
+categories.forEach((category) => {
+  const categoryElement = document.createElement("li");
+  const categoryName = document.createElement("h3");
+  categoryName.textContent = category.name;
+  categoryElement.appendChild(categoryName);
+  const productsList = document.createElement("ul");
+  productsList.classList.add("products");
+  category.products.forEach((product) => {
+    const productElement = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    productElement.appendChild(checkbox);
+    checkbox.addEventListener("change", (event) => {
+      if (event.target.checked) {
+        selectedProducts.add(product);
+      } else {
+        selectedProducts.delete(product);
+      }
     });
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.min = "1";
+    quantityInput.value = product.quantity;
+    productElement.appendChild(quantityInput);
+    const unitInput = document.createElement("input");
+    unitInput.type = "text";
+    unitInput.value = product.unit;
+    productElement.appendChild(unitInput);
+    const productName = document.createElement("span");
+    productName.textContent = product.name;
+    productElement.appendChild(productName);
+    productsList.appendChild(productElement);
+  });
+  categoryElement.appendChild(productsList);
+  categoriesList.appendChild(categoryElement);
+});
+
+document.querySelector("#save-pdf").addEventListener("click", () => {
+  // Add a title to the PDF
+  pdf.text("Selected products", 10, 10);
+  // Add the list of selected products to the PDF
+  let y = 20;
+  selectedProducts.forEach((product) => {
+    pdf.text(`${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}`, 10, y);
+    y += 10;
+  });
+  // Save the PDF
+  pdf.save("selected-products.pdf");
+});
     
-  </script>
-  </html>
+</script>
+</body>
+</html>
