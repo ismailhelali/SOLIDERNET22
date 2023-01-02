@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>List of Products</title>
+  <title>SOLIDERNET products List</title>
   <style>
-    /* Add your CSS styles here */
+    /* Add some styling for the product list */
   </style>
 </head>
 <body>
-  <h1>List of Products</h1>
-  <form>
-    <label>Filter by Category:</label>
-    <select id="category-filter">
-      <option value="all">All</option>
-      <option value="Farine, couscous, Riz, Blé, Noix et Pates">Farine, couscous, Riz, Blé, Noix et Pates</option>
-      <option value="nuts">Nuts</option>
-      <option value="pasta">Pasta</option>
-      <option value="oils">Oils</option>
-      <option value="sauces">Sauces</option>
-      <!-- Add more options for other categories here -->
-    </select>
-    <label>Search for a Product:</label>
-    <input type="text" id="product-search" />
+  <h1>Product List</h1>
+  <form id="product-form">
+    <input type="text" id="search" placeholder="Search for a product">
+    <button type="submit">Search</button>
   </form>
+  <br>
+  <form id="category-form">
+    <label for="category-select">Filter by category:</label>
+    <select id="category-select">
+      <option value="all">All</option>
+      <!-- Add options for each category here -->
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+  <br>
   <ul id="product-list">
     <!-- Add list items for each product here -->
-    
-
-    <li data-category="nuts">Noix</li>
-    <li data-category="pasta">Pates</li>
-    <!-- Add more list items for other products here -->
   </ul>
+  <br>
+  <button id="send-whatsapp">Send to WhatsApp</button>
+  <button id="save-pdf">Save as PDF</button>
   <script>
-    // Add your JavaScript code here
-    const productList = document.getElementById("product-list");
-    const categoryFilter = document.getElementById("category-filter");
-    const productSearch = document.getElementById("product-search");
+    // Get a reference to the form elements
+    const productForm = document.getElementById('product-form');
+    const categoryForm = document.getElementById('category-form');
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category-select');
+    const productList = document.getElementById('product-list');
+    const sendWhatsAppButton = document.getElementById('send-whatsapp');
+    const savePdfButton = document.getElementById('save-pdf');
 
-    categoryFilter.addEventListener("change", (event) => {
-      const selectedCategory = event.target.value;
-      if (selectedCategory === "all") {
-        productList.querySelectorAll("li").forEach((li) => {
-          li.style.display = "";
-        });
-      } else {
-        productList.querySelectorAll("li").forEach((li) => {
-          if (li.dataset.category === selectedCategory) {
-            li.style.display = "";
-          } else {
-            li.style.display = "none";
-          }
-        });
-      }
-    });
+    // An array to store the products
+    const products = [
+      { name: 'Product 1', category: 'Category A' },
+      { name: 'Product 2', category: 'Category B' },
+      // Add more products here
+    ];
 
-    productSearch.addEventListener("input", (event) => {
-      const searchTerm = event.target.value.toLowerCase();
-      productList.querySelectorAll("li").forEach((li) => {
-        if (li.textContent.toLowerCase().includes(searchTerm)) {
-          li.style.display = "";
-        } else {
-          li.style.display = "none";
+    // A function to render the product list
+    function renderProductList() {
+      // Clear the product list
+      productList.innerHTML = '';
+
+      // Get the search query and selected category
+      const searchQuery = searchInput.value.toLowerCase();
+      const selectedCategory = categorySelect.value;
+
+      // Loop through the products and add a list item for each one
+      products.forEach(product => {
+        if (
+          (selectedCategory === 'all' || product.category === selectedCategory) &&
+          (searchQuery === '' || product.name.toLowerCase().includes(searchQuery))
+        ) {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <input type="checkbox" name="${product.name}" value="${product.name}">
+            ${product.name} (${product.category})
+          `;
+          productList.appendChild(listItem);
         }
       });
-    });
-    
-    
-    
-    var items = [
-  "Amgalita 10 kg Patissière prix du jour",
-  "Fino ALITKANE 10kg prix du jour",
-  "Amgalita 1 kg",
-  //... more items here
-];
+    }
 
-var list = document.createElement('ul');
-list.setAttribute('data-category', 'Farine, couscous, Riz, Blé, Noix et Pates');
+    // Render the product list when the page loads
+    renderProductList();
 
-for (var i = 0; i < items.length; i++) {
-  var item = items[i];
-  var listItem = document.createElement('li');
-  listItem.textContent = item;
-  list.appendChild(listItem);
-}
+    // Re-render the product list when the search form is submitted
+    productForm.addEventListener('submit', event => {
+      event.preventDefault();
+      renderProductList();
 
-document.body.appendChild(list);
-  </script>
+  });
+
+  // Re-render the product list when the category form is submitted
+  categoryForm.addEventListener('submit', event => {
+    event.preventDefault();
+    renderProductList();
+  });
+
+  // Send a message with the checked products to WhatsApp when the button is clicked
+  sendWhatsAppButton.addEventListener('click', () => {
+    const checkedProducts = productList.querySelectorAll('input:checked');
+    const message = Array.from(checkedProducts).map(p => p.value).join(', ');
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
+  });
+
+  // Save the checked products as a PDF when the button is clicked
+  savePdfButton.addEventListener('click', () => {
+    // Use a library like jsPDF to generate the PDF
+  });
+</script>
 </body>
-</html>
-  
+</html> 
