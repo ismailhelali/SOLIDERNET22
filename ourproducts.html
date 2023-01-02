@@ -60,6 +60,7 @@
           if (event.target.checked) {
             selectedProducts.add(product);
 
+
 document.querySelector("#save-pdf").addEventListener("click", () => {
   // Add a title to the PDF
   pdf.text("Selected products", 10, 10);
@@ -81,6 +82,7 @@ document.querySelector("#share-whatsapp").addEventListener("click", () => {
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, "_blank");
 });
+</script>
 </script>
 </body>
 </html>
