@@ -97,6 +97,39 @@ function createTableRows(products) {
   }
   return rows;
 }
+     
+     // define array to store selected products
+let selectedProducts = [];
+
+// function to create table rows for products
+function createTableRows(products) {
+  const rows = [];
+  // loop through products and create table rows
+  for (const product of products) {
+    // check if product is in selected products array
+    const checked = selectedProducts.includes(product) ? 'checked' : '';
+    const row = `
+      <tr>
+        <td><input type="checkbox" class="product-checkbox" ${checked}></td>
+        <td>${product.name}</td>
+        <td><input type="number" class="form-control product-quantity"></td>
+        <td><input type="text" class="form-control product-unit"></td>
+      </tr>
+    `;
+    rows.push(row);
+  }
+  return rows;
+}
+
+// function to toggle product in selected products array
+function toggleSelectedProduct(product) {
+  if (selectedProducts.includes(product)) {
+    selectedProducts = selectedProducts.filter(p => p !== product);
+  } else {
+    selectedProducts.push(product);
+  }
+}
+
 
 // function to display products
 function displayProducts(products) {
