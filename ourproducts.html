@@ -178,6 +178,15 @@ savePDFButton.addEventListener("click", () => {
 });
 
 renderProducts(products);
+    
+    function clearSearch() {
+  searchInput.value = "";
+  categoryInput.value = "";
+  filterProducts();
+}
+
+const clearSearchButton = document.querySelector("#clear-search");
+clearSearchButton.addEventListener("click", clearSearch);
   </script>
 </body>
 </html>
