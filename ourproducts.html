@@ -28,97 +28,95 @@
     <!-- Loop through the categories and products using React -->
     <!-- Each product should have a checkbox and input fields for quantity and unit -->
   </div>
-  
-  <script>
-    // Data structure to store the selected products, quantities, and units
-    var data = [];
 
-    // Function to generate the PDF
-    function generatePDF() {
-      // Create a new instance of the jsPDF object
-      var pdf = new jsPDF();
+<script>
+  // Data structure to store the selected products, quantities, and units
+  var data = [];
 
-      // Loop through the data structure containing the selected products, quantities, and units
-      for (var i = 0; i < data.length; i++) {
-        // Add a new page for each product
-        pdf.addPage();
-        // Add the product name, quantity, and unit to the PDF
-        pdf.text(20, 20, data[i].name + ": " + data[i].quantity + " " + data[i].unit);
-      }
+  // Function to generate the PDF
+  function generatePDF() {
+    // Create a new instance of the jsPDF object
+    var pdf = new jsPDF();
 
-      // Save the PDF file
-      pdf.save("products.pdf");
+    // Loop through the data structure containing the selected products, quantities, and units
+    for (var i = 0; i < data.length; i++) {
+      // Add a new page for each product
+      pdf.addPage();
+      // Add the product name, quantity, and unit to the PDF
+      pdf.text(20, 20, data[i].name + ": " + data[i].quantity + " " + data[i].unit);
     }
 
-    // Function to update the data structure when a checkbox is clicked
-    function updateData(product, quantity, unit, checked) {
-      if (checked) {
-        // Add the product to the data structure
-        data.push({
-          name: product,
-          quantity: quantity,
-          unit: unit
-        });
-      } else {
-        // Remove the product from the data structure
-        data = data.filter(function(item) {
-          return item.name !== product;
-        });
-      }
+    // Save the PDF file
+    pdf.save("products.pdf");
+  }
+
+  // Function to update the data structure when a checkbox is clicked
+  function updateData(product, quantity, unit, checked) {
+    if (checked) {
+      // Add the product to the data structure
+      data.push({
+        name: product,
+        quantity: quantity,
+        unit: unit
+      });
+    } else {
+      // Remove the product from the data structure
+      data = data.filter(function(item) {
+        return item.name !== product;
+      });
     }
+  }
 
-    // Function to show or hide products based on the selected category
-    function filterProducts(category) {
-      if (category === "all") {
-        // Show all products
-        $("#productLists .productList").show();
-      } else {
-        // Hide all products
-        $("#productLists .productList").hide();
-        // Show only the products in the selected category
-        $("#productLists .productList." + category).show();
-      }
+  // Function to show or hide products based on the selected category
+  function filterProducts(category) {
+    if (category === "all") {
+      // Show all products
+      $("#productLists .productList").show();
+    } else {
+      // Hide all products
+      $("#productLists .productList").hide();
+      // Show only the products in the selected category
+      $("#productLists .productList." + category).show();
+    }
+  }
 
+  // Function to search for products as the user types
+  function searchProducts() {
+    // Get the search query
+    var query = $("#productSearch").val();
+    // Hide all products
+    $("#productLists .productList").hide();
+    // Show only the products that match the search query
+    $("#productLists .productList:contains('" + query + "')").show();
+  }
 
-// Function to search for products as the user types
-function searchProducts() {
-  // Get the search query
-  var query = $("#productSearch").val();
-  // Hide all products
-  $("#productLists .productList").hide();
-  // Show only the products that match the search query
-  $("#productLists .productList:contains('" + query + "')").show();
-}
+  // Event listener for the category dropdown menu
+  $("#categorySelect").on("change", function() {
+    // Get the selected category
+    var category = $(this).val();
+    // Filter the products based on the selected category
+    filterProducts(category);
+  });
 
-// Event listener for the category dropdown menu
-$("#categorySelect").on("change", function() {
-  // Get the selected category
-  var category = $(this).val();
-  // Filter the products based on the selected category
-  filterProducts(category);
-});
+  // Event listener for the search input field
+  $("#productSearch").on("input", function() {
+    // Search for products as the user types
+    searchProducts();
+  });
 
-// Event listener for the search input field
-$("#productSearch").on("input", function() {
-  // Search for products as the user types
-  searchProducts();
-});
+  // Event listener for the "Show All" button
+  $("#showAllButton").on("click", function() {
+    // Reset the search input field
+    $("#productSearch").val("");
+    // Show all products
+    filterProducts("all");
+  });
 
-// Event listener for the "Show All" button
-$("#showAllButton").on("click", function() {
-  // Reset the search query
-  $("#productSearch").val("");
-  // Reset the category dropdown menu
-  $("#categorySelect").val("all");
-  // Show all products
-  filterProducts("all");
-});
-
-// Event listener for the "Generate PDF" button
-$("#generatePDFButton").on("click", function() {
-  // Generate the PDF
-  generatePDF();
-});
-  </script>
+  // Event listener for the "Generate PDF" button
+  $("#generatePDFButton").on("click", function() {
+    // Generate the PDF
+    generatePDF();
+  });
+</script>
 </body>
 </html>
