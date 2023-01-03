@@ -114,6 +114,48 @@ function displayProducts(products) {
   }
 }
 
+     
+     // Get the list of checkboxes on the page
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+// An array to store the selected products
+let selectedProducts = [];
+
+// A function to handle when a checkbox is clicked
+function handleCheckboxClick(event) {
+  const checkbox = event.target;
+  const productId = checkbox.value;
+  const productQuantity = checkbox.dataset.quantity;
+
+  if (checkbox.checked) {
+    // If the checkbox is checked, add the product to the array
+    selectedProducts.push({ productId, productQuantity });
+  } else {
+    // If the checkbox is not checked, remove the product from the array
+    selectedProducts = selectedProducts.filter(p => p.productId !== productId);
+  }
+
+  // Store the array in local storage
+  localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts));
+}
+
+// Add an event listener for each checkbox to handle clicks
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheckboxClick));
+
+// When the page loads, get the stored array from local storage
+const storedSelectedProducts = localStorage.getItem('selectedProducts');
+if (storedSelectedProducts) {
+  selectedProducts = JSON.parse(storedSelectedProducts);
+
+  // Iterate through the array and check the corresponding checkboxes
+  selectedProducts.forEach(product => {
+    const checkbox = document.querySelector(`input[value="${product.productId}"]`);
+    checkbox.checked = true;
+  });
+}
+
+     
+     
 // function to search products
 function searchProducts(event) {
   // get search field value
