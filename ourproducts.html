@@ -28,7 +28,100 @@
     <!-- Loop through the categories and products using React -->
     <!-- Each product should have a checkbox and input fields for quantity and unit -->
   </div>
+<script>
+  // Data structure to store the categories and products
+  var data = [
+    {
+      category: "Category 1",
+      products: [
+        {
+          name: "Product 1",
+          unit: "unit"
+        },
+        {
+          name: "Product 2",
+          unit: "unit"
+        }
+      ]
+    },
+    {
+      category: "Category 2",
+      products: [
+        {
+          name: "Product 3",
+          unit: "unit"
+        },
+        {
+          name: "Product 4",
+          unit: "unit"
+        }
+      ]
+    }
+  ];
 
+  // Function to display the categories and products
+  function displayCategoriesAndProducts() {
+    // Loop through the data
+    for (var i = 0; i < data.length; i++) {
+      // Get the current category
+      var category = data[i].category;
+      // Get the products in the current category
+      var products = data[i].products;
+
+      // Create a new div to hold the category and products
+      var categoryDiv = $("<div>", {
+        class: "category"
+      });
+
+      // Create a new h2 element to display the category name
+      var categoryName = $("<h2>", {
+        text: category
+      });
+
+      // Append the h2 element to the div
+      categoryDiv.append(categoryName);
+
+      // Loop through the products in the current category
+      for (var j = 0; j < products.length; j++) {
+        // Get the current product
+        var product = products[j];
+        // Get the product name
+        var productName = product.name;
+        // Get the product unit
+        var productUnit = product.unit;
+
+        // Create a new div to hold the product
+        var productDiv = $("<div>", {
+          class: "product"
+        });
+
+        // Create a new checkbox for the product
+        var productCheckbox = $("<input>", {
+          type: "checkbox"
+        });
+
+        // Create a new input field for the product quantity
+        var productQuantity = $("<input>", {
+          type: "number"
+        });
+
+        // Append the checkbox, quantity field, and product name to the div
+        productDiv.append(productCheckbox, productQuantity, productName + " (" + productUnit + ")");
+
+        // Append the product div to the category div
+        categoryDiv.append(productDiv);
+      }
+
+      // Append the category div to the product lists div
+      $("#productLists").append(categoryDiv);
+    }
+  }
+
+  // Call the displayCategoriesAndProducts function when the page loads
+  $(document).ready(function() {
+    displayCategoriesAndProducts();
+  });
+</script>
 <script>
   // Data structure to store the selected products, quantities, and units
   var data = [];
