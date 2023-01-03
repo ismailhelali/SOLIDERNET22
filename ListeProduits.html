@@ -1,0 +1,147 @@
+Open sidebar
+JavaScript HTML PDF Generator
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+      /* Add your custom styles here */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="display-4 mb-4">Product List</h1>
+      <div class="form-group">
+        <label for="searchInput">Search for a product:</label>
+        <input type="text" class="form-control" id="searchInput">
+      </div>
+      <div class="form-group">
+        <label for="categorySelect">Filter by category:</label>
+        <select class="form-control" id="categorySelect">
+          <option value="all">All</option>
+          <!-- Add options for each category here -->
+        </select>
+      </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody id="productTable">
+          <!-- Add rows for each product here -->
+        </tbody>
+      </table>
+      <button class="btn btn-primary" id="generatePdfBtn">Generate PDF</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.0.0/jspdf.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <script>
+      // List of products
+      const products = [
+        { name: 'Product 1', category: 'Category 1', quantity: 0, unit: 'unit' },
+        { name: 'Product 2', category: 'Category 1', quantity: 0, unit: 'unit' },
+        { name: 'Product 3', category: 'Category 2', quantity: 0, unit: 'unit' },
+        // Add more products here
+      ];
+
+      
+      // Populate the table
+      function populateTable() {
+        // Clear the table
+        $('#productTable').empty();
+
+        // Get the search input and selected category
+        const searchInput = $('#searchInput').val().toLowerCase();
+        const selectedCategory = $('#categorySelect').val();
+
+        // Add rows for each product
+        products.forEach((product) => {
+          // Check if the product name contains the search input and belongs to the selected category
+          if (product.name.toLowerCase().includes(searchInput) && (selectedCategory === 'all' || product.category === selectedCategory)) {
+            const tableRow = `
+              <tr>
+                <td>${product.name}</td>
+                <td><input type="number" class="form-control quantityInput" value="${product.quantity}"></td>
+                <td>
+                  <select class="form-control unitSelect">
+                    <option ${product.unit === 'unit' ? 'selected' : ''}>unit</option>
+                    <option ${product.unit === 'gram' ? 'selected' : ''}>gram</option>
+                    <option ${product.unit === 'ounce' ? 'selected' : ''}>ounce</option>
+                    <option ${product.unit === 'pound' ? 'selected' : ''}>pound</option>
+                    <option ${product.unit === 'milliliter' ? 'selected' : ''}>milliliter</option>
+                    <option ${product.unit === 'fluid ounce' ? 'selected' : ''}>fluid ounce</option>
+                    <option ${product.unit === 'pint' ? 'selected' : ''}>pint</option>
+                    <option ${product.unit === 'quart' ? 'selected' : ''}>quart</option>
+                    <option ${product.unit === 'gallon' ? 'selected' : ''}>gallon</option>
+                  </select>
+                </td>
+                <td><input type="checkbox" class="form-control selectCheckbox"></td>
+              </tr>
+            `;
+            $('#productTable').append(tableRow);
+          }
+        });
+
+        // Use AI to suggest relevant products
+        const quantityInputs = $('.quantityInput');
+        quantityInputs.on('input', (event) => {
+          const input = event.target;
+          const quantity = input.value;
+          // Use AI to suggest relevant products based on the quantity
+          const suggestions = suggestProducts(quantity);
+          console.log(`Suggestions for ${quantity}:`, suggestions);
+        });
+      }
+
+      // Use AI to suggest relevant products based on the quantity
+      function suggestProducts(quantity) {
+        // Placeholder implementation that returns a random selection of products
+        return products.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * products.length));
+      }
+
+
+        // Generate a PDF of the selected products and quantities
+        function generatePdf() {
+          const selectedRows = $('#productTable').find('input[type="checkbox"]:checked').closest('tr');
+          if (selectedRows.length === 0) {
+            alert('Please select at least one product to include in the PDF.');
+            return;
+          }
+
+          const doc = new jsPDF();
+          doc.setFontSize(20);
+          doc.text('Selected Products', 14, 22);
+          doc.setFontSize(14);
+
+          let y = 38;
+          selectedRows.each((index, row) => {
+            const name = $(row).find('td:nth-child(1)').text();
+            const quantity = $(row).find('td:nth-child(2) input').val();
+            const unit = $(row).find('td:nth-child(3) select').val();
+            doc.text(`${name}: ${quantity} ${unit}`, 14, y);
+            y += 10;
+          });
+
+          doc.save('selected-products.pdf');
+        }
+
+        // Initialize the page
+        populateTable();
+
+        // Update the table when the search input or category select change
+        $('#searchInput, #categorySelect').on('input', populateTable);
+
+        // Generate the PDF when the button is clicked
+        $('#generatePdfBtn').click(generatePdf);
+      </script>
+  </body>
+</html>
+
