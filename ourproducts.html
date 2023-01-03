@@ -1,174 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Product List</title>
-  <!-- include CSS and jQuery libraries -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-</head>
-<body>
-  
- <div id="root">
-  <h1>Categories</h1>
-  <ul>
-    <li>
-      <h2>Category 1</h2>
-      <ul>
-        <li>
-          <input type="checkbox" id="product1" value="product1">
-          <label for="product1">Product 1</label>
-          <input type="number" id="product1-quantity" min="1">
-          <select id="product1-unit">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-            <option value="each">each</option>
-          </select>
-        </li>
-        <li>
-          <input type="checkbox" id="product2" value="product2">
-          <label for="product2">Product 2</label>
-          <input type="number" id="product2-quantity" min="1">
-          <select id="product2-unit">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-            <option value="each">each</option>
-          </select>
-        </li>
+  <head>
+    <title>Product Order Form</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Product Order Form</h1>
+    <div id="categories">
+      <label for="category-select">Select Category:</label>
+      <select id="category-select">
+        <option value="all">All</option>
+        <option value="category1">Category 1</option>
+        <option value="category2">Category 2</option>
+        <option value="category3">Category 3</option>
+      </select>
+      <button id="show-all-btn">Show All</button>
+    </div>
+    <div id="products">
+      <ul id="category1">
+        <li><input type="checkbox">Product 1</li>
+        <li><input type="checkbox">Product 2</li>
+        <li><input type="checkbox">Product 3</li>
       </ul>
-    </li>
-    <li>
-      <h2>Category 2</h2>
-      <ul>
-        <li>
-          <input type="checkbox" id="product3" value="product3">
-          <label for="product3">Product 3</label>
-          <input type="number" id="product3-quantity" min="1">
-          <select id="product3-unit">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-            <option value="each">each</option>
-          </select>
-        </li>
-        <li>
-          <input type="checkbox" id="product4" value="product4">
-          <label for="product4">Product 4</label>
-          <input type="number" id="product4-quantity" min="1">
-          <select id="product4-unit">
-            <option value="kg">kg</option>
-            <option value="lbs">lbs</option>
-            <option value="each">each</option>
-          </select>
-        </li>
+      <ul id="category2">
+        <li><input type="checkbox">Product 4</li>
+        <li><input type="checkbox">Product 5</li>
+        <li><input type="checkbox">Product 6</li>
       </ul>
-    </li>
-  </ul>
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name">
-    <label for="company">Company:</label>
-    <input type="text" id="company">
-    <label for="phone">Phone:</label>
-    <input type="text" id="phone">
-  </div>
-  <div>
-    <label for="category-select">Category:</label>
-    <select id="category-select">
-      <option value="all">All</option>
-      <option value="category1">Category 1</option>
-      <option value="category2">Category 2</option>
-    </select>
-  <input type="text" id="search">
-  <button id="show-all">Show All</button>
-  <button id="save-pdf">Save as PDF</button>
-</div>
-<script>
-const rootElement = document.getElementById('root');
-const categoryElements = rootElement.querySelectorAll('h2');
-const productElements = rootElement.querySelectorAll('input[type="checkbox"]');
-const quantityElements = rootElement.querySelectorAll('input[type="number"]');
-const unitElements = rootElement.querySelectorAll('select');
-const nameElement = rootElement.querySelector('#name');
-const companyElement = rootElement.querySelector('#company');
-const phoneElement = rootElement.querySelector('#phone');
-const categorySelectElement = rootElement.querySelector('#category-select');
-const searchElement = rootElement.querySelector('#search');
-const showAllButton = rootElement.querySelector('#show-all');
-const savePdfButton = rootElement.querySelector('#save-pdf');
-
-let checkedProducts = [];
-
-productElements.forEach((productElement, index) => {
-  productElement.addEventListener('click', () => {
-    const product = productElement.value;
-    const quantity = quantityElements[index].value;
-    const unit = unitElements[index].value;
-    if (productElement.checked) {
-      checkedProducts.push({ product, quantity, unit });
-    } else {
-      checkedProducts = checkedProducts.filter(item => item.product !== product);
-    }
-  });
-});
-
-categorySelectElement.addEventListener('change', () => {
-  const selectedCategory = categorySelectElement.value;
-  if (selectedCategory === 'all') {
-    categoryElements.forEach(categoryElement => {
-      categoryElement.parentElement.style.display = 'block';
-    });
-  } else {
-    categoryElements.forEach(categoryElement => {
-      if (categoryElement.textContent.toLowerCase() === selectedCategory) {
-        categoryElement.parentElement.style.display = 'block';
-      } else {
-        categoryElement.parentElement.style.display = 'none';
-      }
-    });
-  }
-});
-
-searchElement.addEventListener('input', () => {
-  const searchText = searchElement.value.toLowerCase();
-  productElements.forEach(productElement => {
-    const label = productElement.nextElementSibling;
-    if (label.textContent.toLowerCase().includes(searchText)) {
-      productElement.parentElement.style.display = 'block';
-    } else {
-      productElement.parentElement.style.display = 'none';
-    }
-  });
-});
-
-showAllButton.addEventListener('click', () => {
-  categoryElements.forEach(categoryElement => {
-    categoryElement.parentElement.style.display = 'block';
-  });
-  searchElement.value = '';
-  productElements
-
-
-
-fiche solidernet
-continue
-Certainly! Here is the rest of the example JavaScript file:
-
-Copy code
-.forEach(productElement => {
-    productElement.parentElement.style.display = 'block';
-  });
-});
-
-savePdfButton.addEventListener('click', () => {
-  const name = nameElement.value;
-  const company = companyElement.value;
-  const phone = phoneElement.value;
-  // Generate PDF with checked products organized by category and including user's information
-});
-    </script>
-    
-
-</body>
+      <ul id="category3">
+        <li><input type="checkbox">Product 7</li>
+        <li><input type="checkbox">Product 8</li>
+        <li><input type="checkbox">Product 9</li>
+      </ul>
+    </div>
+    <div id="order-form">
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" required>
+        <button type="submit" id="submit-btn">Submit</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="ourproducs.js"></script>
+  </body>
 </html>
-  
-
