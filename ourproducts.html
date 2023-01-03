@@ -6,6 +6,8 @@
   </head>
   <body>
     <h1>Product Order Form</h1>
+    
+    <input type="text" id="search" placeholder="Search for products">
     <div id="categories">
       <label for="category-select">Select Category:</label>
       <select id="category-select">
@@ -81,19 +83,20 @@
   $('#show-all-btn').click(function() {
     $('ul').show();
   });
-
-  // Filter products when search input is used
-  $('#search').keyup(function() {
-    var searchTerm = $(this).val().toLowerCase();
-    $('li').each(function() {
-      var name = $(this).text().toLowerCase();
-      if (name.includes(searchTerm)) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
+    
+// Filter products when search input is used
+$('#search').keyup(function() {
+  var searchTerm = $(this).val().toLowerCase();
+  $('li').each(function() {
+    var name = $(this).text().toLowerCase();
+    if (name.includes(searchTerm)) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
   });
+});
+    
 
   // Generate PDF when form is submitted
   $('form').submit(function(event) {
