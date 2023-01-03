@@ -2,8 +2,6 @@
 <html>
 <head>
   <title>SOLIDERNET Product List</title>
-  <!-- include Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   
   <!-- include jspdf library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
@@ -13,6 +11,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
   
+  <!-- include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- include custom CSS -->
   <style>
     /* add custom styling here */
@@ -56,33 +56,34 @@
       </div>
     </div>
   </div>
-
+  <!-- include jspdf library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <!-- include Bootstrap JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
 
    <script>
   // define array of categories and products
-cdocument.addEventListener('DOMContentLoaded', () => {
-  // define array of categories and products
-  const categories = [
-    {
-      name: 'Category 1',
-      products: [
-        { name: 'Product 1', title: 'Title 1' },
-        { name: 'Product 2', title: 'Title 2' },
-        // add more products here
-      ]
-    },
-    {
-      name: 'Category 2',
-      products: [
-        { name: 'Product 3', title: 'Title 3' },
-        { name: 'Product 4', title: 'Title 4' },
-        // add more products here
-      ]
-    },
-    // add more categories here
-  ];
+const categories = [
+  {
+    name: 'Category 1',
+    products: [
+      { name: 'Product 1', title: 'Title 1' },
+      { name: 'Product 2', title: 'Title 2' },
+      // add more products here
+    ]
+  },
+  {
+    name: 'Category 2',
+    products: [
+      { name: 'Product 3', title: 'Title 3' },
+      { name: 'Product 4', title: 'Title 4' },
+      // add more products here
+    ]
+  },
+  // add more categories here
+];
 
-  
 // function to create table rows for products
 function createTableRows(products) {
   const rows = [];
@@ -92,8 +93,8 @@ function createTableRows(products) {
       <tr>
         <td><input type="checkbox" class="product-checkbox"></td>
         <td>${product.name}</td>
-        <td><input type="number" class="form-control product-quantity" value="1"></td>
-        <td>${product.title}</td>
+        <td><input type="number" class="form-control product-quantity"></td>
+        <td><input type="text" class="form-control product-unit"></td>
       </tr>
     `;
     rows.push(row);
@@ -101,48 +102,49 @@ function createTableRows(products) {
   return rows;
 }
 
-// function to filter products by search query and category
-function filterProducts(products, query, category) {
-  // convert search query to lower case for case-insensitive search
-  query = query.toLowerCase();
-  // filter products by search query and category
-  return products.filter(product => {
-    const name = product.name.toLowerCase();
-    const title = product.title.toLowerCase();
-    const productCategory = product.category.toLowerCase();
-    // check if search query is in product name or title and, if a category is selected, if it matches the product's category
-    return ((name.includes(query) || title.includes(query)) && (!category || productCategory === category));
-  });
-}
-
-// function to render table rows for filtered products
-function renderTableRows(products) {
-  // get table body element
-  const tableBody = document.querySelector('#product-table');
-  // clear current rows
-  tableBody.innerHTML = '';
-  // create table rows for filtered products
+// function to display products
+function displayProducts(products) {
+  // clear product table
+  document.getElementById('product-table').innerHTML = '';
+  // create table rows for products
   const rows = createTableRows(products);
-  // add rows to table body
-  tableBody.innerHTML = rows.join('');
+  // add rows to product table
+  for (const row of rows) {
+    document.getElementById('product-table').innerHTML += row;
+  }
 }
 
-// function to generate PDF
-function generatePDF() {
-  // create new PDF document
-  const doc = new jsPDF();
+// function to search products
+function searchProducts(event) {
+  // get search field value
+  const searchValue = event.target.value.toLowerCase();
+  // filter products based on search value
+  const filteredProducts = categories
+    .map(category => category.products)
+    .flat()
+    .filter(product => product.name.toLowerCase().includes(searchValue));
+  // display filtered products
+  displayProducts(filteredProducts);
+}
 
-  // get selected products and their quantities
-  const products = [];
-  const productElements = document.querySelectorAll('.product-checkbox:checked');
-  for (const productElement of productElements) {
-    const tr = productElement.closest('tr');
-    const name = tr.querySelector('.product-name').textContent;
-    const quantity = tr.querySelector('.product-quantity').value;
-    products.push({ name, quantity });
+// function to filter products by category
+function filterProducts(event) {
+  // get selected category
+  const selectedCategory = event.target.value;
+  // filter products based on selected category
+  let filteredProducts = [];
+  if (selectedCategory) {
+    filteredProducts = categories
+      .find(category => category.name === selectedCategory)
+      .products;
+  } else {
+    filteredProducts =categories
+  .map(category => category.products)
+  .flat();
   }
-
-
+  // display filtered products
+  displayProducts(filteredProducts);
+}
 
 // function to generate PDF of selected products
 function generatePDF() {
