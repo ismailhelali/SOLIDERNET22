@@ -40,15 +40,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.0.0/jspdf.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <script>
+
       // List of products
       const products = [
-        { name: 'farine Amgalita 10kg', category: 'Farine et semoule', quantity: 1, unit: 'unit' },
-        { name: 'Fromage Bergader', category: 'Fromagerie', quantity: 1, unit: 'unit' },
-        { name: 'Thon entier Challa 1.7kg', category: 'Conserve', quantity: 1, unit: 'unit' },
+        { name: 'Product 1', category: 'Category 1', quantity: 0, unit: 'unit', selected: false },
+        { name: 'Product 2', category: 'Category 1', quantity: 0, unit: 'unit', selected: false },
+        { name: 'Product 3', category: 'Category 2', quantity: 0, unit: 'unit', selected: false },
         // Add more products here
       ];
 
-     
       // Populate the table
       function populateTable() {
         // Clear the table
@@ -79,7 +79,7 @@
                     <option ${product.unit === 'gallon' ? 'selected' : ''}>gallon</option>
                   </select>
                 </td>
-                <td><input type="checkbox" class="form-control selectCheckbox"></td>
+                <td><input type="checkbox" class="form-control selectCheckbox" ${product.selected ? 'checked' : ''}></td>
               </tr>
             `;
             $('#productTable').append(tableRow);
@@ -95,6 +95,29 @@
           const suggestions = suggestProducts(quantity);
           console.log(`Suggestions for ${quantity}:`, suggestions);
         });
+
+        // Update the selected property of each product when the checkboxes change
+        const selectCheckboxes = $('.
+
+
+
+Ismail Aichouni
+Continue the exécution of the instructions 
+
+Certainly! Here is the rest of the modified JavaScript code to complete the example:
+
+Copy code
+        // Update the selected property of each product when the checkboxes change
+        const selectCheckboxes = $('.selectCheckbox');
+        selectCheckboxes.on('change', (event) => {
+          const checkbox = event.target;
+          const checked = checkbox.checked;
+          // Find the corresponding product in the list
+          const productIndex = products.findIndex((product) => product.name === $(checkbox).closest('tr').find('td:nth-child(1)').text());
+          if (productIndex !== -1) {
+            products[productIndex].selected = checked;
+          }
+        });
       }
 
       // Use AI to suggest relevant products based on the quantity
@@ -103,41 +126,39 @@
         return products.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * products.length));
       }
 
-
-        // Generate a PDF of the selected products and quantities
-        function generatePdf() {
-          const selectedRows = $('#productTable').find('input[type="checkbox"]:checked').closest('tr');
-          if (selectedRows.length === 0) {
-            alert('Please select at least one product to include in the PDF.');
-            return;
-          }
-
-          const doc = new jsPDF();
-          doc.setFontSize(20);
-          doc.text('Selected Products', 14, 22);
-          doc.setFontSize(14);
-
-          let y = 38;
-          selectedRows.each((index, row) => {
-            const name = $(row).find('td:nth-child(1)').text();
-            const quantity = $(row).find('td:nth-child(2) input').val();
-            const unit = $(row).find('td:nth-child(3) select').val();
-            doc.text(`${name}: ${quantity} ${unit}`, 14, y);
-            y += 10;
-          });
-
-          doc.save('selected-products.pdf');
+      // Generate a PDF of the selected products and quantities
+      function generatePdf() {
+        const selectedRows = $('#productTable').find('input[type="checkbox"]:checked').closest('tr');
+        if (selectedRows.length === 0) {
+          alert('Please select at least one product to include in the PDF.');
+          return;
         }
 
-        // Initialize the page
-        populateTable();
+        const doc = new jsPDF();
+        doc.setFontSize(20);
+        doc.text('Selected Products', 14, 22);
+        doc.setFontSize(14);
 
-        // Update the table when the search input or category select change
-        $('#searchInput, #categorySelect').on('input', populateTable);
+        let y = 38;
+        selectedRows.each((index, row) => {
+          const name = $(row).find('td:nth-child(1)').text();
+          const quantity = $(row).find('td:nth-child(2) input').val();
+          const unit = $(row).find('td:nth-child(3) select').val();
+          doc.text(`${name}: ${quantity} ${unit}`, 14, y);
+          y += 10;
+        });
 
-        // Generate the PDF when the button is clicked
-        $('#generatePdfBtn').click(generatePdf);
-      </script>
+        doc.save('selected-products.pdf');
+      }
+
+      // Initialize the page
+      populateTable();
+
+      // Update the table when the search input or category select change
+      $('#searchInput, #categorySelect').on('input', populateTable);
+
+      // Generate the PDF when the button is clicked
+      $('#generatePdfBtn').click(generatePdf);
+    </script>
   </body>
 </html>
-
