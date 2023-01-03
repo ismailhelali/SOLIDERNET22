@@ -1,171 +1,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Product List</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>SOLIDERNET Product List</title>
+  <!-- include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- include custom CSS -->
   <style>
-    /* Add your own CSS here */
+    /* add custom styling here */
   </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1 class="text-center mb-5">Product List</h1>
-
-    <!-- Search and filter form -->
-    <form>
-      <div class="form-row align-items-center mb-3">
-        <div class="col-auto">
-          <input type="text" class="form-control" id="search-input" placeholder="Search for a product">
-        </div>
-        <div class="col-auto">
-          <select class="custom-select" id="category-select">
-            <option selected>Filter by category</option>
-            <!-- Add options for categories here -->
-          </select>
-        </div>
-        <div class="col-auto">
-          <button type="button" class="btn btn-primary" id="search-button">Search</button>
-        </div>
+  <div class="container-fluid">
+    <!-- search field -->
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <input type="text" class="form-control" id="search-field" placeholder="Search products">
       </div>
-    </form>
-
-    <!-- Product table -->
-    <table class="table table-bordered">
+    </div>
+    <!-- category dropdown -->
+    <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
+        <select class="form-control" id="category-select">
+          <option value="">All categories</option>
+          <!-- add options for categories here -->
+        </select>
+      </div>
+    </div>
+    <!-- product table -->
+    <table class="table mt-3">
       <thead>
         <tr>
-          <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Unit</th>
-          <th scope="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="select-all">
-              <label class="form-check-label" for="select-all">
-                Select All
-              </label>
-            </div>
-          </th>
+          <th></th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Unit</th>
         </tr>
       </thead>
-      <tbody id="product-list">
-        <!-- Add rows for each product here -->
+      <tbody id="product-table">
+        <!-- table rows will be added here by JavaScript -->
       </tbody>
     </table>
-
-    <!-- Suggested products -->
-    <div id="suggested-products" class="mb-5"></div>
-
-    <!-- Generate PDF button -->
-    <button type="button" class="btn btn-secondary" id="generate-pdf-button">Generate PDF</button>
+    <!-- PDF button -->
+    <div class="row mt-3">
+      <div class="col-md-6 offset-md-3">
+        <button class="btn btn-primary btn-block" id="pdf-button">Generate PDF</button>
+      </div>
+    </div>
   </div>
+  <!-- include jspdf library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <!-- include Bootstrap JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script>
+   <script>
+  // define array of categories and products
+const categories = [
+  {
+    name: 'Category 1',
+    products: [
+      { name: 'Product 1', title: 'Title 1' },
+      { name: 'Product 2', title: 'Title 2' },
+      // add more products here
+    ]
+  },
+  {
+    name: 'Category 2',
+    products: [
+      { name: 'Product 3', title: 'Title 3' },
+      { name: 'Product 4', title: 'Title 4' },
+      // add more products here
+    ]
+  },
+  // add more categories here
+];
 
-<script>
-  // Product list data
-  const categories = ['Category 1', 'Category 2', 'Category 3'];
-  const products = [
-    {name: 'Product 1', quantity: 0, unit: '', category: 'Category 1'},
-    {name: 'Product 2', quantity: 0, unit: '', category: 'Category 2'},
-    {name: 'Product 3', quantity: 0, unit: '', category: 'Category 3'},
-    // Add more products here
-  ];
-
-  // AI-powered product suggestion
-  const suggestProducts = (query) => {
-    // Use AI to suggest relevant products based on the input query
-  };
-
-  // Populate category dropdown list
-  categories.forEach((category) => {
-    $('#category-select').append(`<option>${category}</option>`);
-  });
-
-  // Populate product table
-  products.forEach((product) => {
-    $('#product-list').append(`
+// function to create table rows for products
+function createTableRows(products) {
+  const rows = [];
+  // loop through products and create table rows
+  for (const product of products) {
+    const row = `
       <tr>
+        <td><input type="checkbox" class="product-checkbox"></td>
         <td>${product.name}</td>
-        <td>
-          <input type="number" class="form-control quantity-input" value="${product.quantity}">
-        </td>
-        <td>
-          <input type="text" class="form-control unit-input" value="${product.unit}">
-        </td>
-        <td>
-          <div class="form-check">
-            <input class="form-check-input product-checkbox" type="checkbox" value="${product.name}">
-            <label class="form-check-label" for="${product.name}">
-              Select
-            </label>
-          </div>
-        </td>
+        <td><input type="number" class="form-control product-quantity"></td>
+        <td><input type="text" class="form-control product-unit"></td>
       </tr>
-    `);
-  });
+    `;
+    rows.push(row);
+  }
+  return rows;
+}
 
-  // Select all products
-  $('#select-all').click(() => {
-    $('.product-checkbox').prop('checked', $('#select-all').prop('checked'));
-  });
+// function to display products
+function displayProducts(products) {
+  // clear product table
+  document.getElementById('product-table').innerHTML = '';
+  // create table rows for products
+  const rows = createTableRows(products);
+  // add rows to product table
+  for (const row of rows) {
+    document.getElementById('product-table').innerHTML += row;
+  }
+}
 
-  
-  // Search and filter products
-$('#search-button').click(() => {
-  const searchQuery = $('#search-input').val().toLowerCase();
-  const selectedCategory = $('#category-select').val();
+// function to search products
+function searchProducts(event) {
+  // get search field value
+  const searchValue = event.target.value.toLowerCase();
+  // filter products based on search value
+  const filteredProducts = categories
+    .map(category => category.products)
+    .flat()
+    .filter(product => product.name.toLowerCase().includes(searchValue));
+  // display filtered products
+  displayProducts(filteredProducts);
+}
 
-  // Filter products by search query and category
-  const filteredProducts = products.filter((product) => {
-    return product.name.toLowerCase().includes(searchQuery) &&
-           (selectedCategory === 'Filter by category' || product.category === selectedCategory);
-  });
+// function to filter products by category
+function filterProducts(event) {
+  // get selected category
+  const selectedCategory = event.target.value;
+  // filter products based on selected category
+  let filteredProducts = [];
+  if (selectedCategory) {
+    filteredProducts = categories
+      .find(category => category.name === selectedCategory)
+      .products;
+  } else {
+    filteredProducts =categories
+  .map(category => category.products)
+  .flat();
+  }
+  // display filtered products
+  displayProducts(filteredProducts);
+}
 
-  // Clear product table
-  $('#product-list').empty();
+// function to generate PDF of selected products
+function generatePDF() {
+  // create jspdf document
+  const doc = new jsPDF();
+  // create table for selected products
+  let table = '<table><tr><th>Product</th><th>Quantity</th><th>Unit</th></tr>';
+  // get selected products and their quantities and units
+  const selectedRows = document.getElementsByClassName('product-checkbox');
+  for (const row of selectedRows) {
+    if (row.checked) {
+      const rowCells = row.parentElement.parentElement.cells;
+      const product = rowCells[1].innerHTML;
+      const quantity = rowCells[2].children[0].value;
+      const unit = rowCells[3].children[0].value;
+      table += `<tr><td>${product}</td><td>${quantity}</td><td>${unit}</td></tr>`;
+    }
+  }
+  table += '</table>';
+  // add table to document
+  doc.fromHTML(table);
+  // download document
+  doc.save('products.pdf');
+}
 
-  // Populate product table with filtered products
-  filteredProducts.forEach((product) => {
-    $('#product-list').append(`
-      <tr>
-        <td>${product.name}</td>
-        <td>
-          <input type="number" class="form-control" value=${product.quantity}>
-        </td>
-        <td>
-          <input type="text" class="form-control" value=${product.unit}>
-        </td>
-        <td>
-          <div class="form-check">
-            <input class="form-check-input product-checkbox" type="checkbox">
-          </div>
-        </td>
-      </tr>
-    `);
-  });
+// display all products when page loads
+displayProducts(categories.map(category => category.products).flat());
 
-  // Clear suggested products
-  $('#suggested-products').empty();
-
-  // Suggest relevant products based on search query
-  suggestProducts(searchQuery);
-});
-  
-  // Search for products old version
- // $('#search-button').click(() => {
-   // const query = $('#search-input').val();
-    //const category = $('#category-select').val();
-
-    // Search for products based on the input query and category
-    // and update the product table and suggested products accordingly
-  //});
-
-  // Generate PDF of selected products
-  $('#generate-pdf-button').click(() => {
-    // Get selected products and their quantities and units
-    // and use the jsPDF library to generate a PDF with this information
-  });
+// add event listeners
+document.getElementById('search-field').addEventListener('input', searchProducts);
+document.getElementById('category-select').addEventListener('change', filterProducts);
+document.getElementById('pdf-button').addEventListener('click', generatePDF);
 </script>
-
   </body>
-</html>
+  </html>
