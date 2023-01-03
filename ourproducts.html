@@ -3,6 +3,7 @@
 <head>
   <title>Product List</title>
   <!-- include CSS and jQuery libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -163,12 +164,42 @@
       'unit': unit
     };
   }
+    </script>
+    
+    <script>
+   
+   var doc = new jsPDF();
 
+// add a title to the PDF
+doc.text('Checked Products', 10, 10);
+
+// add a line for each checked product
+var y = 20;
+for (var product in checkedProducts) {
+  doc.text(product + ': ' + checkedProducts[product]['quantity'] + ' ' + checkedProducts[product]['unit'], 10, y);
+  y += 10;
+}
+// save the PDF
+doc.save('checked-products.pdf');       
+          
+          
   // save the checked products as a PDF
   $('#save-pdf-btn').click(function() {
     // add code to generate PDF with checked products here
   });
 });
+      
+      
+      $('#save-pdf-btn').click(function() {
+  var doc = new jsPDF();
+
+  // add a title to the PDF
+  doc.text('Checked Products', 10, 10);
+
+  // add a line for each checked product
+  var y = 20;
+  for (var product in checkedProducts) {
+    doc.text(product + ': '
     </script>
 </body>
 </html>
