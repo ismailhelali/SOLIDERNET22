@@ -54,7 +54,6 @@
   // Add quantities and units to products
   $('li').append('<input type="number" min="1" value="1">');
   $('li').append('<select><option>unit</option><option>kg</option><option>g</option><option>lbs</option></select>');
-
 // Add products to array when checked
 $('input[type="checkbox"]').click(function() {
   var product = $(this).parent();
@@ -63,13 +62,13 @@ $('input[type="checkbox"]').click(function() {
     product.append('<input type="number" min="1" value="1">');
     product.append('<select><option>unit</option><option>kg</option><option>g</option><option>lbs</option></select>');
     var quantity = product.find('input[type="number"]').val();
-    var unit = product.find('select').val();
+    var unit = product.find('select').text();
     products.push({name: name, quantity: quantity, unit: unit});
   } else {
     products = products.filter(item => item.name !== name);
   }
 });
-
+    
   // Show only products in selected category
   $('#category-select').change(function() {
     var category = $(this).val();
