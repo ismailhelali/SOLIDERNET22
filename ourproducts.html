@@ -103,38 +103,41 @@
     
     <script>
 
-const categories = document.getElementById("categories");
-const categorySelect = document.getElementById("category-select");
-const searchInput = document.getElementById("search");
-const showAllButton = document.getElementById("show-all");
-const userForm = document.getElementById("user-form");
-const savePdfButton = document.getElementById("save-pdf");
+const categorySelect = document.querySelector("#category-select");
+const searchInput = document.querySelector("#search-input");
+const showAllButton = document.querySelector("#show-all-btn");
+const categories = document.querySelector("#categories");
 
-let data = {};
+// When the category dropdown or search input changes, filter the product lists
+categorySelect.addEventListener("change", filterLists);
+searchInput.addEventListener("input", filterLists);
 
-// When a category is chosen from the dropdown list or the "Show All" button is clicked,
-// show only the products associated with that category
-categorySelect.addEventListener("change", () => {
+function filterLists() {
+  // Get the selected category and search text
   const selectedCategory = categorySelect.value;
-  if (selectedCategory === "all") {
-    categories.querySelectorAll("h2").forEach(category => {
-      category.style.display = "block";
-    });
-  } else {
-    categories.querySelectorAll("h2").forEach(category => {
-      if (category.id === selectedCategory) {
-        category.style.display = "block";
-      } else {
-        category.style.display = "none";
-      }
-    });
-  }
-});
+  const searchText = searchInput.value.toLowerCase();
+
+  // Loop through all the product lists
+  categories.querySelectorAll(".category").forEach(productList => {
+    // Get the category of the list
+    const category = productList.getAttribute("data-category");
+
+    // If the selected category is "all" or matches the category of the list,
+    // and the search text is empty or appears in the product name, show the list
+    if ((selectedCategory === "all" || category === selectedCategory) &&
+        (searchText === "" || productList.innerHTML.toLowerCase().includes(searchText))) {
+      productList.style.display = "block";
+    } else {
+      productList.style.display = "none";
+    }
+  });
+}
+
+// When the show all button is clicked, reset the category dropdown and search input
 showAllButton.addEventListener("click", () => {
   categorySelect.value = "all";
-  categories.querySelectorAll("h2").forEach(category => {
-    category.style.display = "block";
-  });
+  searchInput.value = "";
+  filterLists();
 });
 
 // Implement the dynamic search functionality
