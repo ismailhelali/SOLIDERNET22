@@ -40,92 +40,89 @@
 
 
   <script>
-    const data = {
-      categories: [
-        {
-          title: 'Category 1',
-          products: [
-            { title: 'Product 1', checked: false },
-            { title: 'Product 2', checked: false }
-          ]
-        },
-        {
-          title: 'Category 2',
-          products: [
-            { title: 'Product 3', checked: false },
-            { title: 'Product 4', checked: false }
-          ]
-        }
+const data = {
+  categories: [
+    {
+      title: 'Category 1',
+      products: [
+        { title: 'Product 1', checked: false },
+        { title: 'Product 2', checked: false }
       ]
-    };
-
-    const $categories = $('#categories');
-    const $search = $('#search');
-    const $clearSearch = $('#clear-search');
-    const source = $('#category-template').html();
-    const template = Handlebars.compile(source);
-
-    function renderCategories(categories) {
-      $categories.html(template({ categories }));
+    },
+    {
+      title: 'Category 2',
+      products: [
+        { title: 'Product 3', checked: false },
+        { title: 'Product 4', checked: false }
+      ]
     }
+  ]
+};
 
-    $search.on('input', () => {
-      const searchQuery = $search.val().toLowerCase();
-      let categories = data.categories;
+const $categories = $('#categories');
+const $search = $('#search');
+const $clearSearch = $('#clear-search');
+const source = $('#category-template').html();
+const template = Handlebars.compile(source);
 
-      if (searchQuery.trim() !== ''
-) {
-        categories = categories.map((category) =>
-{
-          const products = category.products.filter((product) => {
-            return product.title.toLowerCase().includes(searchQuery);
-          });
-          return { ...category, products };
-        });
-      }
+function renderCategories(categories) {
+  $categories.html(template({ categories }));
+}
 
-      renderCategories(categories);
-    });
+$search.on('input', () => {
+  const searchQuery = $search.val().toLowerCase();
+  let categories = data.categories;
 
-    $clearSearch.on('click', () => {
-      $search.val('');
-      renderCategories(data.categories);
-    });
-
-    $categories.on('change', '.product-checkbox', (event) => {
-      const $checkbox = $(event.target);
-      const $productItem = $checkbox.closest('.product-item');
-      const $category = $productItem.closest('.category');
-      const productIndex = $productItem.index();
-      const categoryIndex = $category.index();
-      const quantity = $productItem.find('.product-quantity').val();
-      const unit = $productItem.find('.product-unit').val();
-
-      data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
-      data.categories[categoryIndex].products[productIndex].quantity = quantity;
-      data.categories[categoryIndex].products[productIndex].unit = unit;
-    });
-
-    renderCategories(data.categories);
-
-    $('#save-pdf').on('click', () => {
-      const doc = new jsPDF();
-      doc.text(20, 20, 'Product List');
-
-      data.categories.forEach((category) => {
-        doc.text(20, 30, category.title);
-
-        category.products.forEach((product) => {
-          if (product.checked) {
-            doc.text(30, 40, `- ${product.title}`);
-            doc.text(40, 50, `Quantity: ${product.quantity}`);
-            doc.text(50, 60, `Unit: ${product.unit}`);
-          }
-        });
+  if (searchQuery.trim() !== '') {
+    categories = categories.map((category) => {
+      const products = category.products.filter((product) => {
+        return product.title.toLowerCase().includes(searchQuery);
       });
-
-      doc.save('product-list.pdf');
+      return { ...category, products };
     });
+  }
+
+  renderCategories(categories);
+});
+
+$clearSearch.on('click', () => {
+  $search.val('');
+  renderCategories(data.categories);
+});
+
+$categories.on('change', '.product-checkbox', (event) => {
+  const $checkbox = $(event.target);
+  const $productItem = $checkbox.closest('.product-item');
+  const $category = $productItem.closest('.category');
+  const productIndex = $productItem.index();
+  const categoryIndex = $category.index();
+  const quantity = $productItem.find('.product-quantity').val();
+  const unit = $productItem.find('.product-unit').val();
+
+  data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
+  data.categories[categoryIndex].products[productIndex].quantity = quantity;
+  data.categories[categoryIndex].products[productIndex].unit = unit;
+});
+
+renderCategories(data.categories);
+
+$('#save-pdf').on('click', () => {
+  const doc = new jsPDF();
+  doc.text(20, 20, 'Product List');
+
+  data.categories.forEach((category) => {
+    doc.text(20, 30, category.title);
+
+    const products = category.products
+      .filter((product) => product.checked)
+      .map((product) => `- ${product.title} - Quantity: ${product.quantity} - Unit: ${product.unit}`);
+
+    doc.text(20, 40, products.join('\n'));
+  });
+
+  doc.save('product-list.pdf');
+});
+
   </script>
 </body>
 </html>
