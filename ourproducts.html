@@ -2,149 +2,238 @@
 <html>
 <head>
   <title>Product Selector</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 </head>
 <body>
-  <div id="root"></div>
+  <!-- Table to display the list of categories and products -->
+  <table id="product-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+      </tr>
+    </thead>
+    <tbody id="product-list">
+    </tbody>
+  </table>
 
-  <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+  <!-- Input field to search for a product by ID -->
+  <label for="product-search">Search for a product by ID:</label>
+  <input type="text" id="product-search">
 
+  <!-- Dropdown to filter products by category -->
+  <label for="category-filter">Filter products by category:</label>
+  <select id="category-filter">
+    <option value="all">All categories</option>
+    
+</select>
+
+  <!-- Button to generate PDF with selected products -->
+  <button id="generate-pdf">Generate PDF</button>
+
+  <!-- Div to display custom message -->
+  <div id="custom-message"></div>
+
+  <!-- JavaScript code -->
   <script>
-    const rootElement = document.getElementById('root');
-    ReactDOM.render(<ProductList />, rootElement);
-  </script>
+    // List of categories and products
+    const categories = [
+      {
+        name: 'Category 1',
+        products: [
+          { id: 1, name: 'Product 1' },
+          { id: 2, name: 'Product 2' },
+          { id: 3, name: 'Product 3' }
+        ]
+      },
+      {
+        name: 'Category 2',
+        products: [
+          { id: 4, name: 'Product 4' },
+          { id: 5, name: 'Product 5' },
+          { id: 6, name: 'Product 6' }
+        ]
+      }
+    ];
 
-  
-  <script>
-    import React from 'react';
-import jspdf from 'jspdf';
+    // Stores the selected products and their quantities and units
+    let selectedProducts = {};
 
-class ProductList extends React.Component {
-  state = {
-    categories: ['Category 1', 'Category 2', 'Category 3'],
-    products: [
-      { name: 'Product 1', category: 'Category 1', quantity: 0, unit: 'unit' },
-      { name: 'Product 2', category: 'Category 1', quantity: 0, unit: 'unit' },
-      { name: 'Product 3', category: 'Category 2', quantity: 0, unit: 'unit' },
-      { name: 'Product 4', category: 'Category 2', quantity: 0, unit: 'unit' },
-      { name: 'Product 5', category: 'Category 3', quantity: 0, unit: 'unit' },
-      { name: 'Product 6', category: 'Category 3', quantity: 0, unit: 'unit' },
-    ],
-    selectedCategory: '',
-    selectedProducts: [],
-    search: '',
-    message: '',
-  };
+    // Populates the product table with the list of categories and products
+    function populateTable() {
+      const productList = $('#product-list');
+      productList.empty(); // Clear the table
 
-  handleQuantityChange = (event, index) => {
-    const { products } = this.state;
-    products[index].quantity = event.target.value;
-    this.setState({ products });
-  };
+      categories.forEach(category => {
+        // Add category row
+        const categoryRow = $('<tr>');
+        const categoryCell = $('<td>').attr('colspan', 4).text(category.name);
+        categoryRow.append(categoryCell);
+        productList.append(categoryRow);
 
-  handleUnitChange = (event, index) => {
-    const { products } = this.state;
-    products[index].unit = event.target.value;
-    this.setState({ products });
-  };
+        // Add product rows
+        category.products.forEach(product => {
+          const productRow = $('<tr>');
 
-  handleCategoryChange = (event) => {
-    this.setState({ selectedCategory: event.target.value });
-  };
+          // Product name cell with checkbox
+          const nameCell = $('<td>');
+          const checkbox = $('<input>').attr('type', 'checkbox').val(product.id).change(event => {
+            if (event.target.checked) {
+              // If the checkbox is checked, set the quantity and unit to 1 and 'each' by default
+              updateSelectedProducts(event.target.value, 1, 'each');
+            } else {
+              // If the checkbox is not checked, remove the product from the selected products
+              updateSelectedProducts(event.target.value, 0, '');
+            }
+          });
+          nameCell.append(checkbox);
+          const nameLabel = $('<label>').text(product.name);
+          nameCell.append(nameLabel);
+          productRow.append(nameCell);
 
-  handleSearchChange = (event) => {
-    this.setState({ search: event.target.value });
-  };
+          // Quantity and unit cells with input fields
+          const quantityCell = $('<td>');
+          const quantityInput = $('<input>').attr('type', 'number').val(selectedProducts[product.id] ? selectedProducts[product.id].quantity : '').change(event =>
+updateSelectedProducts(product.id, event.target.value, selectedProducts[product.id].unit);
+          });
+          quantityCell.append(quantityInput);
+          productRow.append(quantityCell);
+          const unitCell = $('<td>');
+          const unitInput = $('<input>').val(selectedProducts[product.id] ? selectedProducts[product.id].unit : '').change(event => {
+            updateSelectedProducts(product.id, selectedProducts[product.id].quantity, event.target.value);
+      });
+      unitCell.append(unitInput);
+      productRow.append(unitCell);
 
-  handleMessageChange = (event) => {
-    this.setState({ message: event.target.value });
-  };
-
-  handleCheckboxChange = (event, index) => {
-    const { products, selectedProducts } = this.state;
-    if (event.target.checked) {
-      selectedProducts.push(products[index]);
-    } else {
-      const productIndex = selectedProducts.indexOf(products[index]);
-      selectedProducts.splice(productIndex, 1);
-    }
-    this.setState({ selectedProducts });
-  };
-
-  generatePDF = () => {
-    const { selectedProducts, message } = this.state;
-    const doc = new jspdf();
-    doc.text(message, 10, 10);
-    selectedProducts.forEach((product, index) => {
-      doc.text(`${product.name}: ${product.quantity} ${product.unit}`, 10, 15 + (index * 10));
+      productList.append(productRow);
     });
-    doc.save('products.pdf');
-  };
+  });
+}
 
-  render() {
-    const { categories, products, selectedCategory, search, message, selectedProducts } = this.state;
-    return (
-      <div>
-<div>
-  <label htmlFor="category-select">Filter by Category:</label>
-  <select id="category-select" onChange={this.handleCategoryChange}>
-    <option value="">All</option>
-    {categories.map((category) => (
-      <option value={category}>{category}</option>
-    ))}
-  </select>
-  <br />
-  <label htmlFor="search">Search by Product Name:</label>
-  <input id="search" onChange={this.handleSearchChange} />
-  <br />
-  <ul>
-    {products
-      .filter((product) => {
-        if (selectedCategory) {
-          return product.category === selectedCategory;
+    // Updates the list of selected products with the specified quantity and unit for the specified product
+    function updateSelectedProducts(productId, quantity, unit) {
+      if (quantity > 0) {
+        selectedProducts[productId] = { quantity, unit };
+      } else {
+        delete selectedProducts[productId];
+      }
+    }
+
+    // Searches for a product with the specified ID
+    function searchProduct(productId) {
+      // Clear the category filter
+      $('#category-filter').val('all');
+
+      // Search for the product
+      let found = false;
+      categories.forEach(category => {
+        category.products.forEach(product => {
+          if (product.id == productId) {
+            found = true;
+          }
+        });
+      });
+
+      if (found) {
+        alert(`Product with ID ${productId} found!`);
+      } else {
+        alert(`Product with ID ${productId} not found.`);
+      }
+    }
+
+    // Filters the products by the selected category
+    function filterProducts() {
+      // Get the selected category
+      const selectedCategory = $('#category-filter').val();
+
+      // Filter the products
+      categories.forEach(category => {
+        if (selectedCategory == 'all' || category.name == selectedCategory) {
+          // Show products in the selected category
+          category.products.forEach(product => {
+            $(`input[value=${product.id}]`).closest('tr').show();
+          });
+        } else {
+          // Hide products not in the selected category
+          category.products.forEach(product => {
+            $(`input[value=${product.id}]`).closest('tr').hide();
+          });
         }
-        return true;
-      })
-      .filter((product) => {
-        if (search) {
-          return product.name.toLowerCase().includes(search.toLowerCase());
+      });
+    }
+
+    // Generates a PDF with the selected products
+    function generatePDF() {
+      // Create a new PDF document
+      const doc = new jsPDF();
+
+      // Add a title
+      doc.text('Selected Products', 10, 10);
+
+      // Add a table with the selected products
+      let y = 20;
+      Object.entries(selectedProducts).forEach(([productId, { quantity, unit }]) => {
+        // Find the product name
+        let productName = '';
+        categories.forEach(category => {
+          category.products.forEach(product => {
+            if (product.id == productId) {
+   
+productName = product.name;
+            }
+          });
+        });
+
+        // Add a row to the table with the product name, quantity, and unit
+        doc.text(productName, 10, y);
+        doc.text(quantity, 50, y);
+        doc.text(unit, 75, y);
+        y += 10;
+      });
+
+      // Save the PDF
+      doc.save('selected-products.pdf');
+    }
+
+    $(document).ready(() => {
+      // Populate the product table and category filter
+      populateTable();
+      categories.forEach(category => {
+        $('#category-filter').append($('<option>').val(category.name).text(category.name));
+      });
+
+      // Set up event handlers
+      $('#product-search').on('keyup', event => {
+        if (event.key == 'Enter') {
+          searchProduct(event.target.value);
         }
-        return true;
-      })
-      .map((product, index) => (
-        <li key={product.name}>
-          <input
-            type="checkbox"
-            checked={selectedProducts.includes(product)}
-            onChange={(event) => this.handleCheckboxChange(event, index)}
-          />
-          {product.name}
-          <br />
-          <label htmlFor={`${product.name}-quantity`}>Quantity:</label>
-          <input
-            id={`${product.name}-quantity`}
-            type="number"
-            value={product.quantity}
-            onChange={(event) => this.handleQuantityChange(event, index)}
-          />
-          <br />
-          <label htmlFor={`${product.name}-unit`}>Unit:</label>
-          <input
-            id={`${product.name}-unit`}
-            type="text"
-            value={product.unit}
-            onChange={(event) => this.handleUnitChange(event, index)}
-          />
-        </li>
-      ))}
-  </ul>
-  <br />
-  <label htmlFor="message">Customized Message:</label>
-  <br />
-  <textarea id="message" onChange={this.handleMessageChange} />
-  <br />
-  <button onClick={this.generatePDF}>Generate PDF</button>
-</div>
+      });
+      $('#category-filter').change(filterProducts);
+      $('#generate-pdf').click(generatePDF);
+
+      // Set the custom message
+      $('#custom-message').text('This is a custom message.');
+    });
   </script>
 </body>
 </html>
