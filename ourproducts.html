@@ -1,122 +1,124 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Product Order Form</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Product Order Form</h1>
-    
-    <input type="text" id="search" placeholder="Search for products">
-    <div id="categories">
-      <label for="category-select">Select Category:</label>
-      <select id="category-select">
-        <option value="all">All</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
-        <option value="category3">Category 3</option>
-      </select>
-      <button id="show-all-btn">Show All</button>
-    </div>
-    <div id="products">
-      <ul id="category1">
-        <li><input type="checkbox">Product 1</li>
-        <li><input type="checkbox">Product 2</li>
-        <li><input type="checkbox">Product 3</li>
-      </ul>
-      <ul id="category2">
-        <li><input type="checkbox">Product 4</li>
-        <li><input type="checkbox">Product 5</li>
-        <li><input type="checkbox">Product 6</li>
-      </ul>
-      <ul id="category3">
-        <li><input type="checkbox">Product 7</li>
-        <li><input type="checkbox">Product 8</li>
-        <li><input type="checkbox">Product 9</li>
-      </ul>
-    </div>
-    <div id="order-form">
-      <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" required>
-        <button type="submit" id="submit-btn">Submit</button>
-      </form>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-  <script>
+
+<head>
+  <title>Product List</title>
+  <!-- Include the jsPDF library -->
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- Dropdown menu to select a category -->
+  <label for="categorySelect">Category:</label>
+  <select id="categorySelect">
+    <option value="all">All</option>
+    <option value="category1">Category 1</option>
+    <option value="category2">Category 2</option>
+  </select>
+  <!-- Input field for searching for a specific product -->
+  <label for="productSearch">Search:</label>
+  <input type="text" id="productSearch">
+  <!-- Button to show all products -->
+  <button id="showAllButton">Show All</button>
+  <!-- Button to generate PDF -->
+  <button id="generatePDFButton">Generate PDF</button>
+  <!-- Div to hold the product lists -->
+  <div id="productLists">
+    <!-- Loop through the categories and products using React -->
+    <!-- Each product should have a checkbox and input fields for quantity and unit -->
+  </div>
   
-  $(document).ready(function() {
-  var products = [];
+  <script>
+    // Data structure to store the selected products, quantities, and units
+    var data = [];
 
-  // Add quantities and units to products
-  $('li').append('<input type="number" min="1" value="1">');
-  $('li').append('<select><option>unit</option><option>kg</option><option>g</option><option>lbs</option></select>');
-// Add products to array when checked
-$('input[type="checkbox"]').click(function() {
-  var product = $(this).parent();
-  var name = product.text();
-  if ($(this).is(':checked')) {
-    product.append('<input type="number" min="1" value="1">');
-    product.append('<select><option>unit</option><option>kg</option><option>g</option><option>lbs</option></select>');
-    var quantity = product.find('input[type="number"]').val();
-    var unit = product.find('select').text();
-    products.push({name: name, quantity: quantity, unit: unit});
-  } else {
-    products = products.filter(item => item.name !== name);
-  }
-});
-    
-  // Show only products in selected category
-  $('#category-select').change(function() {
-    var category = $(this).val();
-    if (category === 'all') {
-      $('ul').show();
-    } else {
-      $('ul').hide();
-      $('#' + category).show();
+    // Function to generate the PDF
+    function generatePDF() {
+      // Create a new instance of the jsPDF object
+      var pdf = new jsPDF();
+
+      // Loop through the data structure containing the selected products, quantities, and units
+      for (var i = 0; i < data.length; i++) {
+        // Add a new page for each product
+        pdf.addPage();
+        // Add the product name, quantity, and unit to the PDF
+        pdf.text(20, 20, data[i].name + ": " + data[i].quantity + " " + data[i].unit);
+      }
+
+      // Save the PDF file
+      pdf.save("products.pdf");
     }
-  });
 
-  // Show all products when "Show All" button is clicked
-  $('#show-all-btn').click(function() {
-    $('ul').show();
-  });
-    
-// Filter products when search input is used
-$('#search').keyup(function() {
-  var searchTerm = $(this).val().toLowerCase();
-  $('li').each(function() {
-    var name = $(this).text().toLowerCase();
-    if (name.includes(searchTerm)) {
-      $(this).show();
-    } else {
-      $(this).hide();
+    // Function to update the data structure when a checkbox is clicked
+    function updateData(product, quantity, unit, checked) {
+      if (checked) {
+        // Add the product to the data structure
+        data.push({
+          name: product,
+          quantity: quantity,
+          unit: unit
+        });
+      } else {
+        // Remove the product from the data structure
+        data = data.filter(function(item) {
+          return item.name !== product;
+        });
+      }
     }
-  });
-});
-    
 
-  // Generate PDF when form is submitted
-  $('form').submit(function(event) {
-    event.preventDefault();
-    var name = $('#name').val();
-    var phone = $('#phone').val();
-    var doc = new jsPDF();
-    doc.text(20, 20, 'Name: ' + name);
-    doc.text(20, 30, 'Phone: ' + phone);
-    doc.text(20, 40, 'Ordered Products:');
-    var y = 50;
-    products.forEach(function(product) {
-      doc.text(20, y, product.name + ': ' + product.quantity + ' ' + product.unit);
-      y += 10;
-    });
-    doc.save('order.pdf');
-  });
+    // Function to show or hide products based on the selected category
+    function filterProducts(category) {
+      if (category === "all") {
+        // Show all products
+        $("#productLists .productList").show();
+      } else {
+        // Hide all products
+        $("#productLists .productList").hide();
+        // Show only the products in the selected category
+        $("#productLists .productList." + category).show();
+      }
+
+
+// Function to search for products as the user types
+function searchProducts() {
+  // Get the search query
+  var query = $("#productSearch").val();
+  // Hide all products
+  $("#productLists .productList").hide();
+  // Show only the products that match the search query
+  $("#productLists .productList:contains('" + query + "')").show();
+}
+
+// Event listener for the category dropdown menu
+$("#categorySelect").on("change", function() {
+  // Get the selected category
+  var category = $(this).val();
+  // Filter the products based on the selected category
+  filterProducts(category);
 });
 
-</script>
+// Event listener for the search input field
+$("#productSearch").on("input", function() {
+  // Search for products as the user types
+  searchProducts();
+});
+
+// Event listener for the "Show All" button
+$("#showAllButton").on("click", function() {
+  // Reset the search query
+  $("#productSearch").val("");
+  // Reset the category dropdown menu
+  $("#categorySelect").val("all");
+  // Show all products
+  filterProducts("all");
+});
+
+// Event listener for the "Generate PDF" button
+$("#generatePDFButton").on("click", function() {
+  // Generate the PDF
+  generatePDF();
+});
+  </script>
 </body>
 </html>
