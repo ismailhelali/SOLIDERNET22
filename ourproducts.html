@@ -23,11 +23,11 @@
               <span class="product-title">{{this.title}}</span>
               <label>
                 Quantity:
-                <input type="number" class="product-quantity">
+                <input type="number" class="product-quantity" value="{{this.quantity}}">
               </label>
               <label>
                 Unit:
-                <input type="text" class="product-unit">
+                <input type="text" class="product-unit" value="{{this.unit}}">
               </label>
             </div>
           {{/each}}
@@ -73,7 +73,8 @@
       const searchQuery = $search.val().toLowerCase();
       let categories = data.categories;
 
-      if (searchQuery.trim() !== '') {
+      if (searchQuery.trim() !== ''
+) {
         categories = categories.map((category) =>
 {
           const products = category.products.filter((product) => {
@@ -88,7 +89,7 @@
 
     $clearSearch.on('click', () => {
       $search.val('');
-      $search.trigger('input');
+      renderCategories(data.categories);
     });
 
     $categories.on('change', '.product-checkbox', (event) => {
@@ -97,8 +98,12 @@
       const $category = $productItem.closest('.category');
       const productIndex = $productItem.index();
       const categoryIndex = $category.index();
+      const quantity = $productItem.find('.product-quantity').val();
+      const unit = $productItem.find('.product-unit').val();
 
       data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
+      data.categories[categoryIndex].products[productIndex].quantity = quantity;
+      data.categories[categoryIndex].products[productIndex].unit = unit;
     });
 
     renderCategories(data.categories);
@@ -113,6 +118,8 @@
         category.products.forEach((product) => {
           if (product.checked) {
             doc.text(30, 40, `- ${product.title}`);
+            doc.text(40, 50, `Quantity: ${product.quantity}`);
+            doc.text(50, 60, `Unit: ${product.unit}`);
           }
         });
       });
