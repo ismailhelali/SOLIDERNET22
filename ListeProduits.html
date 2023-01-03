@@ -1,164 +1,141 @@
-<!DOCTYPE html>
+
 <html>
-  <head>
-    <title>Product List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <style>
-      /* Add your custom styles here */
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="display-4 mb-4">Product List</h1>
-      <div class="form-group">
-        <label for="searchInput">Search for a product:</label>
-        <input type="text" class="form-control" id="searchInput">
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    /* Add your own CSS here */
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Product List</h1>
+
+    <!-- Search and filter form -->
+    <form>
+      <div class="form-row align-items-center mb-3">
+        <div class="col-auto">
+          <input type="text" class="form-control" id="search-input" placeholder="Search for a product">
+        </div>
+        <div class="col-auto">
+          <select class="custom-select" id="category-select">
+            <option selected>Filter by category</option>
+            <!-- Add options for categories here -->
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-primary" id="search-button">Search</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="categorySelect">Filter by category:</label>
-        <select class="form-control" id="categorySelect">
-          <option value="all">All</option>
-          <!-- Add options for each category here -->
-        </select>
-      </div>
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Unit</th>
-            <th>Select</th>
-          </tr>
-        </thead>
-        <tbody id="productTable">
-          <!-- Add rows for each product here -->
-        </tbody>
-      </table>
-      <button class="btn btn-primary" id="generatePdfBtn">Generate PDF</button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.0.0/jspdf.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
-    <script>
+    </form>
 
-      // List of products
-      const products = [
-        { name: 'Product 1', category: 'Category 1', quantity: 0, unit: 'unit', selected: false },
-        { name: 'Product 2', category: 'Category 1', quantity: 0, unit: 'unit', selected: false },
-        { name: 'Product 3', category: 'Category 2', quantity: 0, unit: 'unit', selected: false },
-        // Add more products here
-      ];
+    <!-- Product table -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="select-all">
+              <label class="form-check-label" for="select-all">
+                Select All
+              </label>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="product-list">
+        <!-- Add rows for each product here -->
+      </tbody>
+    </table>
 
-      // Populate the table
-      function populateTable() {
-        // Clear the table
-        $('#productTable').empty();
+    <!-- Suggested products -->
+    <div id="suggested-products" class="mb-5"></div>
 
-        // Get the search input and selected category
-        const searchInput = $('#searchInput').val().toLowerCase();
-        const selectedCategory = $('#categorySelect').val();
+    <!-- Generate PDF button -->
+    <button type="button" class="btn btn-secondary" id="generate-pdf-button">Generate PDF</button>
+  </div>
 
-        // Add rows for each product
-        products.forEach((product) => {
-          // Check if the product name contains the search input and belongs to the selected category
-          if (product.name.toLowerCase().includes(searchInput) && (selectedCategory === 'all' || product.category === selectedCategory)) {
-            const tableRow = `
-              <tr>
-                <td>${product.name}</td>
-                <td><input type="number" class="form-control quantityInput" value="${product.quantity}"></td>
-                <td>
-                  <select class="form-control unitSelect">
-                    <option ${product.unit === 'unit' ? 'selected' : ''}>unit</option>
-                    <option ${product.unit === 'gram' ? 'selected' : ''}>gram</option>
-                    <option ${product.unit === 'ounce' ? 'selected' : ''}>ounce</option>
-                    <option ${product.unit === 'pound' ? 'selected' : ''}>pound</option>
-                    <option ${product.unit === 'milliliter' ? 'selected' : ''}>milliliter</option>
-                    <option ${product.unit === 'fluid ounce' ? 'selected' : ''}>fluid ounce</option>
-                    <option ${product.unit === 'pint' ? 'selected' : ''}>pint</option>
-                    <option ${product.unit === 'quart' ? 'selected' : ''}>quart</option>
-                    <option ${product.unit === 'gallon' ? 'selected' : ''}>gallon</option>
-                  </select>
-                </td>
-                <td><input type="checkbox" class="form-control selectCheckbox" ${product.selected ? 'checked' : ''}></td>
-              </tr>
-            `;
-            $('#productTable').append(tableRow);
-          }
-        });
-
-        // Use AI to suggest relevant products
-        const quantityInputs = $('.quantityInput');
-        quantityInputs.on('input', (event) => {
-          const input = event.target;
-          const quantity = input.value;
-          // Use AI to suggest relevant products based on the quantity
-          const suggestions = suggestProducts(quantity);
-          console.log(`Suggestions for ${quantity}:`, suggestions);
-        });
-
-        // Update the selected property of each product when the checkboxes change
-        const selectCheckboxes = $('.
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs
 
 
 
 Ismail Aichouni
-Continue the exécution of the instructions 
+Continue with js
 
-Certainly! Here is the rest of the modified JavaScript code to complete the example:
+Sure! Here's the JavaScript code that you can use to implement the features described in your question:
 
 Copy code
-        // Update the selected property of each product when the checkboxes change
-        const selectCheckboxes = $('.selectCheckbox');
-        selectCheckboxes.on('change', (event) => {
-          const checkbox = event.target;
-          const checked = checkbox.checked;
-          // Find the corresponding product in the list
-          const productIndex = products.findIndex((product) => product.name === $(checkbox).closest('tr').find('td:nth-child(1)').text());
-          if (productIndex !== -1) {
-            products[productIndex].selected = checked;
-          }
-        });
-      }
+<script>
+  // Product list data
+  const categories = ['Category 1', 'Category 2', 'Category 3'];
+  const products = [
+    {name: 'Product 1', quantity: 0, unit: '', category: 'Category 1'},
+    {name: 'Product 2', quantity: 0, unit: '', category: 'Category 2'},
+    {name: 'Product 3', quantity: 0, unit: '', category: 'Category 3'},
+    // Add more products here
+  ];
 
-      // Use AI to suggest relevant products based on the quantity
-      function suggestProducts(quantity) {
-        // Placeholder implementation that returns a random selection of products
-        return products.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * products.length));
-      }
+  // AI-powered product suggestion
+  const suggestProducts = (query) => {
+    // Use AI to suggest relevant products based on the input query
+  };
 
-      // Generate a PDF of the selected products and quantities
-      function generatePdf() {
-        const selectedRows = $('#productTable').find('input[type="checkbox"]:checked').closest('tr');
-        if (selectedRows.length === 0) {
-          alert('Please select at least one product to include in the PDF.');
-          return;
-        }
+  // Populate category dropdown list
+  categories.forEach((category) => {
+    $('#category-select').append(`<option>${category}</option>`);
+  });
 
-        const doc = new jsPDF();
-        doc.setFontSize(20);
-        doc.text('Selected Products', 14, 22);
-        doc.setFontSize(14);
+  // Populate product table
+  products.forEach((product) => {
+    $('#product-list').append(`
+      <tr>
+        <td>${product.name}</td>
+        <td>
+          <input type="number" class="form-control quantity-input" value="${product.quantity}">
+        </td>
+        <td>
+          <input type="text" class="form-control unit-input" value="${product.unit}">
+        </td>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input product-checkbox" type="checkbox" value="${product.name}">
+            <label class="form-check-label" for="${product.name}">
+              Select
+            </label>
+          </div>
+        </td>
+      </tr>
+    `);
+  });
 
-        let y = 38;
-        selectedRows.each((index, row) => {
-          const name = $(row).find('td:nth-child(1)').text();
-          const quantity = $(row).find('td:nth-child(2) input').val();
-          const unit = $(row).find('td:nth-child(3) select').val();
-          doc.text(`${name}: ${quantity} ${unit}`, 14, y);
-          y += 10;
-        });
+  // Select all products
+  $('#select-all').click(() => {
+    $('.product-checkbox').prop('checked', $('#select-all').prop('checked'));
+  });
 
-        doc.save('selected-products.pdf');
-      }
+  // Search for products
+  $('#search-button').click(() => {
+    const query = $('#search-input').val();
+    const category = $('#category-select').val();
 
-      // Initialize the page
-      populateTable();
+    // Search for products based on the input query and category
+    // and update the product table and suggested products accordingly
+  });
 
-      // Update the table when the search input or category select change
-      $('#searchInput, #categorySelect').on('input', populateTable);
+  // Generate PDF of selected products
+  $('#generate-pdf-button').click(() => {
+    // Get selected products and their quantities and units
+    // and use the jsPDF library to generate a PDF with this information
+  });
+</script>
 
-      // Generate the PDF when the button is clicked
-      $('#generatePdfBtn').click(generatePdf);
-    </script>
-  </body>
-</html>
+
+
+Ismail Aichouni
+
+
+ChatGPT Dec 15 Version. Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.
