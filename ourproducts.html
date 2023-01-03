@@ -102,7 +102,8 @@
     
     
     <script>
-  $(document).ready(function() {
+
+$(document).ready(function() {
   // store checked products in an object
   var checkedProducts = {};
 
@@ -139,39 +140,90 @@
     $('.category').show();
   }
 
-  // function to show only the products in a specific category
-  function showCategory(category) {
-    if (category == 'all') {
-      showAllProducts();
-    } else {
-      $('.category').hide();
-      $('#' + category).show();
-    }
-  }
+// function to show only the products in a specific category
+function showCategory(category) {
+if (category == 'all') {
+showAllProducts();
+} else {
+$('.category').hide();
+$('#' + category).show();
+}
+}
 
-  // function to search for products by name
-  function searchProducts(searchText) {
-    $('.product-name').each(function() {
-      var productName = $(this).text();
-      if (productName.indexOf(searchText) == -1) {
-        $(this).parent().hide();
-      } else {
-        $(this).parent().show();
-      }
-    });
-  }
+// function to search for products
+function searchProducts(searchText) {
+$('.product-name').each(function() {
+if ($(this).text().toLowerCase().includes(searchText.toLowerCase())) {
+$(this).closest('.category').show();
+} else {
+$(this).closest('.category').hide();
+}
+});
+}
 
-  // function to add a product to the checked products object
-  function addProduct(productName, quantity, unit) {
-    checkedProducts[productName] = {
-      'quantity': quantity,
-      'unit': unit
-    };
-  }
+// function to add a product to the checked products object
+function addProduct(productName, quantity, unit) {
+checkedProducts[productName] = {
+'quantity': quantity,
+'unit': unit
+};
+}
 
-  // save the checked products as a PDF
+// generate a PDF of the checked products when the save PDF button is clicked
+$('#save-pdf-btn').click(function() {
+var doc = new jsPDF();
+
+Copy code
+// add a title to the PDF
+doc.text('Checked Products', 10, 10);
+
+// add a line for each checked product
+var y = 20;
+for (var product in checkedProducts) {
+  doc.text(product + ': ' + checkedProducts[product]['quantity'] + ' ' + checkedProducts[product]['unit'], 10, y);
+  y += 10;
+}
+
+// save the PDF
+doc.save('checked-products.pdf');
+});
+});
+
+Copy code
+
+
+
+fiche solidernet
+continue
+Here is the rest of the JavaScript code:
+
+Copy code
+// generate a PDF of the checked products when the save PDF button is clicked
   $('#save-pdf-btn').click(function() {
-    // add code to generate PDF with checked products here
+    var doc = new jsPDF();
+
+    // add a title to the PDF
+    doc.text('Checked Products', 10, 10);
+
+    // add a line for each checked product
+    var y = 20;
+    for (var product in checkedProducts) {
+      doc.text(product + ': ' + checkedProducts[product]['quantity'] + ' ' + checkedProducts[product]['unit'], 10, y);
+      y += 10;
+    }
+
+    // add the user's name and company to the PDF
+    var name = $('#name-input').val();
+    var company = $('#company-input').val();
+    var phone = $('#phone-input').val();
+    doc.text('Name: ' + name, 10, y);
+    y += 10;
+    doc.text('Company: ' + company, 10, y);
+    y += 10;
+    doc.text('Phone: ' + phone, 10, y);
+
+    // save the PDF
+    doc.save('checked-products.pdf');
   });
 });
     </script>
