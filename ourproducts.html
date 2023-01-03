@@ -69,23 +69,23 @@
       $categories.html(template({ categories }));
     }
 
-    
-$search.on('input', () => {
-  const searchQuery = $search.val().toLowerCase();
-  let categories = data.categories;
+    $search.on('input', () => {
+      const searchQuery = $search.val().toLowerCase();
+      let categories = data.categories;
 
-  if (searchQuery.trim() !== '') {
-    categories = categories.map((category) => {
-      const products = category.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchQuery);
-      });
-      return { ...category, products };
+      if (searchQuery.trim() !== '') {
+        categories = categories.map((category) =>
+{
+          const products = category.products.filter((product) => {
+            return product.title.toLowerCase().includes(searchQuery);
+          });
+          return { ...category, products };
+        });
+      }
+
+      renderCategories(categories);
     });
-  }
 
-  renderCategories(categories);
-});
-    
     $clearSearch.on('click', () => {
       $search.val('');
       $search.trigger('input');
@@ -102,31 +102,23 @@ $search.on('input', () => {
     });
 
     renderCategories(data.categories);
+
+    $('#save-pdf').on('click', () => {
+      const doc = new jsPDF();
+      doc.text(20, 20, 'Product List');
+
+      data.categories.forEach((category) => {
+        doc.text(20, 30, category.title);
+
+        category.products.forEach((product) => {
+          if (product.checked) {
+            doc.text(30, 40, `- ${product.title}`);
+          }
+        });
+      });
+
+      doc.save('product-list.pdf');
+    });
   </script>
-  
-
-  <script>
-  $('#save-pdf').on('click', () => {
-  // Create a new PDF document
-  const doc = new jsPDF();
-
-  // Get the selected products
-  const selectedProducts = data.categories
-    .map((category) => {
-      return category.products.filter((product) => product.checked);
-    })
-    .reduce((acc, products) => acc.concat(products), []);
-
-  // Add the selected products to the PDF
-  doc.text('Selected Products:', 10, 10);
-  selectedProducts.forEach((product, index) => {
-    doc.text(`${index + 1}. ${product.title}`, 10, 15 + (index * 5));
-  });
-
-  // Save the PDF
-  doc.save('selected-products.pdf');
-});
-</script>
-
 </body>
 </html>
