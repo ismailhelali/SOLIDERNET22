@@ -82,61 +82,7 @@ cdocument.addEventListener('DOMContentLoaded', () => {
     // add more categories here
   ];
 
-  // function to create table rows for products
-  function createTableRows(products) {
-    const rows = [];
-    // loop through products and create table rows
-    for (const product of products) {
-      const row = `
-        <tr>
-          <td><input type="checkbox" class="product-checkbox"></td>
-          <td>${product.name}</td>
-          <td><input type="number" class="form-control product-quantity" min="1"></td>
-          <td>${product.title}</td>
-        </tr>
-      `;
-      rows.push(row);
-    }
-    return rows;
-  }
-
-  // function to render products in table
-  function renderProducts(products) {
-    const rows = createTableRows(products);
-    // clear previous table rows
-    const table = document.querySelector('#product-table');
-    table.innerHTML = '';
-    // add new table rows
-    table.innerHTML = rows.join('');
-  }
-
-  // function to filter products by search query and category
-  function filterProducts(searchQuery, category) {
-    let filteredProducts = [];
-    // loop through categories and filter products
-    for (const category of categories) {
-      // filter products by search query
-      let products = category.products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
-      // if category is selected, filter products by category
-      if (category.name === selectedCategory) {
-        products = products.filter(product => product.category === selectedCategory);
-      }
-      // add filtered products to array
-      filteredProducts = [...filteredProducts, ...products];
-    }
-    return filteredProducts;
-  }
-
-  // search field and category select elements
-  const searchField = document.querySelector('#
-
-
-
-Ismail Helali
-continue 
-Sure! Here is the rest of the JavaScript code:
-
-Copy code
+  
 // function to create table rows for products
 function createTableRows(products) {
   const rows = [];
