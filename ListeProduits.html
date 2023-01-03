@@ -91,7 +91,8 @@ function createTableRows(products) {
   for (const product of products) {
     const row = `
       <tr>
-        <td><input type="checkbox" class="product-checkbox"></td>
+      
+      <td><input type="checkbox" class="product-checkbox" value="${product.id}" data-quantity="${product.quantity}"></td>
         <td>${product.name}</td>
         <td><input type="number" class="form-control product-quantity"></td>
         <td><input type="text" class="form-control product-unit"></td>
@@ -114,9 +115,7 @@ function displayProducts(products) {
   }
 }
 
-     
-     // Get the list of checkboxes on the page
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
 
 // An array to store the selected products
 let selectedProducts = [];
@@ -140,6 +139,7 @@ function handleCheckboxClick(event) {
 }
 
 // Add an event listener for each checkbox to handle clicks
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheckboxClick));
 
 // When the page loads, get the stored array from local storage
@@ -153,7 +153,6 @@ if (storedSelectedProducts) {
     checkbox.checked = true;
   });
 }
-
      
      
 // function to search products
