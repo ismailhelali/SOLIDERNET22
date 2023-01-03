@@ -109,14 +109,56 @@
     $('.product-checkbox').prop('checked', $('#select-all').prop('checked'));
   });
 
-  // Search for products
-  $('#search-button').click(() => {
-    const query = $('#search-input').val();
-    const category = $('#category-select').val();
+  
+  // Search and filter products
+$('#search-button').click(() => {
+  const searchQuery = $('#search-input').val().toLowerCase();
+  const selectedCategory = $('#category-select').val();
+
+  // Filter products by search query and category
+  const filteredProducts = products.filter((product) => {
+    return product.name.toLowerCase().includes(searchQuery) &&
+           (selectedCategory === 'Filter by category' || product.category === selectedCategory);
+  });
+
+  // Clear product table
+  $('#product-list').empty();
+
+  // Populate product table with filtered products
+  filteredProducts.forEach((product) => {
+    $('#product-list').append(`
+      <tr>
+        <td>${product.name}</td>
+        <td>
+          <input type="number" class="form-control" value=${product.quantity}>
+        </td>
+        <td>
+          <input type="text" class="form-control" value=${product.unit}>
+        </td>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input product-checkbox" type="checkbox">
+          </div>
+        </td>
+      </tr>
+    `);
+  });
+
+  // Clear suggested products
+  $('#suggested-products').empty();
+
+  // Suggest relevant products based on search query
+  suggestProducts(searchQuery);
+});
+  
+  // Search for products old version
+ // $('#search-button').click(() => {
+   // const query = $('#search-input').val();
+    //const category = $('#category-select').val();
 
     // Search for products based on the input query and category
     // and update the product table and suggested products accordingly
-  });
+  //});
 
   // Generate PDF of selected products
   $('#generate-pdf-button').click(() => {
