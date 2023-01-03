@@ -2,127 +2,175 @@
 <html>
 <head>
   <title>Product List</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.5.5/jspdf.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <!-- include CSS and jQuery libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-  <input type="text" id="search">
-  <button id="clear-search">Show All</button>
-  <h1>Categories</h1>
-  <div id="categories"></div>
-  <script id="category-template" type="text/x-handlebars-template">
-    {{#each categories}}
-      <div class="category">
-        <h2 class="category-title">{{this.title}}</h2>
-        <div class="category-products">
-          {{#each this.products}}
-            <div class="product-item">
-              <input type="checkbox" class="product-checkbox" {{#if this.checked}}checked{{/if}}>
-              <span class="product-title">{{this.title}}</span>
-              <label>
-                Quantity:
-                <input type="number" class="product-quantity" value="{{this.quantity}}">
-              </label>
-              <label>
-                Unit:
-                <input type="text" class="product-unit" value="{{this.unit}}">
-              </label>
-            </div>
-          {{/each}}
-        </div>
-      </div>
-    {{/each}}
-  </script>
-  
-<button id="save-pdf">Save as PDF</button>
+  <!-- add a dropdown list of categories -->
+  <div class="form-group">
+    <label for="category-select">Category:</label>
+    <select class="form-control" id="category-select">
+      <option value="all">All</option>
+      <!-- add options for each category -->
+      <option value="category1">Category 1</option>
+      <option value="category2">Category 2</option>
+      <option value="category3">Category 3</option>
+    </select>
+  </div>
 
+  <!-- add a search input -->
+  <div class="form-group">
+    <label for="search-input">Search:</label>
+    <input type="text" class="form-control" id="search-input" placeholder="Enter product name or portion of name">
+  </div>
 
-  <script>
-const data = {
-  categories: [
-    {
-      title: 'Category 1',
-      products: [
-        { title: 'Product 1', checked: false },
-        { title: 'Product 2', checked: false }
-      ]
-    },
-    {
-      title: 'Category 2',
-      products: [
-        { title: 'Product 3', checked: false },
-        { title: 'Product 4', checked: false }
-      ]
+  <!-- add a show all button -->
+  <button class="btn btn-primary" id="show-all-btn">Show All</button>
+
+  <!-- add a container for the product lists -->
+  <div id="product-lists-container">
+    <!-- add a list for each category -->
+    <div class="category" id="category1">
+      <h3>Category 1</h3>
+      <ul>
+        <!-- add a list item for each product in the category -->
+        <li>
+          <!-- add a checkbox and quantity input for each product -->
+          <input type="checkbox" class="product-checkbox" data-product-name="Product 1">
+          <span class="product-name">Product 1</span>
+          <input type="number" class="product-quantity" min="1" value="1">
+          <!-- add a unit dropdown for each product -->
+          <select class="product-unit">
+            <option value="unit1">Unit 1</option>
+            <option value="unit2">Unit 2</option>
+            <option value="unit3">Unit 3</option>
+          </select>
+        </li>
+        <!-- add more list items for other products in the category -->
+        <li>
+          <input type="checkbox" class="product-checkbox" data-product-name="Product 2">
+          <span class="product-name">Product 2</span>
+          <input type="number" class="product-quantity" min="1" value="1">
+          <select class="product-unit">
+            <option value="unit1">Unit 1</option>
+            <option value="unit2">Unit 2</option>
+            <option value="unit3">Unit 3</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+
+<!-- add more lists for other categories -->
+<div class="category" id="category2">
+  <h3>Category 2</h3>
+  <ul>
+    <!-- add list items for products in the category -->
+  </ul>
+</div>
+
+<div class="category" id="category3">
+  <h3>Category 3</h3>
+  <ul>
+    <!-- add list items for products in the category -->
+  </ul>
+</div>
+
+<!-- add a form for the user to input their information -->
+<form id="user-info-form">
+  <div class="form-group">
+    <label for="name-input">Name:</label>
+    <input type="text" class="form-control" id="name-input" placeholder="Enter your name">
+  </div>
+  <div class="form-group">
+    <label for="company-input">Company:</label>
+    <input type="text" class="form-control" id="company-input" placeholder="Enter your company name">
+  </div>
+  <div class="form-group">
+    <label for="phone-input">Phone:</label>
+    <input type="text" class="form-control" id="phone-input" placeholder="Enter your phone number">
+  </div>
+</form>
+
+<!-- add a save as PDF button -->
+<button class="btn btn-primary" id="save-pdf-btn">Save as PDF</button>
+    
+    
+    <script>
+        $(document).ready(function() {
+  // store checked products in an object
+  var checkedProducts = {};
+
+  // show all products when the page loads
+  showAllProducts();
+
+  // show only the products in the selected category
+  $('#category-select').change(function() {
+    var selectedCategory = $(this).val();
+    showCategory(selectedCategory);
+  });
+
+  // show all products when the show all button is clicked
+  $('#show-all-btn').click(function() {
+    showAllProducts();
+  });
+
+  // search for products when the search input is filled in
+  $('#search-input').keyup(function() {
+    var searchText = $(this).val();
+    searchProducts(searchText);
+  });
+
+  // add a product to the checked products object when it is clicked
+  $('.product-checkbox').click(function() {
+    var productName = $(this).data('product-name');
+    var quantity = $(this).siblings('.product-quantity').val();
+    var unit = $(this).siblings('.product-unit').val();
+    addProduct(productName, quantity, unit);
+  });
+
+  // function to show all products
+  function showAllProducts() {
+    $('.category').show();
+  }
+
+  // function to show only the products in a specific category
+  function showCategory(category) {
+    if (category == 'all') {
+      showAllProducts();
+    } else {
+      $('.category').hide();
+      $('#' + category).show();
     }
-  ]
-};
+  }
 
-const $categories = $('#categories');
-const $search = $('#search');
-const $clearSearch = $('#clear-search');
-const source = $('#category-template').html();
-const template = Handlebars.compile(source);
-
-function renderCategories(categories) {
-  $categories.html(template({ categories }));
-}
-
-$search.on('input', () => {
-  const searchQuery = $search.val().toLowerCase();
-  let categories = data.categories;
-
-  if (searchQuery.trim() !== '') {
-    categories = categories.map((category) => {
-      const products = category.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchQuery);
-      });
-      return { ...category, products };
+  // function to search for products by name
+  function searchProducts(searchText) {
+    $('.product-name').each(function() {
+      var productName = $(this).text();
+      if (productName.indexOf(searchText) == -1) {
+        $(this).parent().hide();
+      } else {
+        $(this).parent().show();
+      }
     });
   }
 
-  renderCategories(categories);
-});
+  // function to add a product to the checked products object
+  function addProduct(productName, quantity, unit) {
+    checkedProducts[productName] = {
+      'quantity': quantity,
+      'unit': unit
+    };
+  }
 
-$clearSearch.on('click', () => {
-  $search.val('');
-  renderCategories(data.categories);
-});
-
-$categories.on('change', '.product-checkbox', (event) => {
-  const $checkbox = $(event.target);
-  const $productItem = $checkbox.closest('.product-item');
-  const $category = $productItem.closest('.category');
-  const productIndex = $productItem.index();
-  const categoryIndex = $category.index();
-  const quantity = $productItem.find('.product-quantity').val();
-  const unit = $productItem.find('.product-unit').val();
-
-  data.categories[categoryIndex].products[productIndex].checked = $checkbox.prop('checked');
-  data.categories[categoryIndex].products[productIndex].quantity = quantity;
-  data.categories[categoryIndex].products[productIndex].unit = unit;
-});
-
-renderCategories(data.categories);
-
-$('#save-pdf').on('click', () => {
-  const doc = new jsPDF();
-  doc.text(20, 20, 'Product List');
-
-  data.categories.forEach((category) => {
-    doc.text(20, 30, category.title);
-
-    const products = category.products
-      .filter((product) => product.checked)
-      .map((product) => `- ${product.title} - Quantity: ${product.quantity} - Unit: ${product.unit}`);
-
-    doc.text(20, 40, products.join('\n'));
+  // save the checked products as a PDF
+  $('#save-pdf-btn').click(function() {
+    // add code to generate PDF with checked products here
   });
-
-  doc.save('product-list.pdf');
 });
-
-  </script>
+    </script>
 </body>
 </html>
+  
+
