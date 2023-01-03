@@ -103,128 +103,97 @@
     
     <script>
 
-$(document).ready(function() {
-  // store checked products in an object
-  var checkedProducts = {};
+const categories = document.getElementById("categories");
+const categorySelect = document.getElementById("category-select");
+const searchInput = document.getElementById("search");
+const showAllButton = document.getElementById("show-all");
+const userForm = document.getElementById("user-form");
+const savePdfButton = document.getElementById("save-pdf");
 
-  // show all products when the page loads
-  showAllProducts();
+let data = {};
 
-  // show only the products in the selected category
-  $('#category-select').change(function() {
-    var selectedCategory = $(this).val();
-    showCategory(selectedCategory);
-  });
-
-  // show all products when the show all button is clicked
-  $('#show-all-btn').click(function() {
-    showAllProducts();
-  });
-
-  // search for products when the search input is filled in
-  $('#search-input').keyup(function() {
-    var searchText = $(this).val();
-    searchProducts(searchText);
-  });
-
-  // add a product to the checked products object when it is clicked
-  $('.product-checkbox').click(function() {
-    var productName = $(this).data('product-name');
-    var quantity = $(this).siblings('.product-quantity').val();
-    var unit = $(this).siblings('.product-unit').val();
-    addProduct(productName, quantity, unit);
-  });
-
-  // function to show all products
-  function showAllProducts() {
-    $('.category').show();
+// When a category is chosen from the dropdown list or the "Show All" button is clicked,
+// show only the products associated with that category
+categorySelect.addEventListener("change", () => {
+  const selectedCategory = categorySelect.value;
+  if (selectedCategory === "all") {
+    categories.querySelectorAll("h2").forEach(category => {
+      category.style.display = "block";
+    });
+  } else {
+    categories.querySelectorAll("h2").forEach(category => {
+      if (category.id === selectedCategory) {
+        category.style.display = "block";
+      } else {
+        category.style.display = "none";
+      }
+    });
   }
-
-// function to show only the products in a specific category
-function showCategory(category) {
-if (category == 'all') {
-showAllProducts();
-} else {
-$('.category').hide();
-$('#' + category).show();
-}
-}
-
-// function to search for products
-function searchProducts(searchText) {
-$('.product-name').each(function() {
-if ($(this).text().toLowerCase().includes(searchText.toLowerCase())) {
-$(this).closest('.category').show();
-} else {
-$(this).closest('.category').hide();
-}
 });
-}
-
-// function to add a product to the checked products object
-function addProduct(productName, quantity, unit) {
-checkedProducts[productName] = {
-'quantity': quantity,
-'unit': unit
-};
-}
-
-// generate a PDF of the checked products when the save PDF button is clicked
-$('#save-pdf-btn').click(function() {
-var doc = new jsPDF();
-
-Copy code
-// add a title to the PDF
-doc.text('Checked Products', 10, 10);
-
-// add a line for each checked product
-var y = 20;
-for (var product in checkedProducts) {
-  doc.text(product + ': ' + checkedProducts[product]['quantity'] + ' ' + checkedProducts[product]['unit'], 10, y);
-  y += 10;
-}
-
-// save the PDF
-doc.save('checked-products.pdf');
-});
-});
-
-Copy code
-
-
-
-fiche solidernet
-continue
-Here is the rest of the JavaScript code:
-
-Copy code
-// generate a PDF of the checked products when the save PDF button is clicked
-  $('#save-pdf-btn').click(function() {
-    var doc = new jsPDF();
-
-    // add a title to the PDF
-    doc.text('Checked Products', 10, 10);
-
-    // add a line for each checked product
-    var y = 20;
-    for (var product in checkedProducts) {
-      doc.text(product + ': ' + checkedProducts[product]['quantity'] + ' ' + checkedProducts[product]['unit'], 10, y);
-      y += 10;
-    }
-
-    // add the user's name and company to the PDF
-    var name = $('#name-input').val();
-    var company = $('#company-input').val();
-    var phone = $('#phone-input').val();
-    doc.text('Name: ' + name, 10, y);
-    y += 10;
-    doc.text('Company: ' + company, 10, y);
-    y += 10;
-    doc.text('Phone: ' + phone, 10, y);
-
-    // save the PDF
-    doc.save('checked-products.pdf');
+showAllButton.addEventListener("click", () => {
+  categorySelect.value = "all";
+  categories.querySelectorAll("h2").forEach(category => {
+    category.style.display = "block";
   });
+});
+
+// Implement the dynamic search functionality
+searchInput.addEventListener("input", () => {
+  const searchText = searchInput.value.toLowerCase();
+  categories.querySelectorAll("li").forEach(product => {
+    const label = product.querySelector("label");
+    if (label.textContent.toLowerCase().includes(searchText)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+});
+
+// Store the checked products, their quantities, and units in a data structure
+categories.addEventListener("change", event => {
+  const checkbox = event.target;
+  if (checkbox.tagName === "INPUT" && checkbox.type === "checkbox") {
+    const productId = checkbox.id;
+    const quantity = checkbox.parentNode.querySelector("input[type=number]").value;
+    const unit = checkbox.parentNode.querySelector("select").value;
+    if (checkbox.checked) {
+      data[productId] = { quantity, unit };
+    } else {
+      delete data[productId];
+    }
+  }
+});
+
+// When the user submits the form, create a PDF with the checked products and the user's information
+userForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const company = document.getElementById("company").value;
+  const phone = document.getElementById("phone").value;
+
+  // Use jsPDF to create the PDF file
+  const doc = new jsPDF();
+  doc.setFontSize(20);
+  doc.text(`Order for ${name}`, 14, 22);
+
+if (company) {
+  doc.text(`Company: ${company}`, 14, 32);
+}
+if (phone) {
+  doc.text(`Phone: ${phone}`, 14, 42);
+}
+
+let y = 60;
+Object.entries(data).forEach(([productId, { quantity, unit }]) => {
+  const category = categories.querySelector(`#${productId}`).parentNode.previousSibling.textContent;
+  doc.text(`${category}:`, 14, y);
+  y += 10;
+  doc.text(`${productId}: ${quantity} ${unit}`, 14, y);
+  y += 10;
+});
+
+doc.save("order.pdf");
 });
     </script>
     
