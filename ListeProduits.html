@@ -101,8 +101,10 @@ function generateTableRows(products) {
         <input type="number" value="${product.quantity}">
       </td>
       <td>
-     
-  
+          <option value="unt" ${product.unit === 'unt' ? 'selected' : ''}>unt</option>
+          <option value="carton" ${product.unit === 'carton' ? 'selected' : ''}>carton</option>
+          <option value="Kg" ${product.unit === 'Kg' ? 'selected' : ''}>Kg</option>
+          <option value="g" ${product.unit === 'g' ? 'selected' : ''}>g</option>
       </td>
     `;
     const checkbox = row.querySelector('input[type="checkbox"]');
