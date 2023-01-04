@@ -63,124 +63,144 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
 
    <script>
-  // create an object to store the products and their categories
-const products = [
-  { name: 'Product 1', category: 'Category 1', quantity: 10, unit: 'kg' },
-  { name: 'Product 2', category: 'Category 1', quantity: 20, unit: 'kg' },
-  { name: 'Product 3', category: 'Category 2', quantity: 30, unit: 'kg' },
-  { name: 'Product 4', category: 'Category 2', quantity: 40, unit: 'kg' },
-  { name: 'Product 5', category: 'Category 3', quantity: 50, unit: 'kg' }
+  // define array of categories and products
+const categories = [
+  {
+    name: 'Category 1',
+    products: [
+      { name: 'Product 1', title: 'Title 1' },
+      { name: 'Product 2', title: 'Title 2' },
+      // add more products here
+    ]
+  },
+  {
+    name: 'Category 2',
+    products: [
+      { name: 'Product 3', title: 'Title 3' },
+      { name: 'Product 4', title: 'Title 4' },
+      // add more products here
+    ]
+  },
+  // add more categories here
 ];
 
-// create an object to store the checked boxes
-let checkedBoxes = {};
+// function to create table rows for products
+function createTableRows(products) {
+  const rows = [];
+  // loop through products and create table rows
+  for (const product of products) {
+    const row = `
+      <tr>
+      
+      <td><input type="checkbox" class="product-checkbox" value="${product.id}" data-quantity="${product.quantity}"></td>
+        <td>${product.name}</td>
+        <td><input type="number" class="form-control product-quantity"></td>
+        <td><input type="text" class="form-control product-unit"></td>
+      </tr>
+    `;
+    rows.push(row);
+  }
+  return rows;
+}
 
-// add the table rows to the product table
-const productTable = document.getElementById('product-table');
-products.forEach(product => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td><input type="checkbox" value="${product.name}"></td>
-    <td>${product.name}</td>
-    <td><input class="form-control quantity-input" type="number" value="${product.quantity}"></td>
-    <td>
-      <select class="form-control unit-select">
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-        <option value="lbs">lbs</option>
-      </select>
-    </td>
-  `;
-  productTable.appendChild(row);
-});
+// function to display products
+function displayProducts(products) {
+  // clear product table
+  document.getElementById('product-table').innerHTML = '';
+  // create table rows for products
+  const rows = createTableRows(products);
+  // add rows to product table
+  for (const row of rows) {
+    document.getElementById('product-table').innerHTML += row;
+  }
+}
 
-// add options for categories to the category select
-const categories = [...new Set(products.map(product => product.category))];
-const categorySelect = document.getElementById('category-select');
-categories.forEach(category => {
-  const option = document.createElement('option');
-  option.value = category;
-  option.textContent = category;
-  categorySelect.appendChild(option);
-});
+   
+     
+     
+// function to search products
+function searchProducts(event) {
+  // get search field value
+  const searchValue = event.target.value.toLowerCase();
+  // filter products based on search value
+  const filteredProducts = categories
+    .map(category => category.products)
+    .flat()
+    .filter(product => product.name.toLowerCase().includes(searchValue));
+  // display filtered products
+  displayProducts(filteredProducts);
+}
 
-// add an event listener to the checkboxes to store their state when they are checked or unchecked
-const checkboxes = document.querySelectorAll('input[type=checkbox]');
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', function() {
-    if (this.checked) {
-      // store the checkbox and its quantity and unit in the object when it is checked
-      checkedBoxes[this.value] = {
-        quantity: this.closest('tr').querySelector('.quantity-input').value,
-        unit: this.closest('tr').querySelector('.unit-select').value
-      }
-    } else {
-      // remove the checkbox from the object when it is unchecked
-      delete checkedBoxes[this.value];
-    }
-  });
-});
-
-// add an event listener to the search field to update the product table when the search is performed
-const searchField = document.getElementById('search-field');
-searchField.addEventListener('input', function() {
-  // get the search query and the selected category
-const query = this.value.toLowerCase();
-const category = categorySelect.value;
-
-// filter the products by name and category
-const filteredProducts = products.filter(product => {
-  return product.name.toLowerCase().includes(query) && (category === '' || product.category === category);
-});
-
-// update the product table with the filtered products
-productTable.innerHTML = '';
-filteredProducts.forEach(product => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td><input type="checkbox" value="${product.name}"></td>
-    <td>${product.name}</td>
-    <td><input class="form-control quantity-input" type="number" value="${product.quantity}"></td>
-    <td>
-      <select class="form-control unit-select">
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-        <option value="lbs">lbs</option>
-      </select>
-    </td>
-  `;
-  productTable.appendChild(row);
-});
-
-// update the checked boxes by checking the checkboxes that are present in the object
-checkboxes.forEach(checkbox => {
-  if (checkedBoxes[checkbox.value]) {
-    checkbox.checked = true;
-    // update the quantity and unit of the checked box
-    checkbox.closest('tr').querySelector('.quantity-input').value = checkedBoxes[checkbox.value].quantity;
-    checkbox.closest('tr').querySelector('.unit-select').value = checkedBoxes[checkbox.value].unit;
+// function to filter products by category
+function filterProducts(event) {
+  // get selected category
+  const selectedCategory = event.target.value;
+  // filter products based on selected category
+  let filteredProducts = [];
+  if (selectedCategory) {
+    filteredProducts = categories
+      .find(category => category.name === selectedCategory)
+      .products;
   } else {
-    checkbox.checked = false;
+    filteredProducts =categories
+  .map(category => category.products)
+  .flat();
+  }
+  // display filtered products
+  displayProducts(filteredProducts);
+}
+
+// function to generate PDF of selected products
+function generatePDF() {
+  // create jspdf document
+  const doc = new jsPDF();
+  // create table for selected products
+  let table = '<table><tr><th>Product</th><th>Quantity</th><th>Unit</th></tr>';
+  // get selected products and their quantities and units
+  const selectedRows = document.getElementsByClassName('product-checkbox');
+  for (const row of selectedRows) {
+    if (row.checked) {
+      const rowCells = row.parentElement.parentElement.cells;
+      const product = rowCells[1].innerHTML;
+      const quantity = rowCells[2].children[0].value;
+      const unit = rowCells[3].children[0].value;
+      table += `<tr><td>${product}</td><td>${quantity}</td><td>${unit}</td></tr>`;
+    }
+  }
+  table += '</table>';
+  // add table to document
+  doc.fromHTML(table);
+  // download document
+  doc.save('products.pdf');
+}
+
+// display all products when page loads
+displayProducts(categories.map(category => category.products).flat());
+
+// add event listeners
+document.getElementById('search-field').addEventListener('input', searchProducts);
+document.getElementById('category-select').addEventListener('change', filterProducts);
+document.getElementById('pdf-button').addEventListener('click', generatePDF);
+</script>
+  
+  <script>
+    document.addEventListener('visibilitychange', (event) => {
+  if (document.visibilityState === 'visible') {
+    window.addEventListener('beforeunload', (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    });
+  } else {
+    window.removeEventListener('beforeunload', (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    });
   }
 });
-});
+  </script>
+  
+  <script>
 
-// add an event listener to the PDF button to generate the PDF with the checked boxes and their quantities and units
-const pdfButton = document.getElementById('pdf-button');
-pdfButton.addEventListener('click', function() {
-  // create a new PDF document
-  const pdf = new jsPDF();
-
-  // add the checked boxes and their quantities and units to the PDF
-  Object.entries(checkedBoxes).forEach(([product, {quantity, unit}]) => {
-    pdf.text(product, 10, 10);
-    pdf.text(quantity, 50, 10);
-    pdf.text(unit, 70, 10);
-  });
-
-  // save the PDF
-  pdf.save('products.pdf');
-});
   </script>
   </body>
   </html>
