@@ -145,11 +145,11 @@ const pdfButton = document.getElementById('pdf-button');
 pdfButton.addEventListener('click', () => {
   const checkedProducts = products.filter(product => product.checked);
   const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
-  const doc = new jsPDF();
-  doc.generate(pdf => {
-    pdf.text('SOLIDERNET Product List', 10, 10);
-    pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
-    pdf.save('product-list.pdf');
+
+  const doc = new window.jsPDF();
+  const table = document.getElementById('product-table');
+  doc.addHTML(table, () => {
+    doc.save('product-list.pdf');
   });
 });
 
