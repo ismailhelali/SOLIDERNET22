@@ -23,7 +23,7 @@
     <!-- search field -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <input type="text" class="form-control" id="search-field" placeholder="Search products">
+        <input type="search" class="form-control" id="search-field" placeholder="Search products">
       </div>
     </div>
     <!-- category dropdown -->
@@ -200,42 +200,36 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   </script>
   
   <script>
-    // get all checkboxes on the page
-const checkboxes = document.querySelectorAll('input[type=checkbox]');
+// Get all the checkboxes on the page
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// create an array to store the checked checkboxes
-let checkedCheckboxes = [];
+// Create an object to store the checked boxes
+const checkedBoxes = {};
 
-// loop through all checkboxes and add an event listener to each one
+// Loop through all the checkboxes and add an event listener for the 'change' event
 checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    // if the checkbox is checked, add it to the array
-    if (checkbox.checked) {
-      checkedCheckboxes.push(checkbox);
+  checkbox.addEventListener('change', function() {
+    // If the checkbox is checked, add it to the object with its value as the key
+    if (this.checked) {
+      checkedBoxes[this.value] = true;
     } else {
-      // if the checkbox is unchecked, remove it from the array
-      checkedCheckboxes = checkedCheckboxes.filter(cb => cb !== checkbox);
+      // If the checkbox is unchecked, remove it from the object
+      delete checkedBoxes[this.value];
     }
   });
 });
 
-// create an observer to watch for changes to the page
-const observer = new MutationObserver(() => {
-  // loop through the array of checked checkboxes
-  checkedCheckboxes.forEach(checkbox => {
-    // if the checkbox is no longer in the DOM, remove it from the array
-    if (!document.body.contains(checkbox)) {
-      checkedCheckboxes = checkedCheckboxes.filter(cb => cb !== checkbox);
-    } else {
-      // if the checkbox is still in the DOM, make sure it is checked
+// Add an event listener for the input search
+const input = document.querySelector('input[type="search"]');
+input.addEventListener('input', function() {
+  // When the user uses the input search, loop through all the checkboxes again
+  checkboxes.forEach(checkbox => {
+    // If the checkbox is in the object of checked boxes, set its checked property to true
+    if (checkedBoxes[checkbox.value]) {
       checkbox.checked = true;
     }
   });
 });
-
-// start observing the DOM for changes
-observer.observe(document.body, { childList: true, subtree: true });
-
   </script>
   </body>
   </html>
