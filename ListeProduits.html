@@ -138,7 +138,6 @@ categorySelect.addEventListener('change', () => {
   generateTableRows(filteredProducts);
 });
 
-
 // get the button element
 const button = document.getElementById('pdf-button');
 
@@ -148,18 +147,10 @@ button.addEventListener('click', () => {
   const doc = new jsPDF();
 
   // add a title to the document
-  doc.text('Selected products', 10, 10);
-
-  // set the font size for the table
-  doc.setFontSize(12);
-
-  // add the table headers
-  doc.text('Product', 10, 20);
-  doc.text('Quantity', 100, 20);
-  doc.text('Unit', 150, 20);
+  doc.text('Liste Produits Solidernet Sarl', 10, 10);
 
   // initialize a y-position variable for adding content to the PDF
-  let y = 30;
+  let y = 20;
 
   // loop through the products array
   for (const product of products) {
@@ -174,12 +165,10 @@ button.addEventListener('click', () => {
     }
   }
 
-  // draw a border around the table
-  doc.rect(5, 15, 190, y - 15);
-
   // save the PDF
-  doc.save('selected-products.pdf');
+  doc.save('selected-products-solidernet.pdf');
 });
+
 
 
 
