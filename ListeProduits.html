@@ -143,7 +143,7 @@ categorySelect.addEventListener('change', () => {
 
 document.getElementById("pdf-button").addEventListener("click", function() {
   // select the table element
-  var table = document.getElementById("product-table").innerHTML;
+  var table = document.getElementById("product-table");
   // create a new PDF document
   var doc = new jsPDF();
 
@@ -178,44 +178,9 @@ window.onload = () => {
 
 
 
-
-
   </script>
 
-<button id="saveButton">Enregistrer les Produits sélectionnés</button>
 
-<script>
-const saveButton = document.getElementById('saveButton');
-
-saveButton.addEventListener('click', () => {
-  const selectedRows = [];
-  
-  // Get all the rows in the table
-  const rows = document.querySelectorAll('table tr');
-  
-  // Loop through the rows and find the ones with a checked checkbox
-  rows.forEach((row) => {
-    const checkbox = row.querySelector('input[type="checkbox"]');
-    if (checkbox && checkbox.checked) {
-      selectedRows.push(row);
-    }
-  });
-  
-  // Convert the selected rows to a PDF
-  const doc = new jsPDF();
-  selectedRows.forEach((row) => {
-    const rowData = [];
-    const cells = row.querySelectorAll('td');
-    cells.forEach((cell) => {
-      rowData.push(cell.textContent);
-    });
-    doc.autoTable({
-      body: [rowData],
-    });
-  });
-  doc.save('table.pdf');
-});
-</script>
 
   </body>
   </html>
