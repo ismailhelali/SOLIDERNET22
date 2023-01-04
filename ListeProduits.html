@@ -137,6 +137,10 @@ categorySelect.addEventListener('change', () => {
 });
      
 function generatePDF() {
+  // show the loading indicator
+  document.getElementById("pdf-button").innerHTML = "Loading...";
+  document.getElementById("pdf-button").disabled = true;
+
   // get the content of the table
   var tableContent = document.getElementById("product-table").innerHTML;
 
@@ -146,7 +150,17 @@ function generatePDF() {
   // add the content of the table to the PDF
   pdf.addHTML(tableContent, function() {
     // save the PDF
-    pdf.save("table.pdf");
+    var fileName = prompt("Enter a file name for the PDF:");
+
+    if (fileName) {
+      pdf.save(fileName + ".pdf");
+    } else {
+      pdf.save("table.pdf");
+    }
+
+    // hide the loading indicator
+    document.getElementById("pdf-button").innerHTML = "Generate PDF";
+    document.getElementById("pdf-button").disabled = false;
   });
 }
 
