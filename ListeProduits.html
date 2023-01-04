@@ -143,9 +143,6 @@ categorySelect.addEventListener('change', () => {
 
 const pdfButton = document.getElementById('pdf-button');
 pdfButton.addEventListener('click', () => {
-  const checkedProducts = products.filter(product => product.checked);
-  const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
-
   const doc = new window.jsPDF();
   const table = document.getElementById('product-table');
   doc.addHTML(table, () => {
