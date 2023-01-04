@@ -63,92 +63,95 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
 
    <script>
-  // define array of categories and products
-const categories = [
+     
+const products = [
   {
-    name: 'Category 1',
-    products: [
-      { name: 'Product 1', title: 'Title 1' },
-      { name: 'Product 2', title: 'Title 2' },
-      // add more products here
-    ]
+    name: 'Product 1',
+    category: 'Category 1',
+    checked: false,
+    quantity: 0,
+    unit: 'Unit 1'
   },
   {
-    name: 'Category 2',
-    products: [
-      { name: 'Product 3', title: 'Title 3' },
-      { name: 'Product 4', title: 'Title 4' },
-      // add more products here
-    ]
+    name: 'Product 2',
+    category: 'Category 1',
+    checked: false,
+    quantity: 0,
+    unit: 'Unit 1'
   },
-  // add more categories here
+  {
+    name: 'Product 3',
+    category: 'Category 2',
+    checked: false,
+    quantity: 0,
+    unit: 'Unit 2'
+  }
 ];
-
-// function to create table rows for products
-function createTableRows(products) {
-  const rows = [];
-  // loop through products and create table rows
-  for (const product of products) {
-    const row = `
-      <tr>
-      
-      <td><input type="checkbox" class="product-checkbox" value="${product.id}" data-quantity="${product.quantity}"></td>
-        <td>${product.name}</td>
-        <td><input type="number" class="form-control product-quantity"></td>
-        <td><input type="text" class="form-control product-unit"></td>
-      </tr>
+     
+ function generateTableRows(products) {
+  const table = document.getElementById('product-table');
+  table.innerHTML = ''; // clear the table
+  products.forEach(product => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>
+        <input type="checkbox" ${product.checked ? 'checked' : ''}>
+      </td>
+      <td>${product.name}</td>
+      <td>
+        <input type="number" value="${product.quantity}">
+      </td>
+      <td>
+        <select>
+          <option value="Unit 1" ${product.unit === 'Unit 1' ? 'selected' : ''}>Unit 1</option>
+          <option value="Unit 2" ${product.unit === 'Unit 2' ? 'selected' : ''}>Unit 2</option>
+          <!-- add more options for units here -->
+        </select>
+      </td>
     `;
-    rows.push(row);
-  }
-  return rows;
+    const checkbox = row.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener('click', () => {
+      product.checked = checkbox.checked;
+    });
+    const quantityInput = row.querySelector('input[type="number"]');
+    quantityInput.addEventListener('change', () => {
+      product.quantity = parseInt(quantityInput.value);
+    });
+    const unitSelect = row.querySelector('select');
+    unitSelect.addEventListener('change', () => {
+      product.unit = unitSelect.value;
+    });
+    table.appendChild(row);
+  });
 }
-
-// function to display products
-function displayProducts(products) {
-  // clear product table
-  document.getElementById('product-table').innerHTML = '';
-  // create table rows for products
-  const rows = createTableRows(products);
-  // add rows to product table
-  for (const row of rows) {
-    document.getElementById('product-table').innerHTML += row;
-  }
-}
-
-   
      
      
-// function to search products
-function searchProducts(event) {
-  // get search field value
-  const searchValue = event.target.value.toLowerCase();
-  // filter products based on search value
-  const filteredProducts = categories
-    .map(category => category.products)
-    .flat()
-    .filter(product => product.name.toLowerCase().includes(searchValue));
-  // display filtered products
-  displayProducts(filteredProducts);
-}
+const searchField = document.getElementById('search-field');
+const categorySelect = document.getElementById('category-select');
 
-// function to filter products by category
-function filterProducts(event) {
-  // get selected category
-  const selectedCategory = event.target.value;
-  // filter products based on selected category
-  let filteredProducts = [];
-  if (selectedCategory) {
-    filteredProducts = categories
-      .find(category => category.name === selectedCategory)
-      .products;
-  } else {
-    filteredProducts =categories
-  .map(category => category.products)
-  .flat();
+searchField.addEventListener('input', () => {
+  const query = searchField.value.toLowerCase();
+  let filteredProducts = products;
+  if (query) {
+    filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
   }
-  // display filtered products
-  displayProducts(filteredProducts);
-}
+  if (categorySelect.value) {
+    filteredProducts = filteredProducts.filter(product => product.category === categorySelect.value);
+  }
+  generateTableRows(filteredProducts);
+});
+
+categorySelect.addEventListener('change', () => {
+  let filteredProducts = products;
+  if (searchField.value) {
+    const query = searchField.value.toLowerCase();
+    filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+  }
+  if (categorySelect.value) {
+    filteredProducts = filteredProducts.filter(product => product.category === categorySelect.value);
+  }
+  generateTableRows(filteredProducts);
+});
 
 // function to generate PDF of selected products
 function generatePDF() {
