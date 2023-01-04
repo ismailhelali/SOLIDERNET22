@@ -78,6 +78,81 @@
     doc.save('product-list.pdf');
   }
 </script>
+    <script>
+  // Keep track of checked products
+  var checkedProducts = {};
+
+  function searchTable() {
+    // Get the search query
+    var searchQuery = document.getElementById('productSearch').value.toLowerCase();
+
+    // Get the rows in the table
+    var rows = document.querySelectorAll('table tbody tr');
+
+    // Hide rows that do not match the search query
+    for (var i = 0; i < rows.length; i++) {
+      var showRow = false;
+      for (var j = 0; j < rows[i].cells.length; j++) {
+        if (rows[i].cells[j].innerHTML.toLowerCase().indexOf(searchQuery) > -1) {
+          showRow = true;
+          break;
+        }
+      }
+      if (showRow) {
+        rows[i].style.display = '';
+      } else {
+        rows[i].style.display = 'none';
+      }
+    }
+  }
+
+  function filterTable() {
+    // Get the selected category
+    var category = document.getElementById('productCategory').value;
+
+    // Get the rows in the table
+    var rows = document.querySelectorAll('table tbody tr');
+
+    // Hide rows that do not match the selected category
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].cells[3].innerHTML === category || category === 'All') {
+        rows[i].style.display = '';
+      } else {
+        rows[i].style.display = 'none';
+      }
+    }
+  }
+
+  function rememberChecked() {
+    // Get the rows in the table
+    var rows = document.querySelectorAll('table tbody tr');
+
+    // Keep track of checked products
+    for (var i = 0; i < rows.length; i++) {
+      var checkbox = rows[i].querySelector('input[type=checkbox]');
+      if (checkbox.checked) {
+        checkedProducts[i] = true;
+      } else {
+        checkedProducts[i] = false;
+      }
+    }
+  }
+
+  function restoreChecked() {
+    // Get the rows in the table
+    var rows = document.querySelectorAll('table tbody tr');
+
+    // Restore checked state of products
+    for (var i = 0; i < rows.length; i++) {
+      var checkbox = rows[i].querySelector('input[type=checkbox]');
+      if (checkedProducts[i]) {
+        checkbox.checked = true;
+      } else {
+        checkbox.checked = false;
+      }
+    }
+  }
+</script>
   </body>
 </html>
 
