@@ -123,6 +123,7 @@ function generateTableRows(products) {
 const searchField = document.getElementById('search-field');
 const categorySelect = document.getElementById('category-select');
 
+
 searchField.addEventListener('input', () => {
   const query = searchField.value.toLowerCase();
   const filteredProducts = products.filter(product => {
@@ -137,34 +138,29 @@ categorySelect.addEventListener('change', () => {
   generateTableRows(filteredProducts);
 });
 
-document.getElementById('pdf-button').addEventListener('click', function() {
-  // create a new PDF document
-  var doc = new jsPDF();
 
-  // create a new array containing only the checked products
-  var checkedProducts = products.filter(function(product) {
-    return product.checked;
-  });
+// create a new PDF document
+const doc = new jsPDF();
 
-  // create an array of objects containing only the name, quantity, and unit of each checked product
-  var productData = checkedProducts.map(function(product) {
-    return {
-      name: product.name,
-      quantity: product.quantity,
-      unit: product.unit
-    };
-  });
+// add a title to the document
+doc.text('Selected products', 10, 10);
 
-  // add the name, quantity, and unit of each checked product to the PDF
-  productData.forEach(function(product) {
-    doc.text(product.name, 10, 10);
-    doc.text(product.quantity, 10, 15);
-    doc.text(product.unit, 10, 20);
-  });
+// initialize a y-position variable for adding content to the PDF
+let y = 20;
 
-  // save the PDF
-  doc.save('products.pdf');
-});
+// loop through the products array
+for (const product of products) {
+  // check if the product is checked
+  if (product.checked) {
+    // add the product name to the PDF
+    doc.text(product.name, 10, y);
+    // increment the y-position for the next piece of content
+    y += 10;
+  }
+}
+
+// save the PDF
+doc.save('selected-products.pdf');
 
 
 window.onload = () => {
