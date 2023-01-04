@@ -154,16 +154,16 @@ categorySelect.addEventListener('change', () => {
 });
      
 
-const checkedProducts = products.filter(product => product.checked);
-const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
-const pdfButton = document.getElementById('pdf-button');
-pdfButton.addEventListener('click', () => {
-  const doc = new jsPDF();
-  doc.generate(pdf => {
-    pdf.text('SOLIDERNET Product List', 10, 10);
-    pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
-  });
-});
+// const checkedProducts = products.filter(product => product.checked);
+//const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
+//const pdfButton = document.getElementById('pdf-button');
+//pdfButton.addEventListener('click', () => {
+ // const doc = new jsPDF();
+ // doc.generate(pdf => {
+   // pdf.text('SOLIDERNET Product List', 10, 10);
+   // pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
+ // });
+//});
 
 
   window.onload = () => {
@@ -189,6 +189,30 @@ pdfButton.addEventListener('click', () => {
   </script>
   
   <script>
+// function to generate PDF of selected products
+function generatePDF() {
+  // create jspdf document
+  const doc = new jsPDF();
+  // create table for selected products
+  let table = '<table><tr><th>Product</th><th>Quantity</th><th>Unit</th></tr>';
+  // get selected products and their quantities and units
+  const selectedRows = document.getElementsByClassName('product-checkbox');
+  for (const row of selectedRows) {
+    if (row.checked) {
+      const rowCells = row.parentElement.parentElement.cells;
+      const product = rowCells[1].innerHTML;
+      const quantity = rowCells[2].children[0].value;
+      const unit = rowCells[3].children[0].value;
+      table += `<tr><td>${product}</td><td>${quantity}</td><td>${unit}</td></tr>`;
+    }
+  }
+  table += '</table>';
+  // add table to document
+  doc.fromHTML(table);
+  // download document
+  doc.save('products.pdf');
+}
+
 
   </script>
   </body>
