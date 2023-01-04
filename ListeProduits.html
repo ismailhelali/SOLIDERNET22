@@ -198,39 +198,40 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   }
 });
   </script>
-  
-  <script>
-// Get all checkboxes on the page
-var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+<script>
+  // Get all checkboxes on the page
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// Store an object to hold the checked checkboxes and their associated input values
-var checked = {};
+  // Store an object to hold the checked checkboxes and their associated input values
+  var checked = {};
 
-// Add an event listener to each checkbox to store its value when it is checked
-checkboxes.forEach(function(checkbox) {
-  checkbox.addEventListener('change', function() {
-    // If the checkbox is checked, store its value and associated input value
-    if (checkbox.checked) {
-      checked[checkbox.value] = checkbox.nextElementSibling.value;
-    } else {
-      // If the checkbox is not checked, remove it from the object
-      delete checked[checkbox.value];
+  // Add an event listener to each checkbox to store its value when it is checked
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      // If the checkbox is checked, store its value and associated input value
+      if (checkbox.checked) {
+        checked[checkbox.value] = checkbox.nextElementSibling.value;
+      } else {
+        // If the checkbox is not checked, remove it from the object
+        delete checked[checkbox.value];
+      }
+    });
+  });
+
+  // Add an event listener to the webpage to maintain the checked state of the checkboxes
+  window.addEventListener('load', function() {
+    // Loop through the object containing the checked checkboxes and their values
+    for (var value in checked) {
+      // Get all checkbox elements with the corresponding value
+      var checkboxes = document.querySelectorAll('input[type="checkbox"][value="' + value + '"]');
+      // Set each checkbox as checked and set the value of its associated input
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = true;
+        checkbox.nextElementSibling.value = checked[value];
+      });
     }
   });
-});
+</script>
 
-// Add an event listener to the webpage to maintain the checked state of the checkboxes
-document.addEventListener('event', function() {
-  // Loop through the object containing the checked checkboxes and their values
-  for (var value in checked) {
-    // Get the checkbox with the corresponding value
-    var checkbox = document.querySelector('input[type="checkbox"][value="' + value + '"]');
-    // Set the checkbox as checked
-    checkbox.checked = true;
-    // Set the value of the associated input
-    checkbox.nextElementSibling.value = checked[value];
-  }
-});
-  </script>
   </body>
   </html>
