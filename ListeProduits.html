@@ -116,6 +116,11 @@ function generateTableRows(products) {
     table.appendChild(row);
   });
 }
+     
+window.onload = () => {
+generateTableRows(products);
+};
+
 
 const searchField = document.getElementById('search-field');
 const categorySelect = document.getElementById('category-select');
@@ -145,10 +150,10 @@ document.getElementById("pdf-button").addEventListener("click", function() {
   var rows = table.rows.length;
   var cols = table.rows[0].cells.length;
 
-  // iterate through the rows and columns, adding the content to the PDF
-  for (var i = 0; i < rows; i++) {
+  iterate through the rows and columns, adding the content to the PDF
+ for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
-      var cell = table.rows[i].cells[j];
+     var cell = table.rows[i].cells[j];
       var val = cell.innerHTML;
       doc.cell(10, 10, 10, 10, val, i);
     }
@@ -157,12 +162,6 @@ document.getElementById("pdf-button").addEventListener("click", function() {
   // save the PDF
   doc.save("product-list.pdf");
 });
-
-window.onload = () => {
-  generateTableRows(products);
-};
-
-
 
 
 
