@@ -54,7 +54,7 @@
     <!-- PDF button -->
     <div class="row mt-3">
       <div class="col-md-6 offset-md-3">
-        <button class="btn btn-primary btn-block" id="pdf-button">Generate PDF</button>
+        <button class="btn btn-primary btn-block" id="pdf-button">Enregistrer Votre Liste PDF</button>
       </div>
     </div>
   </div>
@@ -139,28 +139,34 @@ categorySelect.addEventListener('change', () => {
 });
 
 
-// create a new PDF document
-const doc = new jsPDF();
+// get the button element
+const button = document.getElementById('pdf-button');
 
-// add a title to the document
-doc.text('Selected products', 10, 10);
+// add a click event listener to the button
+button.addEventListener('click', () => {
+  // create a new PDF document
+  const doc = new jsPDF();
 
-// initialize a y-position variable for adding content to the PDF
-let y = 20;
+  // add a title to the document
+  doc.text('Selected products', 10, 10);
 
-// loop through the products array
-for (const product of products) {
-  // check if the product is checked
-  if (product.checked) {
-    // add the product name to the PDF
-    doc.text(product.name, 10, y);
-    // increment the y-position for the next piece of content
-    y += 10;
+  // initialize a y-position variable for adding content to the PDF
+  let y = 20;
+
+  // loop through the products array
+  for (const product of products) {
+    // check if the product is checked
+    if (product.checked) {
+      // add the product name to the PDF
+      doc.text(product.name, 10, y);
+      // increment the y-position for the next piece of content
+      y += 10;
+    }
   }
-}
 
-// save the PDF
-doc.save('selected-products.pdf');
+  // save the PDF
+  doc.save('selected-products.pdf');
+});
 
 
 window.onload = () => {
