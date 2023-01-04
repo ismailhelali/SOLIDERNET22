@@ -164,13 +164,12 @@ pdfButton.addEventListener('click', () => {
     pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
   });
 });
-// display all products when page loads
-displayProducts(categories.map(category => category.products).flat());
 
-// add event listeners
-document.getElementById('search-field').addEventListener('input', searchProducts);
-document.getElementById('category-select').addEventListener('change', filterProducts);
-document.getElementById('pdf-button').addEventListener('click', generatePDF);
+
+  window.onload = () => {
+  generateTableRows(products);
+};
+     
 </script>
   
   <script>
