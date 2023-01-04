@@ -201,27 +201,7 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   
   <script>
     
-// Get all checkboxes on the page
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// Create an array to store the checked checkboxes
-const checkedBoxes = [];
-
-// Add a change event listener to each checkbox
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    // If the checkbox is checked, add it to the array
-    if (checkbox.checked) {
-      checkedBoxes.push(checkbox);
-    } else {
-      // If the checkbox is not checked, remove it from the array
-      const index = checkedBoxes.indexOf(checkbox);
-      if (index > -1) {
-        checkedBoxes.splice(index, 1);
-      }
-    }
-  });
-});
   </script>
   </body>
   </html>
