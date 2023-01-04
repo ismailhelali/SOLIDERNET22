@@ -56,34 +56,28 @@
       </div>
     </div>
   </div>
-  <!-- include jspdf library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-  <!-- include Bootstrap JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
-
    <script>
 const products = [
   {
-    name: 'Product 1',
-    category: 'Category 1',
+    name: 'Farine Amgalita Pâtisserie 10kg',
+    category: 'farine',
     checked: false,
     quantity: 0,
-    unit: 'Unit 1'
+    unit: 'Sac'
   },
   {
-    name: 'Product 2',
-    category: 'Category 1',
+    name: 'Fromage Cheddar Gran coeur Bloc',
+    category: 'Fromagerie',
     checked: false,
     quantity: 0,
-    unit: 'Unit 1'
+    unit: 'unt'
   },
   {
-    name: 'Product 3',
-    category: 'Category 2',
+    name: 'Boite Pizza 29cm',
+    category: 'Emballage Pizza',
     checked: false,
     quantity: 0,
-    unit: 'Unit 2'
+    unit: 'Pack'
   }
 ];
 
@@ -102,8 +96,8 @@ function generateTableRows(products) {
       </td>
       <td>
         <select>
-          <option value="Unit 1" ${product.unit === 'Unit 1' ? 'selected' : ''}>Unit 1</option>
-          <option value="Unit 2" ${product.unit === 'Unit 2' ? 'selected' : ''}>Unit 2</option>
+          <option value="Unit 1" ${product.unit === 'Unit 1' ? 'selected' : ''}>Sac</option>
+          <option value="Unit 2" ${product.unit === 'Unit 2' ? 'selected' : ''}>Unt</option>
           <!-- add more options for units here -->
         </select>
       </td>
