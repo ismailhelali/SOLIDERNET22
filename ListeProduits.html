@@ -143,8 +143,7 @@ categorySelect.addEventListener('change', () => {
 
 document.getElementById("pdf-button").addEventListener("click", function() {
   // select the table element
-  var table = document.getElementById("product-table");
-
+  var table = document.getElementById("product-table").innerHTML;
   // create a new PDF document
   var doc = new jsPDF();
 
