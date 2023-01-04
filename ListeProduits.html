@@ -101,10 +101,11 @@ function generateTableRows(products) {
         <input type="number" value="${product.quantity}">
       </td>
       <td>
-          <option value="unt" ${product.unit === 'unt' ? 'selected' : ''}>unt</option>
-          <option value="carton" ${product.unit === 'carton' ? 'selected' : ''}>carton</option>
-          <option value="Kg" ${product.unit === 'Kg' ? 'selected' : ''}>Kg</option>
-          <option value="g" ${product.unit === 'g' ? 'selected' : ''}>g</option>
+        <select>
+          <option value="Unit 1" ${product.unit === 'Unit 1' ? 'selected' : ''}>Unit 1</option>
+          <option value="Unit 2" ${product.unit === 'Unit 2' ? 'selected' : ''}>Unit 2</option>
+          <!-- add more options for units here -->
+        </select>
       </td>
     `;
     const checkbox = row.querySelector('input[type="checkbox"]');
@@ -167,7 +168,11 @@ document.getElementById("pdf-button").addEventListener("click", function() {
 window.onload = () => {
   generateTableRows(products);
 };
-     
+
+
+
+
+
   </script>
   </body>
   </html>
