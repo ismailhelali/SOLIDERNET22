@@ -157,8 +157,8 @@ button.addEventListener('click', () => {
   for (const product of products) {
     // check if the product is checked
     if (product.checked) {
-      // add the product name to the PDF
-      doc.text(product.name, 10, y);
+      // add the product name, quantity, and unit to the PDF
+      doc.text(`${product.name} - Quantity: ${product.quantity} - Unit: ${product.unit}`, 10, y);
       // increment the y-position for the next piece of content
       y += 10;
     }
@@ -167,6 +167,7 @@ button.addEventListener('click', () => {
   // save the PDF
   doc.save('selected-products.pdf');
 });
+
 
 
 window.onload = () => {
