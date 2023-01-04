@@ -182,5 +182,21 @@ document.getElementById('search-field').addEventListener('input', searchProducts
 document.getElementById('category-select').addEventListener('change', filterProducts);
 document.getElementById('pdf-button').addEventListener('click', generatePDF);
 </script>
+  
+  <script>
+    document.addEventListener('visibilitychange', (event) => {
+  if (document.visibilityState === 'visible') {
+    window.addEventListener('beforeunload', (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    });
+  } else {
+    window.removeEventListener('beforeunload', (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    });
+  }
+});
+  </script>
   </body>
   </html>
