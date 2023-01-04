@@ -200,7 +200,41 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   </script>
   
   <script>
-    
+    // get all checkboxes on the page
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+// create an array to store the checked checkboxes
+let checkedCheckboxes = [];
+
+// loop through all checkboxes and add an event listener to each one
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    // if the checkbox is checked, add it to the array
+    if (checkbox.checked) {
+      checkedCheckboxes.push(checkbox);
+    } else {
+      // if the checkbox is unchecked, remove it from the array
+      checkedCheckboxes = checkedCheckboxes.filter(cb => cb !== checkbox);
+    }
+  });
+});
+
+// create an observer to watch for changes to the page
+const observer = new MutationObserver(() => {
+  // loop through the array of checked checkboxes
+  checkedCheckboxes.forEach(checkbox => {
+    // if the checkbox is no longer in the DOM, remove it from the array
+    if (!document.body.contains(checkbox)) {
+      checkedCheckboxes = checkedCheckboxes.filter(cb => cb !== checkbox);
+    } else {
+      // if the checkbox is still in the DOM, make sure it is checked
+      checkbox.checked = true;
+    }
+  });
+});
+
+// start observing the DOM for changes
+observer.observe(document.body, { childList: true, subtree: true });
 
   </script>
   </body>
