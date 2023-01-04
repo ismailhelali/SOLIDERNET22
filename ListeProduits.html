@@ -124,8 +124,11 @@ const products = [
     table.appendChild(row);
   });
 }
-     
-     
+
+window.onload = () => {
+generateTableRows(products);
+};     
+
 const searchField = document.getElementById('search-field');
 const categorySelect = document.getElementById('category-select');
 
@@ -166,9 +169,7 @@ categorySelect.addEventListener('change', () => {
 //});
 
 
-  window.onload = () => {
-  generateTableRows(products);
-};
+
      
 </script>
   
