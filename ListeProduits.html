@@ -115,6 +115,64 @@ function displayProducts(products) {
   }
 }
 
+     
+// create an object to store the checked boxes
+let checkedBoxes = {};
+
+// add an event listener to the checkboxes to store their state when they are checked or unchecked
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      // store the checkbox and its quantity and unit in the object when it is checked
+      checkedBoxes[this.value] = {
+        quantity: this.closest('tr').querySelector('.quantity-input').value,
+        unit: this.closest('tr').querySelector('.unit-select').value
+      }
+    } else {
+      // remove the checkbox from the object when it is unchecked
+      delete checkedBoxes[this.value];
+    }
+  });
+});
+
+// add an event listener to the search field to update the checked boxes when the search is performed
+const searchField = document.getElementById('search-field');
+searchField.addEventListener('input', function() {
+  // perform the search and update the table rows
+  // ...
+
+  // update the checked boxes by checking the checkboxes that are present in the object
+  checkboxes.forEach(checkbox => {
+    if (checkedBoxes[checkbox.value]) {
+      checkbox.checked = true;
+      // update the quantity and unit of the checked box
+      checkbox.closest('tr').querySelector('.quantity-input').value = checkedBoxes[checkbox.value].quantity;
+      checkbox.closest('tr').querySelector('.unit-select').value = checkedBoxes[checkbox.value].unit;
+    } else {
+      checkbox.checked = false;
+    }
+  });
+});
+
+// add an event listener to the PDF button to generate the PDF with the checked boxes and their quantities and units
+const pdfButton = document.getElementById('pdf-button');
+pdfButton.addEventListener('click', function() {
+  // create a new PDF document
+  const pdf = new jsPDF();
+
+  // add the checked boxes and their quantities and units to the PDF
+  Object.entries(checkedBoxes).forEach(([product, {quantity, unit}]) => {
+    pdf.text(product, 10, 10);
+    pdf.text(quantity, 50, 10);
+    pdf.text(unit, 70, 10);
+  });
+
+  // save the PDF
+  pdf.save('products.pdf');
+});
+     
+     
    
      
      
