@@ -198,5 +198,40 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   }
 });
   </script>
+  
+  <script>
+    
+    let checkedBoxes = [];
+
+function storeCheckedBoxes() {
+  // Get all checkboxes on the page
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Iterate over the checkboxes and store the checked ones in the array
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      checkedBoxes.push(checkbox);
+    }
+  });
+}
+
+function preventUnchecking() {
+  // Get all checkboxes on the page
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Iterate over the checkboxes and prevent the checked ones from being unchecked
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', event => {
+      if (checkbox.checked && checkedBoxes.includes(checkbox)) {
+        event.preventDefault();
+      }
+    });
+  });
+}
+
+storeCheckedBoxes();
+preventUnchecking();
+    
+  </script>
   </body>
   </html>
