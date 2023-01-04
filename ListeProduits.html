@@ -63,7 +63,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
 
    <script>
-     
 const products = [
   {
     name: 'Product 1',
@@ -87,8 +86,8 @@ const products = [
     unit: 'Unit 2'
   }
 ];
-     
- function generateTableRows(products) {
+
+function generateTableRows(products) {
   const table = document.getElementById('product-table');
   table.innerHTML = ''; // clear the table
   products.forEach(product => {
@@ -125,94 +124,41 @@ const products = [
   });
 }
 
-window.onload = () => {
-generateTableRows(products);
-};     
-
 const searchField = document.getElementById('search-field');
 const categorySelect = document.getElementById('category-select');
 
 searchField.addEventListener('input', () => {
   const query = searchField.value.toLowerCase();
-  let filteredProducts = products;
-  if (query) {
-    filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-  }
-  if (categorySelect.value) {
-    filteredProducts = filteredProducts.filter(product => product.category === categorySelect.value);
-  }
+  const filteredProducts = products.filter(product => {
+    return product.name.toLowerCase().includes(query) || product.category.toLowerCase().includes(query);
+  });
   generateTableRows(filteredProducts);
 });
 
 categorySelect.addEventListener('change', () => {
-  let filteredProducts = products;
-  if (searchField.value) {
-    const query = searchField.value.toLowerCase();
-    filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-  }
-  if (categorySelect.value) {
-    filteredProducts = filteredProducts.filter(product => product.category === categorySelect.value);
-  }
+  const category = categorySelect.value;
+  const filteredProducts = category ? products.filter(product => product.category === category) : products;
   generateTableRows(filteredProducts);
 });
-     
 
-// const checkedProducts = products.filter(product => product.checked);
-//const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
-//const pdfButton = document.getElementById('pdf-button');
-//pdfButton.addEventListener('click', () => {
- // const doc = new jsPDF();
- // doc.generate(pdf => {
-   // pdf.text('SOLIDERNET Product List', 10, 10);
-   // pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
- // });
-//});
-
-
-
-     
-</script>
-  
-  <script>
-    document.addEventListener('visibilitychange', (event) => {
-  if (document.visibilityState === 'visible') {
-    window.addEventListener('beforeunload', (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-    });
-  } else {
-    window.removeEventListener('beforeunload', (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-    });
-  }
-});
-  </script>
-  
-  <script>
-// function to generate PDF of selected products
-function generatePDF() {
-  // create jspdf document
+const pdfButton = document.getElementById('pdf-button');
+pdfButton.addEventListener('click', () => {
+  const checkedProducts = products.filter(product => product.checked);
+  const pdfData = checkedProducts.map(product => [product.name, product.quantity, product.unit]);
   const doc = new jsPDF();
-  // create table for selected products
-  let table = '<table><tr><th>Product</th><th>Quantity</th><th>Unit</th></tr>';
-  // get selected products and their quantities and units
-  const selectedRows = document.getElementsByClassName('product-checkbox');
-  for (const row of selectedRows) {
-    if (row.checked) {
-      const rowCells = row.parentElement.parentElement.cells;
-      const product = rowCells[1].innerHTML;
-      const quantity = rowCells[2].children[0].value;
-      const unit = rowCells[3].children[0].value;
-      table += `<tr><td>${product}</td><td>${quantity}</td><td>${unit}</td></tr>`;
-    }
-  }
-  table += '</table>';
-  // add table to document
-  doc.fromHTML(table);
-  // download document
-  doc.save('products.pdf');
-}
+  doc.generate(pdf => {
+    pdf.text('SOLIDERNET Product List', 10, 10);
+    pdf.table(10, 20, pdfData, ['Product', 'Quantity', 'Unit']);
+    pdf.save('product-list.pdf');
+  });
+});
+
+window.onload = () => {
+  generateTableRows(products);
+};
+
+
+
 
 
   </script>
