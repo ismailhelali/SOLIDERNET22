@@ -8,8 +8,9 @@
 <!-- include Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!-- include Bootstrap JavaScript -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js" integrity="sha384-/N/t9aO/QE+tNg8+DpTJ/Yzq3Z"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
   <!-- include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -149,74 +150,57 @@ function filterProducts(event) {
   // display filtered products
   displayProducts(filteredProducts);
 }
+// keep track of checked boxes and input values
+let checkedBoxes = {};
 
-// function to generate PDF of selected products
-function generatePDF() {
-  // create jspdf document
-  const doc = new jsPDF();
-  // create table for selected products
-  let table = '<table><tr><th>Product</th><th>Quantity</th><th>Unit</th></tr>';
-  // get selected products and their quantities and units
-  const selectedRows = document.getElementsByClassName('product-checkbox');
-  for (const row of selectedRows) {
-    if (row.checked) {
-      const rowCells = row.parentElement.parentElement.cells;
-      const product = rowCells[1].innerHTML;
-      const quantity = rowCells[2].children[0].value;
-      const unit = rowCells[3].children[0].value;
-      table += `<tr><td>${product}</td><td>${quantity}</td><td>${unit}</td></tr>`;
-    }
+// update checkedBoxes object when a checkbox is clicked
+$('#product-table').on('click', 'input[type="checkbox"]', function() {
+  let id = $(this).attr('id');
+  if (this.checked) {
+    checkedBoxes[id] = {
+      quantity: $(`#${id}-quantity`).val(),
+      unit: $(`#${id}-unit`).val()
+    };
+  } else {
+    delete checkedBoxes[id];
   }
-  table += '</table>';
-  // add table to document
-  doc.fromHTML(table);
-  // download document
-  doc.save('products.pdf');
-}
+});
 
-// display all products when page loads
-displayProducts(categories.map(category => category.products).flat());
-
-// add event listeners
-document.getElementById('search-field').addEventListener('input', searchProducts);
-document.getElementById('category-select').addEventListener('change', filterProducts);
-document.getElementById('pdf-button').addEventListener('click', generatePDF);
-</script>
-  
-  <script>
-     window.onload = function() {
-    // Get all checkboxes on the page
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-    // Store an object to hold the checked checkboxes and their associated input values
-    var checked = {};
-
-    // Add an event listener to each checkbox to store its value when it is checked
-    checkboxes.forEach(function(checkbox) {
-      checkbox.addEventListener('change', function() {
-        // If the checkbox is checked, store its value and associated input value
-        if (checkbox.checked) {
-          checked[checkbox.value] = checkbox.nextElementSibling.value;
-        } else {
-          // If the checkbox is not checked, remove it from the object
-          delete checked[checkbox.value];
-        }
-      });
-    });
-
-    window.onload = function() {
-      // Loop through the object containing the checked checkboxes and their values
-      for (var value in checked) {
-        // Get all checkbox elements with the corresponding value
-        var checkboxes = document.querySelectorAll('input[type="checkbox"][value="' + value + '"]');
-        // Set each checkbox as checked and set the value of its associated input
-        checkboxes.forEach(function(checkbox) {
-          checkbox.checked = true;
-          checkbox.nextElementSibling.value = checked[value];
-        });
-      }
+// update checkedBoxes object when quantity or unit input changes
+$('#product-table').on('input', 'input[type="number"], select', function() {
+  let id = $(this).attr('id').split('-')[0];
+  if (id in checkedBoxes) {
+    checkedBoxes[id] = {
+      quantity: $(`#${id}-quantity`).val(),
+      unit: $(`#${id}-unit`).val()
     };
   }
+});
+
+// generate PDF when the PDF button is clicked
+$('#pdf-button').on('click', function() {
+  // create a new PDF document
+  let doc = new jsPDF();
+
+  // add a title to the PDF
+  doc.text('Selected Products', 10, 10);
+
+  // add a line under the title
+  doc.line(10, 12, 200, 12);
+
+  // add the selected products to the PDF
+  let y = 20;
+  for (let id in checkedBoxes) {
+    let product = $(`#${id}-product`).text();
+    let quantity = checkedBoxes[id].quantity;
+    let unit = checkedBoxes[id].unit;
+    doc.text(`${product} - ${quantity} ${unit}`, 10, y);
+    y += 10;
+  }
+
+  // save the PDF
+  doc.save('selected-products.pdf');
+});
 </script>
 
   </body>
