@@ -200,36 +200,7 @@ document.getElementById('pdf-button').addEventListener('click', generatePDF);
   </script>
   
   <script>
-// Get all the checkboxes on the page
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// Create an object to store the checked boxes
-const checkedBoxes = {};
-
-// Loop through all the checkboxes and add an event listener for the 'change' event
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', function() {
-    // If the checkbox is checked, add it to the object with its value as the key
-    if (this.checked) {
-      checkedBoxes[this.value] = true;
-    } else {
-      // If the checkbox is unchecked, remove it from the object
-      delete checkedBoxes[this.value];
-    }
-  });
-});
-
-// Add an event listener for the input search
-const input = document.querySelector('input[type="search"]');
-input.addEventListener('input', function() {
-  // When the user uses the input search, loop through all the checkboxes again
-  checkboxes.forEach(checkbox => {
-    // If the checkbox is in the object of checked boxes, set its checked property to true
-    if (checkedBoxes[checkbox.value]) {
-      checkbox.checked = true;
-    }
-  });
-});
   </script>
   </body>
   </html>
