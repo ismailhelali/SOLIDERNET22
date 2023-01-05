@@ -1,3174 +1,3174 @@
 const products = [
   {
-    name: 'Amgalita 10 kg Patissiàre prix du jour ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Amgalita 10 kg PatissiÃ re prix du jour ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fino ALITKANE 10kg prix du jour ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Amgalita 1 kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Semoule fine ALITKANE 5kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Pop corn / kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Pop corn au kg ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Blé haché / kg prix du jour ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'BlÃ© hachÃ© au kg prix du jour ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Tagliatelle DIVELLA 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Tagliatelle verte ARRIGHI 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Tagliatelle Barilla 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Penne DIVELLA 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Penne ARRIGHI 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Penne BARILLA 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Spaguetti ITALY DIVELLA 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Spaguetti ARRIGHI 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Spaghetti N°3 Barilla 500 g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Spaghetti NÂ°3 Barilla 500 g',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Spaghetti N°5 Barilla 500 g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Spaghetti NÂ°5 Barilla 500 g',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Spaghetti SANS GLUTEN Barilla 400 g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Spaguetti Barilla Bio 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Spaguetti N°7 BARILLA 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Spaguetti NÂ°7 BARILLA 500g',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Linguine N°14 DIVELLA 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Linguine NÂ°14 DIVELLA 500g',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Linguine N° 9 ARRIGHI 500 g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Linguine NÂ° 9 ARRIGHI 500 g ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Linguine BAVETE BARILLA N° 13',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Linguine BAVETE BARILLA NÂ° 13',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'fusilli tricolor 500 g REGGIA',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fusilli DIVELLA 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fusilli ARRIGHI 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Farfalla panzani 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Farfalle ARRIGHI 500g Italy ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Couscous fin Tria (SABA) / kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Couscous fin Tria (SABA) au kg ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Couscous MOYEN SABA (TRIA) 25kg / kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Couscous MOYEN SABA (TRIA) 25kg au kg ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couscous moyen ALITKANE 1kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couscous Moyen Dari 1 Kg( p du j) ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couscous Fin DARI 1kg',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couscous complet DARI 500g ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couscous balboula DARI 1 kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Tchicha BALBOULA/kg',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Tchicha BALBOULAaukg',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Riz CIGALA semi long 5 kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Riz long blanchi cigala 1 kg (emballage bleu)',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Riz rond CIGALA 5KG (emba vert)',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Riz étuvé Cigala 5kg ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Riz Ã©tuvÃ© Cigala 5kg ',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Riz caprice import 5kg / kg ( prix du jour)',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Riz caprice import 5kg au kg ( prix du jour)',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Vermicelle de chine /Kg',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    name: 'Vermicelle de chine auKg',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vermicelle de riz 460g Golden Flower ',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vermicelle moyenne Alitkane 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'LASAGNE ARRIGHI 500G',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Lasagne Barilla 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Quinoa blanc Khayrat 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Quinoa noir Khayrat 500g',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'QUINOA ROUGE KHAYRAT 500G',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'QUINOA TRICOLOR 500G KHAYRAT',
-    category: 'Farine , couscous, Riz , Blé, Noix  et Pates',
+    category: 'Farine et couscouset Riz et BlÃ©et Noix  et Pates',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Huile table soja SIOF 5L (prix jr)',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Huile tournesol HUILOR 5 L prix du jour ',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Huile sp friture LESIEUR 5L PRIX DU JOUR ',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile de friture FRITY'S 10L / L 10',
+    name: 'Huile de friture FRITYS 10L au L 10',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile d'olive Mabrouka 1L ',
+    name: 'Huile dolive Mabrouka 1L ',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile d'olive vierge Extra ATLAS 1L prix du j',
+    name: 'Huile dolive vierge Extra ATLAS 1L prix du j',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile pimentée PIKAROM x 220',
+    name: 'Huile pimentÃ©e PIKAROM x 220',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile pimentée STAR x300 ',
+    name: 'Huile pimentÃ©e STAR x300 ',
     category: 'Les huiles',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème balsamique 250 g PONTI ',
+    name: 'CrÃ¨me balsamique 250 g PONTI ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Moutarde sachet 7g x 220 PIK',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Moutarde sachet 7g x 220 STAR ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Mayonnaise sachet 10g x 220 PIK',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Mayonnaise sachet STAR x 220 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ketchup Sach PIK 10g x 220 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ketchup sach STAR x 220 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'hot Sauce Piquante 7g Star x220 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce piquante Sachet Pikarom x 220',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sauce Pizza AICHA 4/4 ',
+    name: 'Sauce Pizza AICHA 4au4 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sauce pizza BANGOR 5/1 ',
+    name: 'Sauce pizza BANGOR 5au1 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Tomate AICHA 4/4 ',
+    name: 'Tomate AICHA 4au4 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce BARBECUE BANGOR 2 KG ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Hot Sauce OK 2kg',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Tabasco USA RED ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'SAUCE ALGERIENNE OK 950G',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'SAUCE ANDALOUSE OK 950G ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'SAUCE Biggy BURGER OK 950G',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'SAUCE Biggy TASTY OK 950G',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sauce Mayonaise OK 2,1 KG',
+    name: 'Sauce Mayonaise OK 2et1 KG',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'SAUCE MAYONNAISE STAR SEAU 3650 G',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ketchup 2 kg Star ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Mayonnaise STAR 5/1 ',
+    name: 'Mayonnaise STAR 5au1 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Moutarde STAR 5/1 ',
+    name: 'Moutarde STAR 5au1 ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce champignon DIFA SOJA DARK150ml',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce champignon Khayrat 8L ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce soja au champignon DIFA 8L ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce soja light DIFA 8L ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce soja light DIFA 150ml',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'sauce WORCESTERSHIRE 295 ml ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce teryaki 1.8L ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sweet chili sauce 1,8L DIFA ',
+    name: 'Sweet chili sauce 1et8L DIFA ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'hot chili sauce 150ml Siriracha ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Hot chili sauce Siriracha Difa 482g ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fish sauce 620ml ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fish sauce nuocmam 5L DIFA',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Hot Sauce HARMONY 88 ml',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce aux huitres oyster 5L COPR ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce barbecue STAR TEB 310g ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sauce Demi Glace fond brun ',
     category: 'Les sauces',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Parmesan Grana Vita /kg ',
+    name: 'Parmesan Grana Vita aukg ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Parmesan GRANA PADANO Zanetti / KG',
+    name: 'Parmesan GRANA PADANO Zanetti au KG',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage bleu Bergader / kg ',
+    name: 'Fromage bleu Bergader au kg ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage emmental bloc OR BLANC / kg ',
+    name: 'Fromage emmental bloc OR BLANC au kg ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage Emmental plaquette OR BLANC / UNT ',
+    name: 'Fromage Emmental plaquette OR BLANC au  ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fromage brie Gran Coeur 1kg',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Camembert Grand coeur 250g',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Mascarpone Italie Or blanc 250g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ricotta italie 250 g Or Blanc ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'RIZ ARBORIO RISOTTO 500 g',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Riz noir SCOTTI 1KG ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fromage Frais Jben Jebly 190g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'FROMAGE CHEDDAR BLOC GRAN COEUR/KG',
+    name: 'FROMAGE CHEDDAR BLOC GRAN COEURauKG',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage EDAM boule GRAN COEUR /kg ',
+    name: 'Fromage EDAM boule GRAN COEUR aukg ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Beurre CENTRALE /kg',
+    name: 'Beurre CENTRALE aukg',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Beurre IRELAND 25kg / k g ',
+    name: 'Beurre IRELAND 25kg au k g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'fromage tranche Cheddar OR BLANC 200G ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fromage tranche HAMBURGER OR BLANC 200g',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fromage tranche KHAYRAT x24',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage cheddar Goldium 88tranches 1082,4g',
+    name: 'Fromage cheddar Goldium 88tranches 1082et4g',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage gouda nature Gran Coeur / kg',
+    name: 'Fromage gouda nature Gran Coeur au kg',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Mozzarelle Forest 1kg ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème cheese FOREST 1kg',
+    name: 'CrÃ¨me cheese FOREST 1kg',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème cheese President 180g ',
+    name: 'CrÃ¨me cheese President 180g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Roquefort Société tranche 100g ',
+    name: 'Roquefort SociÃ©tÃ© tranche 100g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fromage emmental rapé President 500g ',
+    name: 'Fromage emmental rapÃ© President 500g ',
     category: 'Les Fromages',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'sanida 50 kg sucre/ Kg ',
+    name: 'sanida 50 kg sucreau Kg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'sanida sucre 2kg/Kg ',
+    name: 'sanida sucre 2kgauKg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sucre roux cristalisé 1kg ',
+    name: 'Sucre roux cristalisÃ© 1kg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sucre Cassonade SAINT LOUIS 1kg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sucre sachet Stick 8g SOLIDERNET / KG',
+    name: 'Sucre sachet Stick 8g SOLIDERNET au KG',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sucre morceau café /kg',
+    name: 'Sucre morceau cafÃ© aukg',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sucre morceaux thé /kg',
+    name: 'Sucre morceaux thÃ© aukg',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sweet'n Low x 50 ',
+    name: 'Sweetn Low x 50 ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'glucose 1kg',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Pate à sucre blanc 1kg ',
+    name: 'Pate Ã  sucre blanc 1kg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'SUCRE NEIGE ETERNELLE DGF5KG/KG',
+    name: 'SUCRE NEIGE ETERNELLE DGF5KGauKG',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sucre glace Ecomab 5kg / kg ',
+    name: 'Sucre glace Ecomab 5kg au kg ',
     category: 'Les sucres ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé sultan 4011 - 200g / kg ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© sultan 4011 - 200g au kg ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé vert Sultan Anbar 200g /kg ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© vert Sultan Anbar 200g aukg ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé vert Bellar /kg (prix du j) ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© vert Bellar aukg (prix du j) ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé vert sachet x 50 bellar',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© vert sachet x 50 bellar',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé grain Sultan ljawhar / kg ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© grain Sultan ljawhar au kg ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Verveine sachets sultan x100',
-    category: 'Thé et infusions ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Verveine Feuille MONDEPICES 50g prix du jour ',
-    category: 'Thé et infusions ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé fruit selection AHMED TEA x 20 ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© fruit selection AHMED TEA x 20 ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé camomille AHMED TEA x 20sachets',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© camomille AHMED TEA x 20sachets',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé lemon Vitality AHMED x 20',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© lemon Vitality AHMED x 20',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé Mint Mystique AHMED TEA x 20 ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© Mint Mystique AHMED TEA x 20 ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thé Vanille AHMED TEA x 20 ',
-    category: 'Thé et infusions ',
+    name: 'ThÃ© Vanille AHMED TEA x 20 ',
+    category: 'ThÃ© et infusions ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Oeuf Matinales / Unt prix du jour (emb carton) ',
+    name: 'Oeuf Matinales au  prix du jour (emb carton) ',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Oeuf de caille /unt',
+    name: 'Oeuf de caille au',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Jambon de dinde fumée OUSOL DINDY / kg ',
+    name: 'Jambon de dinde fumÃ©e OUSOL DINDY au kg ',
     category: 'charcuterie',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Jambon de dinde fumé KOUTOUBIA /kg ',
+    name: 'Jambon de dinde fumÃ© KOUTOUBIA aukg ',
     category: 'charcuterie',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Salami de dinde DINDY / kg ',
+    name: 'Salami de dinde DINDY au kg ',
     category: 'charcuterie',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Hot dog 250 g DINDY ',
     category: 'charcuterie',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thon à l'huile Tam 400g ',
+    name: 'Thon Ã  lhuile Tam 400g ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thon entier TAM 1,7kg ',
+    name: 'Thon entier TAM 1et7kg ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thon Tam 4/4 ',
+    name: 'Thon Tam 4au4 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thon à l'huile veg Pescada 80g ',
+    name: 'Thon Ã  lhuile veg Pescada 80g ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Thon PESCADA 1.700g ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Thon entier Challa 1,7kg ',
+    name: 'Thon entier Challa 1et7kg ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Champignon de paris DU CHEF 4/4',
+    name: 'Champignon de paris DU CHEF 4au4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Champignon Du chef 4/4',
+    name: 'Champignon Du chef 4au4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Mais MIDO 4/4',
+    name: 'Mais MIDO 4au4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Epis de mais JESSY 1/2',
+    name: 'Epis de mais JESSY 1au2',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Mais Du Chef 1/2 ',
+    name: 'Mais Du Chef 1au2 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Lait de Coco 1/2 JESSY ',
+    name: 'Lait de Coco 1au2 JESSY ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Créme De Coco JESSY 1/2 ',
+    name: 'CrÃ©me De Coco JESSY 1au2 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Germes de Soja HARMONY 1/2',
+    name: 'Germes de Soja HARMONY 1au2',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Lychees au sirop Jessy 1/2 ',
+    name: 'Lychees au sirop Jessy 1au2 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Haricot rouge Harmony 4/4 ',
+    name: 'Haricot rouge Harmony 4au4 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Ananas au sirop HOKEE 4/4',
+    name: 'Ananas au sirop HOKEE 4au4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Peche au sirop Chalupa 4/4',
+    name: 'Peche au sirop Chalupa 4au4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Capre Siof 4/4 ',
+    name: 'Capre Siof 4au4 ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olives Noires entieres 5/1 Oualili ',
+    name: 'Olives Noires entieres 5au1 Oualili ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olive vert entier Sesta 5/1',
+    name: 'Olive vert entier Sesta 5au1',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olives noires denoyautées Mabrouka 5/1',
+    name: 'Olives noires denoyautÃ©es Mabrouka 5au1',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olive vert dénoyauté 5/1 SIOF ',
+    name: 'Olive vert dÃ©noyautÃ© 5au1 SIOF ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olives noires OUALILI 3/1 Coupées ',
+    name: 'Olives noires OUALILI 3au1 CoupÃ©es ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Olives vertes coupées 3/1 Oualili',
+    name: 'Olives vertes coupÃ©es 3au1 Oualili',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Mais ARKAM 3/1',
+    name: 'Mais ARKAM 3au1',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Anchois marinés 750 g KING ',
+    name: 'Anchois marinÃ©s 750 g KING ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Filets d' Anchois salés FATINA 50g',
+    name: 'Filets d Anchois salÃ©s FATINA 50g',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Filet d'anchois salés à l'huile CONSUL 793g ',
+    name: 'Filet danchois salÃ©s Ã  lhuile CONSUL 793g ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Artichauts confits Monegasque 1Kg ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Poivrons farcis au thon et aux anchois 1kg ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Tomate confites à l'huile 1kg la monégasque ',
+    name: 'Tomate confites Ã  lhuile 1kg la monÃ©gasque ',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Cornichons 72 Cl Pikarom ( verre )',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Cornichons PIK 5/1 C4',
+    name: 'Cornichons PIK 5au1 C4',
     category: 'Conserve Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sel de chine 1 kg DIFALM ',
     category: 'Sels',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sel gros Route du Sel 1kg ',
     category: 'Sels',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sel gros SEL DEREL 1kg ',
     category: 'Sels',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sel de table STAR 400g ',
     category: 'Sels',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sel de cuisine DAUPHIN 500 g ',
     category: 'Sels',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre balsamique CHATEL 500ml ',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre blanc STAR 50 cl ',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Vinaigre d'Alcool Dessaux GM 50 cl Pik ',
+    name: 'Vinaigre dAlcool Dessaux GM 50 cl Pik ',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Vinaigre d'alcool Dessaux 5L ',
+    name: 'Vinaigre dalcool Dessaux 5L ',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre de riz 623 ml CHAIN KWO',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Vinaigre de vin CHATEL à l'échalote 500ml',
+    name: 'Vinaigre de vin CHATEL Ã  lÃ©chalote 500ml',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre de vin rouge Chatel 500ml',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre DE XERES CHATEL 500 ml',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Vinaigre framboise 50 cl Chatel',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'vinaigre star AROM.Citron 50cl ',
     category: 'Vinaigres',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Amande effilée YAMA 1kg ',
+    name: 'Amande effilÃ©e YAMA 1kg ',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Amande poudre YAMA 1kg ',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Amande haché YAMA 2kg / kg ',
+    name: 'Amande hachÃ© YAMA 2kg au kg ',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Amande roussi 1er choix MONDEPICES 1kg prix du jour ',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'AMANDE / Kg',
+    name: 'AMANDE au Kg',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Noix CHILI VRAC /Kg prix du jour',
+    name: 'Noix CHILI VRAC auKg prix du jour',
     category: 'Les AMANDES ET Noix',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Choco 3g Bat 46% AIGUEBELLE 1.6 kg',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Chocolat AIGUBELLE noir 2Kg/Kg ',
+    name: 'Chocolat AIGUBELLE noir 2KgauKg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Chocolat blanc 5/5 900g AIGUEBELLE ',
+    name: 'Chocolat blanc 5au5 900g AIGUEBELLE ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Chocolat dessert 55% 175g AIGUEBELLE ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Chocolat noir de couverture 72% AIGUEBELLE /KG ',
+    name: 'Chocolat noir de couverture 72% AIGUEBELLE auKG ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Chocolat noir de couverture 55% AIGUEBELLE /Kg ',
+    name: 'Chocolat noir de couverture 55% AIGUEBELLE auKg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Chocolat noir Dessert 72% 175G AIGUEBELLE',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Drops chocolat YAMA 1kg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Cacao poudre MONDEPICE 1kg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Cacao poudre Yama 5kg / kg ',
+    name: 'Cacao poudre Yama 5kg au kg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Choco mondial 1kg ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Chocao IDEAL ENERGIE 480g ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Caobel 100g ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Caobel 500g ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Chocolat KIT KAT ',
     category: 'Chocolat',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Topping chocolat MIGAROM 1kg',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Topping caramel MIGAROM 1kg ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Topping Fraise MIGAROM 1kg ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Topping Mangue MIGAROM 1kg ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sirop à la menthe 75cl DUVAL ',
+    name: 'Sirop Ã  la menthe 75cl DUVAL ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sirop de grenadine 75cl DUVAL ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sirop sucre de canne MONIN 70cl ',
     category: 'Topping et Sirop',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Confiture abricot ARABIA 20g ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Confiture fraise ARABIA 25g ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Miel Arabia 4,5kg ',
+    name: 'Miel Arabia 4et5kg ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Miel portion ARABIA 20g ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Miel pur ARABIA 4/4 ',
+    name: 'Miel pur ARABIA 4au4 ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Miel 4/4 zemzami',
+    name: 'Miel 4au4 zemzami',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Miel glucose El Yassmin 4 kg ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Miel glucose elyassmine 700g ',
     category: 'Confiture et Miel',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Puré de Fraise 1kg DGF ',
-    category: 'Puré ',
+    name: 'PurÃ© de Fraise 1kg DGF ',
+    category: 'PurÃ© ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Purée passion 1 kg DGF ',
-    category: 'Puré ',
+    name: 'PurÃ©e passion 1 kg DGF ',
+    category: 'PurÃ© ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Purée framboise DGF 1L',
-    category: 'Puré ',
+    name: 'PurÃ©e framboise DGF 1L',
+    category: 'PurÃ© ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Puré de Mangue DGF 1L ',
-    category: 'Puré ',
+    name: 'PurÃ© de Mangue DGF 1L ',
+    category: 'PurÃ© ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Jus citron - gingembre nectar VALENCIA 1 L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Jus d'ananas Nectar VALENCIA 1L ',
+    name: 'Jus dananas Nectar VALENCIA 1L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Jus d'orange NECTAR VALENCIA 1 L ',
+    name: 'Jus dorange NECTAR VALENCIA 1 L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Jus de mangue Nectar VALENCIA 1L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Jus DE PECHE NECTAR VALENCIA 1 L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Jus Pina Colada VALENCIA 1L ',
     category: 'Les Jus',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Arome de France PM 28 ml',
-    category: 'Les Arômes',
+    category: 'Les ArÃ´mes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Arome de france vanille verre 500 ml',
-    category: 'Les Arômes',
+    category: 'Les ArÃ´mes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Arome vanille poudre 1 kg',
-    category: 'Les Arômes',
+    category: 'Les ArÃ´mes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Créme Cuisine SNEL 1L ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ©me Cuisine SNEL 1L ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème sucrée Snel 1L ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me sucrÃ©e Snel 1L ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Créme Elle&Vire 1L(spécial cuisson) ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ©me Elle&Vire 1L(spÃ©cial cuisson) ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Créme Elle&Vire 1L(patiss)',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ©me Elle&Vire 1L(patiss)',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème president 1L UHTprix du jour ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me president 1L UHTprix du jour ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème cuisson Halta 1 L ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me cuisson Halta 1 L ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème végètale Bombe HALTA 250ml',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me vÃ©gÃ¨tale Bombe HALTA 250ml',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème végétale Liola 1 L ',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me vÃ©gÃ©tale Liola 1 L ',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Crème végétale suc HULALA1L import EX',
-    category: 'Les Crémes pour patisserie et cuissons ',
+    name: 'CrÃ¨me vÃ©gÃ©tale suc HULALA1L import EX',
+    category: 'Les CrÃ©mes pour patisserie et cuissons ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'kHLIE AHLFES /kg',
+    name: 'kHLIE AHLFES aukg',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Champignon noir 12g DIFALIM',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Champignon noir 1kg DIFA',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fécule de pomme de terre DIFA 1kg',
+    name: 'FÃ©cule de pomme de terre DIFA 1kg',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Shitakee 1kg DIFA',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Shichimi DIFA 300g',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Chapelure japonnaise Panko Difa 10kg / kg ',
+    name: 'Chapelure japonnaise Panko Difa 10kg au kg ',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Chaplure asiatique PANKO 1 kg DIFA',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Wasabi poudre DIFA 1kg',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gingembre rose 1,5kg DIFA / unt ',
+    name: 'Gingembre rose 1et5kg DIFA au  ',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Huile de sésame DIFA 620ml ',
+    name: 'Huile de sÃ©same DIFA 620ml ',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gousse de Vanille/unt prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Gousse de Vanilleau prix du jour ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Safran pur MONDEPICES 1g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ail rouge MONDEPICES 1kg prix du jour',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Cacahouète déco MONDEPICES 1kg prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'CacahouÃ¨te dÃ©co MONDEPICES 1kg prix du jour ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Cannelle branche 250g MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Coco rapé MONDEPICES 500g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Coco rapÃ© MONDEPICES 500g prix du jour ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'coriandre grain 250g MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'coriandre moulu 250g MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Cumin 250g MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Curcuma MONDEPICES 250g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Etoile d'anis (badiane) Mondepice 250g prix du jour',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Etoile danis (badiane) Mondepice 250g prix du jour',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Feuille de laurier 100g MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Fève sec MONDEPICES 1kg prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'FÃ¨ve sec MONDEPICES 1kg prix du jour ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gingembre MONDEPICES 250g prix du jour',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gingembre Frais Prix du jour /kg',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Gingembre Frais Prix du jour aukg',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Haricot blanc MONDEPICES 1kg (prix du jour)',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Hot poivron Mondepice 100g ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Lentille MONDEPICES 1kg prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Noisette MONDEPICES 1kg prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Oreillons d'abricot sec MONDEPICES 1kg prix du j ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Oreillons dabricot sec MONDEPICES 1kg prix du j ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pignon de pin Mondepices 1kg',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Piment doux MONDEPICES 250g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Piment fort MONDEPICES 250g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pistache nature MONDEPICES 1kg ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Pois cassé Mondepice 1kg',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Pois cassÃ© Mondepice 1kg',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pois chiche MONDEPICES 1kg prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Noix de cajou grillé MONDEPICES 1 kg p du j ',
-    category: 'Epices , Feculant et Herbes',
+    name: 'Noix de cajou grillÃ© MONDEPICES 1 kg p du j ',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Poivre noir grain 250g MONDEPICES',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Poivre noir MONDEPICES moulu 250g prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Raisin sec rouge MONDEPICES 1KG prix du j ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Raisins sec golden 1 kg MONDEPICES prix du jour ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sésame blanc Mondepice 1kg',
-    category: 'Epices , Feculant et Herbes',
+    name: 'SÃ©same blanc Mondepice 1kg',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Thym Mondepice 100g',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite sushi ST1',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette sushi ST2',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite sushi ST3',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite sushi 25 st4 simple',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette sushi ST5',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite sushi st6 simple',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite Sushi ST8',
     category: 'Barquettes Sushi ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Barquette PET noir /K 0020B + couv transp ',
+    name: 'Barquette PET noir auK 0020B + couv transp ',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade ronde Kraft 750ml',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade ronde Kraft 500ml ',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette salade bowl +couv 750 cc',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'R1000 PLAST NOIR PREMIUM',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade plas R250',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade R500',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite plast salade R750 Sel',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'BOITE PLAS salade R1000 Sel ',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade G250',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade plast G500',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade plast G750 Sore',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite salade plast G1000 Sore',
     category: 'Boite Salad en Kraft et Plastique ',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gob cart 4oz + couv PEO',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gob cart 8oz + couv PEO',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Goblet 14oz Trans SYGMA + couv.JUS',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gob blanc PM 18cl x 100 à eau',
+    name: 'Gob blanc PM 18cl x 100 Ã  eau',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gobl Trans PM18cl X 100',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gob Cocktail 42cl + couv bombée ',
+    name: 'Gob Cocktail 42cl + couv bombÃ©e ',
     category: 'Les Goblets',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pot de sauce 3ozx100 (80cc) rect',
     category: 'Les Pot de sauce',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pot de sauce rectg 1oz x 100 (20cc)',
     category: 'Les Pot de sauce',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pot de sauce rond 60ml 2oz + couv x 100',
     category: 'Les Pot de sauce',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Pot sauce trans 1 oz +couv x 100',
     category: 'Les Pot de sauce',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq 420 alum 15 cm',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq 760 Alum 3 portions',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq 808 alum rond 18.2*3.8cm',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq 820 Alum 2 portions',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq 890 alum 20x13',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq alum 368 (196x123*45 )(650CC) LASAGNE',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq alum 71120 flan',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq alum rond 22 cm ',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette alum ronde Large 22cm',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette alum rond profond 31135 GM ',
     category: 'Barquettes Aluminium',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite pizza 24 cm SORE',
     category: 'Boite Pizza',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite pizza 26 cm SORE',
     category: 'Boite Pizza',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite pizza 29 cm SORE',
     category: 'Boite Pizza',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite pizza 31cm SORE',
     category: 'Boite Pizza',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boite pizza 40cm SORE',
     category: 'Boite Pizza',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq mousse 152x140*76 (HB6) HUMBURGER',
     category: 'Barquette Mousse',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq mousse 240x200*90 (LB2)',
     category: 'Barquette Mousse',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barq mousse 3 comp (LB3)',
     category: 'Barquette Mousse',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Barquette Mousse GM 1seul comp',
     category: 'Barquette Mousse',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Poche jetable triangle ITALY x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Devant jetable x 100 pcs ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Calots bouffant (charlotte) rond x100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Charlotte noir x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gant latex x100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gant Noir latex free x 100 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gant sans Pouder Vinyl MEDIUM x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gant patisserie en plastique x100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Gant spontex',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Serpilière blanc 1er choix GM ',
-    category: 'Produits d'entretien',
+    name: 'SerpiliÃ¨re blanc 1er choix GM ',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Serpilliére GM ',
-    category: 'Produits d'entretien',
+    name: 'SerpilliÃ©re GM ',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Serpilière SPEED(66x40 cm)',
-    category: 'Produits d'entretien',
+    name: 'SerpiliÃ¨re SPEED(66x40 cm)',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Raclette 60 cm ',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Balais GM Dur',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Balais GM souple',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Manche en bois filetage',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Eau de javel 5L 6° DUBAI',
-    category: 'Produits d'entretien',
+    name: 'Eau de javel 5L 6Â° DUBAI',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Désinfectant (sani) 5L DUBAI',
-    category: 'Produits d'entretien',
+    name: 'DÃ©sinfectant (sani) 5L DUBAI',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Désinfectant Exxeet 1 L ',
-    category: 'Produits d'entretien',
+    name: 'DÃ©sinfectant Exxeet 1 L ',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Javel EXET 1L',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Javel Ace 1L',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Javel ace 2.5 L',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sac cong avec zip 3L (23x28) large 15unts',
-    category: 'Autres Produits d'emballage',
+    name: 'Sac cong avec zip 3L (23x28) large 15s',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sac cong avec zip 5L (23 x 39 )extra large 10unts ',
-    category: 'Autres Produits d'emballage',
+    name: 'Sac cong avec zip 5L (23 x 39 )extra large 10s ',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sac sous vide aliment et congelation 160x200/unt',
-    category: 'Autres Produits d'emballage',
+    name: 'Sac sous vide aliment et congelation 160x200au',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sac non tissé blanc 26x24x12cm /unt',
-    category: 'Autres Produits d'emballage',
+    name: 'Sac non tissÃ© blanc 26x24x12cm au',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sac kraft 22x10x28cm ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sac kraft MM 26x16x29cm',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sac kraft 32x17x42 cm ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'sachet viennoiserie vergé PM Top Sac',
-    category: 'Autres Produits d'emballage',
+    name: 'sachet viennoiserie vergÃ© PM Top Sac',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sachet viennoiserie vergé MM Top Sac',
-    category: 'Autres Produits d'emballage',
+    name: 'Sachet viennoiserie vergÃ© MM Top Sac',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sachet viennoiserie vergé GM Top SAC',
-    category: 'Autres Produits d'emballage',
+    name: 'Sachet viennoiserie vergÃ© GM Top SAC',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier sandwich 5kg ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier cuisson Rouleau x 50 m',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier cuisson SAGA X500 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier cuisson x 500 ETOILE',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Papier glace 5 kg /kg',
-    category: 'Autres Produits d'emballage',
+    name: 'Papier glace 5 kg aukg',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'sachet frit mini x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sachet frit PM DISTRI anti graissex100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'FILM ALIMENTAIRE BES Pack 30CM/600g',
-    category: 'Autres Produits d'emballage',
+    name: 'FILM ALIMENTAIRE BES Pack 30CMau600g',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'FILM ALIMENTAIRE BES pack 45CM (1600g)',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Aluminium PRO',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Assiette plas rond x20( 18 cm)',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Assiette plastique x 20 (22cm)',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fourchette noire luxe x100 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Fourchette plastique x100 GM',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Cuillière plastiqueGM x100',
-    category: 'Autres Produits d'emballage',
+    name: 'CuilliÃ¨re plastiqueGM x100',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couteau plas transparent luxe x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Couteau cristal Usay x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Paille enveloppée coudée x 200',
-    category: 'Autres Produits d'emballage',
+    name: 'Paille enveloppÃ©e coudÃ©e x 200',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Paille Artistique Enveloppée x 100',
-    category: 'Autres Produits d'emballage',
+    name: 'Paille Artistique EnveloppÃ©e x 100',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Paille Artistique x 100',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Paille enveloppée papier droite x 500',
-    category: 'Autres Produits d'emballage',
+    name: 'Paille enveloppÃ©e papier droite x 500',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Paille Large coudée noire x 500',
-    category: 'Autres Produits d'emballage',
+    name: 'Paille Large coudÃ©e noire x 500',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Paille simple x 100 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Pailles enveloppées plas droite x500',
-    category: 'Autres Produits d'emballage',
+    name: 'Pailles enveloppÃ©es plas droite x500',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier cuisine GM 1.5 kg',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier hyg 1 er choix 350 g',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Papier hyg BRAVO x 4 (1er choix ) ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Mouchoir plas x 600 SWEET',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Serviette ARAX 30 x 30 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Serviette 2plis33 x33 SWEET x100 ',
-    category: 'Autres Produits d'emballage',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 12 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 12 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 15 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 15 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 18 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 18 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 18 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 18 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 20 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 20 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 23 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 23 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Boite à patisserie 25 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Boite Ã  patisserie 25 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Ail semoule DUPRO 500g ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Curry Dupro 450g ',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Estragon DUPRO 80 G',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Herbes de provence Dupro 230g',
-    category: 'Epices , Feculant et Herbes',
+    category: 'Epices et Feculant et Herbes',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Poivre vert 70ml DUCROS',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Boudoir Savoiardi 400g Lady Finger ',
     category: 'Autres produits Alimentaires',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Détergent ZEN 10kg / kg ',
-    category: 'Produits d'entretien',
+    name: 'DÃ©tergent ZEN 10kg au kg ',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Tid x48',
-    category: 'Produits d'entretien',
+    category: 'Produits dentretien',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 18 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 18 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 22cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 22cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 24cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 24cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 26 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 26 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 28 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 28 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 28 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 28 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte doré 32 cm',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte dorÃ© 32 cm',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte à buche 20x10',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte Ã  buche 20x10',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Sous tarte à buche 25x 10',
-    category: 'Autres Produits d'emballage',
+    name: 'Sous tarte Ã  buche 25x 10',
+    category: 'Autres Produits demballage',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Damti Ail x 10',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Bouillon Damti boeuf x 36',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Bouillon damti poisson x 8 ',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Bouillon Damti poulet x 36 ',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Knor boeuf x 8',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Knor Boeuf x45',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Knor poulet x 8',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Knorr DOUIMA SAFRAN X8',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Levure chimique Ideal sachet x100',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Sucre Vanille ideal Sachet x 100 ',
     category: 'Les Boullons',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Pate amande 50% ecomab 4kg / kg ',
+    name: 'Pate amande 50% ecomab 4kg au kg ',
     category: 'Autres Produits pour patisseries',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Praline amande 50% ECOMAB 4kg / kg ',
+    name: 'Praline amande 50% ECOMAB 4kg au kg ',
     category: 'Autres Produits pour patisseries',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
-    name: 'Gélatine DUPRO 1kg ',
+    name: 'GÃ©latine DUPRO 1kg ',
     category: 'Autres Produits pour patisseries',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
   {
     name: 'Nappage Yama 4kg ',
     category: 'Autres Produits pour patisseries',
     checked: false,
     quantity: 1,
-    unit: 'unt'
+    unit: ''
   },
 ];
 
