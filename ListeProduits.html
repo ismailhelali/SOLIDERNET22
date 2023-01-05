@@ -58,31 +58,9 @@
       </div>
     </div>
   </div>
+  <script src="products.js"></script>
+  
    <script>
-const products = [
-  {
-    name: 'Farine Amgalita Pâtisserie 10kg',
-    category: 'farine',
-    checked: false,
-    quantity: 0,
-    unit: 'Sac'
-  },
-  {
-    name: 'Fromage Cheddar Gran coeur Bloc',
-    category: 'Fromagerie',
-    checked: false,
-    quantity: 0,
-    unit: 'unt'
-  },
-  {
-    name: 'Boite Pizza 29cm',
-    category: 'Emballage Pizza',
-    checked: false,
-    quantity: 0,
-    unit: 'Pack'
-  }
-];
-
 function generateTableRows(products) {
   const table = document.getElementById('product-table');
   table.innerHTML = ''; // clear the table
