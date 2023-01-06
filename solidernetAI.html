@@ -101,6 +101,21 @@ function generateResponse(message) {
   }
   return response;
 }
+  
+ function getProductResponse(cuisine) {
+  switch (cuisine) {
+    case 'French':
+      return products.filter(product => product.category === 'les sauces');
+    case 'Italian':
+      return products.filter(product => product.category === 'Italian');
+    case 'Chinese':
+      return products.filter(product => product.category === 'Chinese');
+    // Add cases for the other cuisines
+    default:
+      return 'Sorry, we do not have products in this cuisine.';
+  }
+}
+
 
 
 </script>
