@@ -88,6 +88,34 @@ const products = [
 
 <!-- Chatbot logic -->
 <script>
+  // Chatbot form event listener
+const form = document.getElementById('chatbot-form');
+const input = document.getElementById('chatbot-input');
+const responseDisplay = document.getElementById('chatbot-response-display');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  // Get the user's message
+  const message = input.value;
+
+  // Clear the input field
+  input.value = '';
+
+  // Generate a response to the user's message
+  const response = generateResponse(message);
+
+  // Display the response
+  const responseElement = document.createElement('div');
+  responseElement.innerHTML = response;
+  responseDisplay.appendChild(responseElement);
+
+  // Scroll the response display to the bottom
+  responseDisplay.scrollTop = responseDisplay.scrollHeight;
+});
+
+  
+  
 // Function to get a list of products in a given cuisine
 function getProductResponse(cuisine) {
   switch (cuisine) {
