@@ -42,7 +42,6 @@
     </div>
   </body>
 </html>
-
 <!-- Products data -->
 <script>
   const products = [
@@ -81,7 +80,6 @@
     // Add more products
   ];
 </script>
-
 <!-- Chatbot logic -->
 <script>
   // Chatbot form event listener
@@ -91,8 +89,6 @@
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    
-    });
 
     // Get the user's message
     const message = input.value;
@@ -103,48 +99,40 @@
     // Generate a response to the user's message
     const response = generateResponse(message);
 
-     // Display the response
-const responseElement = document.createElement('div');
-responseElement.innerHTML = response;
-responseDisplay.appendChild(responseElement);
+    // Display the response
+    const responseElement = document.createElement('div');
+    responseElement.innerHTML = response;
+    responseDisplay.appendChild(responseElement);
+
+    // Scroll the response display to the bottom
+    responseDisplay.scrollTop = responseDisplay.scrollHeight;
+  });
 
 
-  // Scroll the response display to the bottom
-  responseDisplay.scrollTop = responseDisplay.scrollHeight;
-});
-  
-  // Function to get a list of products in a given cuisine
-  function getProductResponse(cuisine) {
-    switch (cuisine) {
-      case 'French':
-        return products.filter(product => product.category === 'French');
-      case 'Italian':
-        return products.filter(product => product.category === 'Italian');
-      case 'Chinese':
-        return products.filter(product => product.category === 'Chinese');
-      // Add cases for the other cuisines
-      default:
-        return 'Sorry, we do not have products in this cuisine.';
+// Chatbot logic function
+function generateResponse(message) {
+  // Use a decision tree to determine the appropriate response based on the user's message
+  let response = '';
+  if (message.includes('product')) {
+    // Prompt the user to select a cuisine
+    let cuisine = '';
+    if (!cuisine) {
+      cuisine = prompt('What cuisine are you interested in?');
     }
+    // Call the getProductResponse function to get a list of products in the selected cuisine
+    response = getProductResponse(cuisine);
+  } else if (message.includes('greeting')) {
+    // Respond with a greeting
+    response = 'Hello! How can I help you today?';
+  } else if (message.includes('thank')) {
+    // Respond with a thank you message
+    response = 'You\'re welcome! Is there anything else I can help with?';
+  } else {
+    // Respond with a default message
+    response = 'I\'m sorry, I didn\'t understand your message. Could you please rephrase it?';
   }
 
-  // Chatbot logic function
-  function generateResponse(message) {
-    // Use a decision tree to determine the appropriate response based on the user's message
-    let response = '';
-    if (message.includes('product')) {
-      // Prompt the user to select a cuisine
-      let cuisine = '';
-      if (!cuisine) {
-        cuisine = prompt('What cuisine are you interested in?');
-      }
-      // Call the getProductResponse function to get a list of products in the selected cuisine
-      response = `Here are some products in the ${cuisine} cuisine: ${getProductResponse(cuisine).map(product => product.name).join(', ')}`;
-    } else {
-      // Default response
-      response = 'I am sorry, I did not understand your message.';
-    }
-    return response;
-  }
+  return response;
+}
+
 </script>
-
