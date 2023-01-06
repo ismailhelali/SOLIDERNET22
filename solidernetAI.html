@@ -82,6 +82,26 @@
 </script>
 <!-- Chatbot logic -->
 <script>
+  
+  
+  
+  function getProductResponse(cuisine) {
+  let productsInCuisine = products.filter(product => product.category === cuisine);
+
+  if (productsInCuisine.length === 0) {
+    return `Sorry, we don't have any products in the ${cuisine} cuisine.`;
+  }
+
+  let response = `Here are some products we have in the ${cuisine} cuisine:`;
+  for (let i = 0; i < productsInCuisine.length; i++) {
+    response += `\n${i + 1}. ${productsInCuisine[i].name}`;
+  }
+
+  return response;
+}
+
+  
+  
   // Chatbot form event listener
   const form = document.getElementById('chatbot-form');
   const input = document.getElementById('chatbot-input');
@@ -108,20 +128,6 @@
     responseDisplay.scrollTop = responseDisplay.scrollHeight;
   });
 
-function getProductResponse(cuisine) {
-  let productsInCuisine = products.filter(product => product.category === cuisine);
-
-  if (productsInCuisine.length === 0) {
-    return `Sorry, we don't have any products in the ${cuisine} cuisine.`;
-  }
-
-  let response = `Here are some products we have in the ${cuisine} cuisine:`;
-  for (let i = 0; i < productsInCuisine.length; i++) {
-    response += `\n${i + 1}. ${productsInCuisine[i].name}`;
-  }
-
-  return response;
-}
 
   
   
