@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Page Title</title>
+    <title>AI Chatbot</title>
     <!-- Other head content, such as stylesheets and scripts -->
 <style>
 // CSS styles for the chatbot
@@ -36,7 +37,7 @@
 </style>
   </head>
   <body>
-<h1>SOLIDERNET AI</h1>
+<h1>AI Chatbot</h1>
 
 <div id="chatbot-container">
   <form id="chatbot-form">
@@ -46,66 +47,52 @@
   <div id="chatbot-response-display"></div>
 </div>
 
-</body>
-</html>
-
-<script src="listeproduits.html"></script>
-
-
+<!-- Products data -->
 <script>
+const products = [
+  {
+    name: 'Baguette',
+    category: 'French',
+  },
+  {
+    name: 'Pizza',
+    category: 'Italian',
+  },
+  {
+    name: 'Egg rolls',
+    category: 'Chinese',
+  },
+  {
+    name: 'Samosas',
+    category: 'Indian',
+  },
+  {
+    name: 'Sushi',
+    category: 'Japanese',
+  },
+  {
+    name: 'Hamburger',
+    category: 'American',
+  },
+  {
+    name: 'Paella',
+    category: 'Spanish',
+  },
+  {
+    name: 'Tacos',
+    category: 'Mexican',
+  },
+  // Add more products
+];
+</script>
 
-
-// Step 3: Create the JavaScript logic for the chatbot
-
-const form = document.getElementById('chatbot-form');
-const input = document.getElementById('chatbot-input');
-const responseDisplay = document.getElementById('chatbot-response-display');
-
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  // Get the user's message
-  const message = input.value;
-
-  // Clear the input field
-  input.value = '';
-
-  // Generate a response to the user's message
-  const response = generateResponse(message);
-
-  // Display the response
-  const responseElement = document.createElement('div');
-  responseElement.innerHTML = response;
-  responseDisplay.appendChild(responseElement);
-
-  // Scroll the response display to the bottom
-  responseDisplay.scrollTop = responseDisplay.scrollHeight;
-});
-
-// Step 4: Implement the AI aspect of the chatbot
-
-function generateResponse(message) {
-  // Use a decision tree to determine the appropriate response based on the user's message
-  let response = '';
-  if (message.includes('product')) {
-    // Call a function from the products.js file to generate a response about products
-    response = getProductResponse();
-  } else if (message.includes('service')) {
-    response = 'We offer a range of services, including product consulting and support. How can we help you?';
-  } else if (message.includes('delivery')) {
-    response = 'Our delivery times vary depending on the product and location. Please check the product page for more information.';
-  } else if (message.includes('appointment')) {
-    response = 'Sure, we can schedule an appointment for you. Please let us know the date and time that works best for you.';
-  } else {
-    response = "I'm sorry, I didn't understand your message. Could you please rephrase your question?";
-  }
-  return response;
-}
-  
- function getProductResponse(cuisine) {
+<!-- Chatbot logic -->
+<script>
+// Function to get a list of products in a given cuisine
+function getProductResponse(cuisine) {
   switch (cuisine) {
     case 'French':
-      return products.filter(product => product.category === 'les sauces');
+      return products.filter(product => product.category === 'French');
     case 'Italian':
       return products.filter(product => product.category === 'Italian');
     case 'Chinese':
@@ -116,7 +103,39 @@ function generateResponse(message) {
   }
 }
 
+// Chatbot logic function
+function generateResponse(message) {
+  // Use a decision tree to determine the appropriate response based on the user's message
+  let response = '';
+  if (message.includes('product')) {
+    // Prompt the user to select a cuisine
+  let cuisine = '';
+  while (!cuisine) {
+    cuisine = prompt('What cuisine are you interested in?');
+  }
+  // Call the getProductResponse function to get a list of products in the selected cuisine
+  response = getProductResponse(cuisine);
+  if (Array.isArray(response)) {
+    // If the response is an array of products, format the list as a string
+    response = response.map(product => product.name).join(', ');
+  }
+} else if (message.includes('service')) {
+  response = 'We offer a range of services, including product consulting and support. How can we help you?';
+} else if (message.includes('delivery')) {
+  response = 'Our delivery times vary depending on the product and location. Please check the product page for more information.';
+} else if (message.includes('appointment')) {
+  response = 'Sure, we can schedule an appointment for you. Please let us know the date and time that works best for you.';
+} else {
+  response = 'Sorry, I did not understand your message. Please try again.';
+}
+
+return response;
 
 
-</script>
 
+
+    </script>
+    
+  </body>
+  
+</html>
