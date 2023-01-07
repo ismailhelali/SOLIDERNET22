@@ -76,7 +76,16 @@ button[type="submit"]:hover {
 
 .product-card img {
   width: 100%;
-  height: 200px;
+ 
+
+
+
+Ismail Helali
+continue the rest of the last script
+Certainly! Here is the rest of the revised script:
+
+Copy code
+height: 200px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }
@@ -105,14 +114,14 @@ button[type="submit"]:hover {
   background-color: steelblue;
 }
 
-    </style>
+</style>
     
   </head>
   <body>
     <h1>Chatbot de produits et de cuisine</h1>
     <p>Posez une question au chatbot sur les produits ou la cuisine:</p>
 
-<!-- Form to submit user input to the chatbot -->
+    <!-- Form to submit user input to the chatbot -->
     <form id="chat-form">
       <input type="text" id="chat-input" placeholder="Entrez votre question ici">
       <button type="submit">Envoyer</button>
@@ -125,8 +134,8 @@ button[type="submit"]:hover {
     <div id="product-list"></div>
     
     <!-- Load external libraries -->
-<script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     
     <!-- Set up an array of products -->
     <script>
@@ -134,7 +143,17 @@ button[type="submit"]:hover {
   {
     name: 'Baguette',
     cuisine: 'french',
-    image: 'https://via.placeholder.com/250x200?text=Baguette'
+    image: 'https://via.placeholder.com/250x200?text=B
+
+
+
+Ismail Helali
+continue the rest of the last script
+
+Certainly! Here is the rest of the revised script:
+
+Copy code
+aguette'
   },
   {
     name: 'Pizza',
@@ -151,28 +170,42 @@ button[type="submit"]:hover {
     
     <!-- Define a function to handle user input -->
     <script>
-    const handleUserInput = (input) => {
-  // Use natural language processing to extract meaning from the input
-  const doc = compromise(input);
+    import * as nlp from 'compromise';
+
+const handleUserInput = (input) => {
+  // Split the input into words
+  const words = input.split(' ');
   
-  // Determine the user's preferred language
-  const language = doc.languages().out('array')[0] || 'en';
-  
-  // Check if the input contains any product-related keywords
-  const productsMentioned = doc.match('#Product').out('array');
-  
-  // Check if the input contains any cuisine-related keywords
-  const cuisinesMentioned = doc.match('#Cuisine').out('array');
+  // Check if any of the words are related to products or cuisine
+  let productMentioned = false;
+  let cuisineMentioned = false;
+  for (const word of words) {
+    if (word.toLowerCase() === 'product') {
+      productMentioned = true;
+    } else if (word.toLowerCase() === 'cuisine') {
+      cuisineMentioned = true;
+    }
+  }
   
   // If the user mentions products, ask about their cuisine preferences
-  if (productsMentioned.length > 0) {
-    if (cuisinesMentioned.length > 0) {
+  if (productMentioned) {
+    if (cuisineMentioned) {
       // If the user also mentions cuisine, display a list of relevant products
-      displayProductsForCuisine(cuisinesMentioned, language);
+      displayProductsForCuisine(input);
     } else {
       // If the user doesn't mention cuisine, ask about it
-      console.log('What is your preferred cuisine?');
       console.log('Quelle est votre cuisine préférée?');
+      console.log('What is your
+
+
+
+Ismail Helali
+continue the rest of the last script
+
+Certainly! Here is the rest of the revised script:
+
+Copy code
+preferred cuisine?');
       console.log('ما هي المطبخ المفضل لديك؟');
     }
   }
@@ -181,64 +214,63 @@ button[type="submit"]:hover {
     
     <!-- Define a function to display relevant products for a given cuisine -->
     <script>
-    const displayProductsForCuisine = (cuisines, language) => {
-  // Use machine learning to predict the most relevant products for the given cuisine
-  const predictions = predictProducts(cuisines);
-  
-  // Filter the products array to include only the predicted products
-  const relevantProducts = products.filter(product => predictions.includes(product.name));
-  
-  // Display the relevant products in the product list div
-  let productListHTML = '';
-  for (const product of relevantProducts) {
-    productListHTML += `
-      <div class="product-card">
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>Cuisine: ${product.cuisine}</p>
-        <button>Add to Favorites</button>
-      </div>
-    `;
+    const displayProductsForCuisine = (input) => {
+  // Determine the user's preferred language
+  let language = 'en';
+  for (const lang in languageMap) {
+    if (input.toLowerCase().includes(lang)) {
+      language = languageMap[lang];
+      break;
+    }
   }
-  document.getElementById('product-list').innerHTML = productListHTML;
+  
+  // Extract the user's preferred cuisine from the input
+  const preferredCuisine = nlp(input)
+    .nouns()
+    .toLowerCase()
+    .out('array')
+    .find(noun => {
+      return products.some(product => product.cuisine === noun);
+    });
+  
+  // Display a list of relevant products
+  const productList = document.getElementById('product-list');
+  productList.innerHTML = '';
+  for (const product of products) {
+    if (product.cuisine === preferredCuisine) {
+      productList.innerHTML += `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.cuisine} cuisine</p>
+          <button>Ajouter au panier</button>
+        </div>
+      `;
+    }
+  }
 };
     </script>
     
-    <!-- Define a function to use machine learning to predict relevant products -->
+    <!-- Map language codes to full names -->
     <script>
-    const predictProducts = async (cuisines) => {
-  // Load the pre-trained model
-  const model = await tf.loadLayersModel('https://my-model-server.com/model.json');
-  
-  // Prepare the input data
-  const inputData = {
-    cuisines: cuisines
-  };
-  
-  // Use the model to make predictions
-  const predictions = model.predict(inputData);
-  
-  // Return the predicted product names
-  return predictions.map(prediction => prediction.name);
+    const languageMap = {
+  en: 'english',
+  fr: 'french',
+  it: 'italian',
+  ar: 'arabic'
 };
     </script>
     
-    <!-- Set up event listener for the chat form -->
+    <!-- Set up event listener for form submission -->
     <script>
     const chatForm = document.getElementById('chat-form');
-    chatForm.addEventListener('submit', event => {
-  // Prevent the form from refreshing the page
+
+chatForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  
-  // Get the user's input
   const input = document.getElementById('chat-input').value;
-  
-  // Clear the input field
-  document.getElementById('chat-input').value = '';
-  
-  // Handle the user's input
   handleUserInput(input);
 });
     </script>
+    
   </body>
 </html>
