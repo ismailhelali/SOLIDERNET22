@@ -2,63 +2,7 @@
 <html>
   <head>
     <title>Chatbot de produits et de cuisine</title>
-    <style>
-      body {
-  font-family: Arial, sans-serif;
-}
-
-h1 {
-  text-align: center;
-  color: darkblue;
-}
-
-p {
-  margin: 20px 0;
-}
-
-#chat-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#chat-input {
-  width: 50%;
-  height: 40px;
-  font-size: 16px;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  padding: 0 10px;
-}
-
-button[type="submit"] {
-  width: 100px;
-  height: 40px;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: steelblue;
-}
-
-#chat-output {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: lightgrey;
-  border-radius: 5px;
-}
-
-#chat-output p {
-  margin: 10px 0;
-  font-size: 18px;
-}
-
-    </style>  
+    <link rel="stylesheet" href="styleai.css">
   </head>
   <body>
     <h1>Chatbot de produits et de cuisine</h1>
@@ -77,94 +21,7 @@ button[type="submit"]:hover {
     <script src="./products.js"></script>
     
     <!-- Include the chatbot script -->
-    <script>
-    // Import the products.js file
-const products = require('./products.js');
-
-// Set up a language map for French, English, and Arabic
-const languageMap = {
-  fr: 'french',
-  en: 'english',
-  ar: 'arabic'
-};
-
-// Define a function to handle user input
-const handleUserInput = (input) => {
-  // Split the input into words
-  const words = input.split(' ');
-  
-  // Check if any of the words are related to products or cuisine
-  let productMentioned = false;
-  let cuisineMentioned = false;
-  for (const word of words) {
-    if (word.toLowerCase() === 'produit' || word.toLowerCase() === 'product') {
-      productMentioned = true;
-    } else if (word.toLowerCase() === 'cuisine') {
-      cuisineMentioned = true;
-    }
-  }
-  
-  // If the user mentions products, ask about their cuisine preferences
-  if (productMentioned) {
-    if (cuisineMentioned) {
-      // If the user also mentions cuisine, display a list of relevant products
-      displayProductsForCuisine(input);
-    } else {
-      // If the user doesn't mention cuisine, ask about it
-      console.log('Quelle est votre cuisine préférée?');
-      console.log('What is your preferred cuisine?');
-      console.log('ما هي المطبخ المفضل لديك؟');
-    }
-  }
-};
-
-// Define a function to display relevant products for a given cuisine
-const displayProductsForCuisine = (input) => {
-  // Determine the user's preferred language
-  let language = 'en';
-  for (const lang in languageMap) {
-    if (input.toLowerCase().includes(lang)) {
-      language = languageMap[lang];
-      break;
-    }
-  }
-  
-  // Extract the cuisine from the user's input
-  let cuisine = '';
-  for (const word of input.split(' ')) {
-    if (word.toLowerCase() === 'cuisine') {
-      cuisine = word;
-      break;
-    }
-  }
-  
-  // Find the relevant products for the given cuisine
-  const relevantProducts = products.filter((product) => {
-    return product.cuisine.toLowerCase() === cuisine.toLowerCase();
-  });
-  
-  // Display the relevant products in the user's preferred language
-  if (relevantProducts.length > 0) {
-    console.log(`Voici quelques produits pour la cuisine ${cuisine} :`);
-    console.log(`Here are some products for ${cuisine} cuisine:`);
-    console.log(`هنا بعض المنتجات للمطبخ ${cuisine} :`);
-    relevantProducts.forEach((product) => {
-      console.log(product[language]);
-    });
-  } else {
-    // If no relevant products were found, display a message in the user's preferred language
-    console.log(`Désolé, nous n'avons pas de produits pour la cuisine ${cuisine}.`);
-    console.log(`Sorry, we don't have any products for ${cuisine} cuisine.`);
-    console.log(`عذرا، ليس لدينا أي منتجات للمطبخ ${cuisine}.`);
-  }
-};
-
-// Test the handleUserInput function with some example inputs
-handleUserInput('Je cherche des produits pour la cuisine française');
-handleUserInput('I'm looking for products for Italian cuisine');
-handleUserInput('أبحث عن منتجات للمطبخ الإيطالي');
-    
-    </script>
+    <script src="./chatbot.js"></script>
     
     <!-- Add an event listener for the chat form submission -->
     <script>
@@ -185,6 +42,3 @@ handleUserInput('أبحث عن منتجات للمطبخ الإيطالي');
     </script>
   </body>
 </html>
-
-
-
