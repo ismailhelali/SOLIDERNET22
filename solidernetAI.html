@@ -1,139 +1,133 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>AI Chatbot</title>
-    <!-- Other head content, such as stylesheets and scripts -->
-    <style>
-      /* CSS styles for the chatbot */
-      #chatbot-container {
-        width: 500px;
-        height: 400px;
-        background-color: #eee;
-        border: 1px solid #ccc;
-        overflow-y: scroll;
-      }
-      #chatbot-form {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #fff;
-        border-top: 1px solid #ccc;
-      }
-      #chatbot-input {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-      }
-      #chatbot-response-display {
-        padding: 10px;
-      }
-    </style>
+    <title>Chatbot de produits et de cuisine</title>
   </head>
   <body>
-    <h1>AI Chatbot</h1>
-    <div id="chatbot-container">
-      <form id="chatbot-form">
-        <input type="text" id="chatbot-input">
-        <button type="submit">Send</button>
-      </form>
-      <div id="chatbot-response-display"></div>
-    </div>
+    <h1>Chatbot de produits et de cuisine</h1>
+    <p>Posez une question au chatbot sur les produits ou la cuisine:</p>
+    
+    <!-- Form to submit user input to the chatbot -->
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Entrez votre question ici">
+      <button type="submit">Envoyer</button>
+    </form>
+    
+    <!-- Div to display the chatbot's responses -->
+    <div id="chat-output"></div>
+    
+    <!-- Include the products.js file -->
+    <script src="./products.js"></script>
+    
+    <!-- Include the chatbot script -->
+    <script>
+    // Import the products.js file
+const products = require('./products.js');
+
+// Set up a language map for French, English, and Arabic
+const languageMap = {
+  fr: 'french',
+  en: 'english',
+  ar: 'arabic'
+};
+
+// Define a function to handle user input
+const handleUserInput = (input) => {
+  // Split the input into words
+  const words = input.split(' ');
+  
+  // Check if any of the words are related to products or cuisine
+  let productMentioned = false;
+  let cuisineMentioned = false;
+  for (const word of words) {
+    if (word.toLowerCase() === 'produit' || word.toLowerCase() === 'product') {
+      productMentioned = true;
+    } else if (word.toLowerCase() === 'cuisine') {
+      cuisineMentioned = true;
+    }
+  }
+  
+  // If the user mentions products, ask about their cuisine preferences
+  if (productMentioned) {
+    if (cuisineMentioned) {
+      // If the user also mentions cuisine, display a list of relevant products
+      displayProductsForCuisine(input);
+    } else {
+      // If the user doesn't mention cuisine, ask about it
+      console.log('Quelle est votre cuisine préférée?');
+      console.log('What is your preferred cuisine?');
+      console.log('ما هي المطبخ المفضل لديك؟');
+    }
+  }
+};
+
+// Define a function to display relevant products for a given cuisine
+const displayProductsForCuisine = (input) => {
+  // Determine the user's preferred language
+  let language = 'en';
+  for (const lang in languageMap) {
+    if (input.toLowerCase().includes(lang)) {
+      language = languageMap[lang];
+      break;
+    }
+  }
+  
+  // Extract the cuisine from the user's input
+  let cuisine = '';
+  for (const word of input.split(' ')) {
+    if (word.toLowerCase() === 'cuisine') {
+      cuisine = word;
+      break;
+    }
+  }
+  
+  // Find the relevant products for the given cuisine
+  const relevantProducts = products.filter((product) => {
+    return product.cuisine.toLowerCase() === cuisine.toLowerCase();
+  });
+  
+  // Display the relevant products in the user's preferred language
+  if (relevantProducts.length > 0) {
+    console.log(`Voici quelques produits pour la cuisine ${cuisine} :`);
+    console.log(`Here are some products for ${cuisine} cuisine:`);
+    console.log(`هنا بعض المنتجات للمطبخ ${cuisine} :`);
+    relevantProducts.forEach((product) => {
+      console.log(product[language]);
+    });
+  } else {
+    // If no relevant products were found, display a message in the user's preferred language
+    console.log(`Désolé, nous n'avons pas de produits pour la cuisine ${cuisine}.`);
+    console.log(`Sorry, we don't have any products for ${cuisine} cuisine.`);
+    console.log(`عذرا، ليس لدينا أي منتجات للمطبخ ${cuisine}.`);
+  }
+};
+
+// Test the handleUserInput function with some example inputs
+handleUserInput('Je cherche des produits pour la cuisine française');
+handleUserInput('I'm looking for products for Italian cuisine');
+handleUserInput('أبحث عن منتجات للمطبخ الإيطالي');
+    
+    </script>
+    
+    <!-- Add an event listener for the chat form submission -->
+    <script>
+      const chatForm = document.getElementById('chat-form');
+      chatForm.addEventListener('submit', (event) => {
+        // Prevent the form from being submitted
+        event.preventDefault();
+        
+        // Get the user's input from the form
+        const input = document.getElementById('chat-input').value;
+        
+        // Pass the input to the chatbot's handling function
+        handleUserInput(input);
+        
+        // Clear the form input
+        chatForm.reset();
+      });
+    </script>
   </body>
 </html>
-<!-- Products data -->
-<script>
-  const products = [
-    {
-      name: 'Baguette',
-      category: 'French',
-    },
-    {
-      name: 'Pizza',
-      category: 'Italian',
-    },
-    {
-      name: 'Egg rolls',
-      category: 'Chinese',
-    },
-    {
-      name: 'Samosas',
-      category: 'Indian',
-    },
-    {
-      name: 'Sushi',
-      category: 'Japanese',
-    },
-    {
-      name: 'Hamburger',
-      category: 'American',
-    },
-    {
-      name: 'Paella',
-      category: 'Spanish',
-    },
-    {
-{
-      name: 'Tacos',
-      category: 'Mexican',
-    },
-    // Add more products
-  ];
-</script>
-<!-- Chatbot logic -->
-<script>
-  
-  function getProductResponse(cuisine) {
-    let productsInCuisine = products.filter(product => product.category === cuisine);
 
-    if (productsInCuisine.length === 0) {
-      return `Sorry, we don't have any products in the ${cuisine} cuisine.`;
-    }
 
-    let response = `Here are some products we have in the ${cuisine} cuisine:`;
-    for (let i = 0; i < productsInCuisine.length; i++) {
-      response += `\n${i + 1}. ${productsInCuisine[i].name}`;
-    }
 
-    return response;
-  }
-
-  // Chatbot form event listener
-  const form = document.getElementById('chatbot-form');
-  const input = document.getElementById('chatbot-input');
-  const responseDisplay = document.getElementById('chatbot-response-display');
-
-  form.addEventListener('submit', (event)
-=> {
-    event.preventDefault();
-
-    // Get the user's input
-    const inputValue = input.value;
-
-    // Clear the input field
-    input.value = '';
-
-    // Generate a response to the user's input
-    let response = '';
-    if (inputValue.includes('product')) {
-      // Get the cuisine from the input value
-      const cuisine = inputValue.split('product')[1].trim();
-
-      // Get the product response for the cuisine
-      response = getProductResponse(cuisine);
-    } else if (inputValue.includes('hi')) {
-      response = 'Hello! How can I help you today?';
-    } else {
-      response = 'I\'m sorry, I don\'t understand your message. Could you please rephrase that?';
-    }
-
-    // Display the response
-    const responseElement = document.createElement('div');
-    responseElement.innerHTML = response;
-    responseDisplay.appendChild(responseElement);
-
-    // Scroll the response display to the bottom
-    responseDisplay.scrollTop = responseDisplay.scrollHeight;
-  });
-</script>
