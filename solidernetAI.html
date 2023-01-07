@@ -159,94 +159,8 @@ function generateResponse(message) {
 
 </script>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>AI Chatbot</title>
-    <!-- Other head content, such as stylesheets and scripts -->
-    <style>
-      /* CSS styles for the chatbot */
-      #chatbot-container {
-        width: 500px;
-        height: 400px;
-        background-color: #eee;
-        border: 1px solid #ccc;
-        overflow-y: scroll;
-      }
-      #chatbot-form {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #fff;
-        border-top: 1px solid #ccc;
-      }
-      #chatbot-input {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-      }
-      #chatbot-response-display {
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>AI Chatbot</h1>
-    <div id="chatbot-container">
-      <form id="chatbot-form">
-        <input type="text" id="chatbot-input">
-        <button type="submit">Send</button>
-        <button type="button" id="done-button">Done</button>
-      </form>
-      <div id="chatbot-response-display"></div>
-    </div>
-  </body>
-</html>
-
-<!-- Products data -->
 <script>
-  const products = [
-    {
-      name: 'Baguette',
-      category: 'French',
-    },
-    {
-      name: 'Pizza',
-      category: 'Italian',
-    },
-    {
-      name: 'Egg rolls',
-      category: 'Chinese',
-    },
-    {
-      name: 'Samosas',
-      category: 'Indian',
-    },
-    {
-      name: 'Sushi',
-      category: 'Japanese',
-    },
-    {
-      name: 'Hamburger',
-      category: 'American',
-    },
-    {
-      name: 'Paella',
-      category: 'Spanish',
-    },
-    {
-      name: 'Tacos',
-      category: 'Mexican',
-    },
-    // Add more products
-  ];
-</script>
-
-<!-- Chatbot logic -->
-<script>
-  const userProducts = [];
+const userProducts = [];
 
   function processUserInput() {
     // Generate a response based on the user's input
@@ -262,5 +176,4 @@ function generateResponse(message) {
 
     // Display the response
     const responseElement = document.createElement('div');
-
-
+</script>
