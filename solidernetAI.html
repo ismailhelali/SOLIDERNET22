@@ -1,190 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ChatBot </title>
-<body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Page Title</title>
+    <!-- Other head content, such as stylesheets and scripts -->
+<style>
+// CSS styles for the chatbot
 
-<div id="chat-window">
-  <div id="chat-header">
-    <h3>Chatbot</h3>
-  </div>
-  <div id="chat-messages">
-    <!-- conversation messages will be inserted here -->
-  </div>
-  <div id="chat-input">
-    <form id="chat-form">
-      <input type="text" id="chat-input-field" placeholder="Enter message...">
-      <button type="submit">Send</button>
-    </form>
-  </div>
+#chatbot-container {
+  width: 500px;
+  height: 400px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+}
+
+#chatbot-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+#chatbot-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#chatbot-response-display {
+  padding: 10px;
+}
+</style>
+  </head>
+  <body>
+<h1>SOLIDERNET AI</h1>
+
+<div id="chatbot-container">
+  <form id="chatbot-form">
+    <input type="text" id="chatbot-input">
+    <button type="submit">Send</button>
+  </form>
+  <div id="chatbot-response-display"></div>
 </div>
 
 </body>
 </html>
-<style>
 
+<script src="listeproduits.html"></script>
 
-#chat-window {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  width: 50%;
-  margin: 0 auto;
-}
-
-#chat-header {
-  background-color: #cccccc;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 10px;
-}
-
-#chat-messages {
-  height: 300px;
-  overflow-y: scroll;
-  padding: 10px;
-}
-
-#chat-input {
-  background-color: #f5f5f5;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 10px;
-}
-
-#chat-input-field {
-  width: 70%;
-  border: none;
-  padding: 10px;
-}
-
-button[type="submit"] {
-  width: 30%;
-  border: none;
-  background-color: #4caf50;
-  color: #ffffff;
-  padding: 10px;
-}
-</style>
 
 <script>
-// function to add a message to the conversation
-function addMessage(sender, message) {
-  // create a new message element
-  var messageEl = document.createElement('div');
-  messageEl.classList.add('chat-message');
-  messageEl.innerHTML = '<strong>' + sender + ':</strong> ' + message;
 
-  // add the message to the chat window
-  var chatMessages = document.getElementById('chat-messages');
-  chatMessages.appendChild(messageEl);
 
-  // scroll to the bottom of the chat window
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+// Step 3: Create the JavaScript logic for the chatbot
 
-// function to handle form submission
-function handleFormSubmit(event) {
+const form = document.getElementById('chatbot-form');
+const input = document.getElementById('chatbot-input');
+const responseDisplay = document.getElementById('chatbot-response-display');
+
+form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  // get the message from the input field
-  var message = document.getElementById('chat-input-field').value;
+  // Get the user's message
+  const message = input.value;
 
-  // add the message to the conversation as the user
-  addMessage('You', message);
+  // Clear the input field
+  input.value = '';
 
-  // send the message to the AI for a response
-  sendMessageToAI(message, function(response) {
-    // add the AI's response to the conversation
-    addMessage('AI', response);
-  });
+  // Generate a response to the user's message
+  const response = generateResponse(message);
 
-  // clear the input field
-  document.getElementById('chat-input-field').value = '';
-}
+  // Display the response
+  const responseElement = document.createElement('div');
+  responseElement.innerHTML = response;
+  responseDisplay.appendChild(responseElement);
 
-
-// function to send a message to the AI and get a response
-function sendMessageToAI(message, callback) {
-  // send the message to the AI via an API call
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.ai/sendMessage');
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      // parse the response from the AI
-      var response = JSON.parse(xhr.responseText);
-      // invoke the callback function with the response
-      callback(response.message);
-    }
-  };
-  xhr.send(JSON.stringify({ message: message }));
-}
-
-// function to handle client information collection
-function collectClientInformation() {
-  // get the client information from the form
-  var clientName = document.getElementById('client-name').value;
-  var clientEmail = document.getElementById('client-email').value;
-  var clientPhone = document.getElementById('client-phone').value;
-
-  // save the client information to a file or database
-  saveClientInformation(clientName, clientEmail, clientPhone);
-}
-
-// function to handle complaint collection
-function collectComplaint() {
-  // get the complaint from the form
-  var complaint = document.getElementById('complaint').value;
-
-  // save the complaint to a file or database
-  saveComplaint(complaint);
-}
-
-// function to provide website navigation help
-function provideNavigationHelp() {
-  // provide helpful information about navigating the website
-  var message = "To navigate the website, use the menu at the top of the page. You can also use the search bar to find specific pages or content. If you need further assistance, you can always contact us for help.";
-  addMessage('AI', message);
-}
-
-// function to provide product information
-function provideProductInformation(productCategory) {
-  // retrieve product information from a database or API
-  var productInfo = getProductInformation(productCategory);
-  // provide the product information to the user
-  addMessage('AI', productInfo);
-}
-
-// add event listeners
-document.getElementById('chat-form').addEventListener('submit', handleFormSubmit);
-document.getElementById('client-info-form').addEventListener('submit', collectClientInformation);
-document.getElementById('complaint-form').addEventListener('submit', collectComplaint);
-document.getElementById('navigation-help-button').addEventListener('click', provideNavigationHelp);
-document.getElementById('product-info-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  var productCategory = document.getElementById('product-category').value;
-  provideProductInformation(productCategory);
+  // Scroll the response display to the bottom
+  responseDisplay.scrollTop = responseDisplay.scrollHeight;
 });
 
-// function to handle user input and provide a response based on a logic tree
-function handleInput(input) {
-  // define the logic tree
-  var response = '';
-  if (input.includes('hello')) {
-    response = 'Hello there! How can I help you today?';
-  } else if (input.includes('weather')) {
-    response = 'I am sorry, I am unable to provide weather information.';
-  } else if (input.includes('time')) {
-    var currentTime = new Date();
-    response = 'The current time is ' + currentTime.toLocaleTimeString();
-  } else {
-    response = 'I am not sure how to respond to that. Could you please rephrase your question or request?';
-  }
+// Step 4: Implement the AI aspect of the chatbot
 
-  // return the response
+function generateResponse(message) {
+  // Use a decision tree to determine the appropriate response based on the user's message
+  let response = '';
+  if (message.includes('product')) {
+    // Call a function from the products.js file to generate a response about products
+    response = getProductResponse();
+  } else if (message.includes('service')) {
+    response = 'We offer a range of services, including product consulting and support. How can we help you?';
+  } else if (message.includes('delivery')) {
+    response = 'Our delivery times vary depending on the product and location. Please check the product page for more information.';
+  } else if (message.includes('appointment')) {
+    response = 'Sure, we can schedule an appointment for you. Please let us know the date and time that works best for you.';
+  } else {
+    response = "I'm sorry, I didn't understand your message. Could you please rephrase your question?";
+  }
   return response;
 }
+
+
 </script>
