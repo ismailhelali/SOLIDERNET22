@@ -85,21 +85,32 @@ form.addEventListener('submit', (event) => {
 // Step 4: Implement the AI aspect of the chatbot
 
 function generateResponse(message) {
-  // Use a decision tree to determine the appropriate response based on the user's message
+  // Use a switch statement to determine the appropriate response based on the user's message
   let response = '';
-  if (message.includes('product')) {
-    // Call a function from the products.js file to generate a response about products
-    response = getProductResponse();
-  } else if (message.includes('service')) {
-    response = 'We offer a range of services, including product consulting and support. How can we help you?';
-  } else if (message.includes('delivery')) {
-    response = 'Our delivery times vary depending on the product and location. Please check the product page for more information.';
-  } else if (message.includes('appointment')) {
-    response = 'Sure, we can schedule an appointment for you. Please let us know the date and time that works best for you.';
-  } else {
-    response = "I'm sorry, I didn't understand your message. Could you please rephrase your question?";
+  switch (true) {
+    case message.includes('product'):
+      // Call a function from the products.js file to generate a response about products
+      response = getProductResponse();
+      break;
+    case message.includes('service'):
+      response = 'We offer a range of services, including product consulting and support. How can we help you?';
+      break;
+    case message.includes('delivery'):
+      response = 'Our delivery times vary depending on the product and location. Please check the product page for more information.';
+      break;
+    case message.includes('appointment'):
+      response = 'Sure, we can schedule an appointment for you. Please let us know the date and time that works best for you.';
+      break;
+    case message.includes('greeting'):
+      response = 'Hello! How can I assist you today?';
+      break;
+    case message.includes('help'):
+      response = 'How can I assist you? Please let me know if you have any questions or need help with anything.';
+      break;
+    default:
+      response = "I'm sorry, I didn't understand your message. Could you please rephrase your question?";
   }
-  return response;
+  return `<script>console.log('${response}');</script>`;
 }
 
 
