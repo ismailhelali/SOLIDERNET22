@@ -74,6 +74,7 @@
       category: 'Spanish',
     },
     {
+{
       name: 'Tacos',
       category: 'Mexican',
     },
@@ -83,41 +84,49 @@
 <!-- Chatbot logic -->
 <script>
   
-  
-  
   function getProductResponse(cuisine) {
-  let productsInCuisine = products.filter(product => product.category === cuisine);
+    let productsInCuisine = products.filter(product => product.category === cuisine);
 
-  if (productsInCuisine.length === 0) {
-    return `Sorry, we don't have any products in the ${cuisine} cuisine.`;
+    if (productsInCuisine.length === 0) {
+      return `Sorry, we don't have any products in the ${cuisine} cuisine.`;
+    }
+
+    let response = `Here are some products we have in the ${cuisine} cuisine:`;
+    for (let i = 0; i < productsInCuisine.length; i++) {
+      response += `\n${i + 1}. ${productsInCuisine[i].name}`;
+    }
+
+    return response;
   }
 
-  let response = `Here are some products we have in the ${cuisine} cuisine:`;
-  for (let i = 0; i < productsInCuisine.length; i++) {
-    response += `\n${i + 1}. ${productsInCuisine[i].name}`;
-  }
-
-  return response;
-}
-
-  
-  
   // Chatbot form event listener
   const form = document.getElementById('chatbot-form');
   const input = document.getElementById('chatbot-input');
   const responseDisplay = document.getElementById('chatbot-response-display');
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', (event)
+=> {
     event.preventDefault();
 
-    // Get the user's message
-    const message = input.value;
+    // Get the user's input
+    const inputValue = input.value;
 
     // Clear the input field
     input.value = '';
 
-    // Generate a response to the user's message
-    const response = generateResponse(message);
+    // Generate a response to the user's input
+    let response = '';
+    if (inputValue.includes('product')) {
+      // Get the cuisine from the input value
+      const cuisine = inputValue.split('product')[1].trim();
+
+      // Get the product response for the cuisine
+      response = getProductResponse(cuisine);
+    } else if (inputValue.includes('hi')) {
+      response = 'Hello! How can I help you today?';
+    } else {
+      response = 'I\'m sorry, I don\'t understand your message. Could you please rephrase that?';
+    }
 
     // Display the response
     const responseElement = document.createElement('div');
@@ -127,53 +136,4 @@
     // Scroll the response display to the bottom
     responseDisplay.scrollTop = responseDisplay.scrollHeight;
   });
-
-
-  
-  
-// Chatbot logic function
-function generateResponse(message) {
-  // Use a decision tree to determine the appropriate response based on the user's message
-  let response = '';
-  if (message.includes('product')) {
-    // Prompt the user to select a cuisine
-    let cuisine = '';
-    if (!cuisine) {
-      cuisine = prompt('What cuisine are you interested in?');
-    }
-    // Call the getProductResponse function to get a list of products in the selected cuisine
-    response = getProductResponse(cuisine);
-  } else if (message.includes('greeting')) {
-    // Respond with a greeting
-    response = 'Hello! How can I help you today?';
-  } else if (message.includes('thank')) {
-    // Respond with a thank you message
-    response = 'You\'re welcome! Is there anything else I can help with?';
-  } else {
-    // Respond with a default message
-    response = 'I\'m sorry, I didn\'t understand your message. Could you please rephrase it?';
-  }
-
-  return response;
-}
-
-</script>
-
-<script>
-const userProducts = [];
-
-  function processUserInput() {
-    // Generate a response based on the user's input
-    let response = 'Sorry, we could not find any matches in our product list.';
-    for (let i = 0; i < userProducts.length; i++) {
-      for (let j = 0; j < products.length; j++) {
-        if (userProducts[i].includes(products[j].name)) {
-          response = `We have a match for "${userProducts[i]}": ${products[j].name}.`;
-          break;
-        }
-      }
-    }
-
-    // Display the response
-    const responseElement = document.createElement('div');
 </script>
