@@ -4,93 +4,92 @@
     <meta charset="utf-8">
     <title>Page Title</title>
     <!-- Other head content, such as stylesheets and scripts -->
-<style>
-// CSS styles for the chatbot
+    <style>
+      /* CSS styles for the chatbot */
 
-#chatbot-container {
-  width: 500px;
-  height: 400px;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  overflow-y: scroll;
-}
+      #chatbot-container {
+        width: 500px;
+        height: 400px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        overflow-y: scroll;
+      }
 
-#chatbot-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-}
+      #chatbot-form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+      }
 
-#chatbot-input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
+      #chatbot-input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
 
-#chatbot-response-display {
-  padding: 10px;
-}
-</style>
+      #chatbot-response-display {
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
-<h1>SOLIDERNET AI</h1>
+    <h1>SOLIDERNET AI</h1>
 
-<div id="chatbot-container">
-  <form id="chatbot-form">
-    <input type="text" id="chatbot-input">
-    <button type="submit">Send</button>
-  </form>
-  <div id="chatbot-response-display"></div>
-</div>
+    <div id="chatbot-container">
+      <form id="chatbot-form">
+        <input type="text" id="chatbot-input">
+        <button type="submit">Send</button>
+      </form>
+      <div id="chatbot-response-display"></div>
+    </div>
 
-</body>
-</html>
+    <script>
+      // Step 3: Create the JavaScript logic for the chatbot
 
-<script src="listeproduits.html"></script>
+      const form = document.getElementById('chatbot-form');
+      const input = document.getElementById('chatbot-input');
+      const responseDisplay = document.getElementById('chatbot-response-display');
 
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
 
-<script>
+        // Get the user's message
+        const message = input.value;
 
+        // Clear the input field
+        input.value = '';
 
-// Step 3: Create the JavaScript logic for the chatbot
+        // Generate a response to the user's message
+        const response = generateResponse(message);
 
-const form = document.getElementById('chatbot-form');
-const input = document.getElementById('chatbot-input');
-const responseDisplay = document.getElementById('chatbot-response-display');
+        // Display the response
+        const responseElement = document.createElement('div');
+        responseElement.textContent = response;
+        responseDisplay.appendChild(responseElement);
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+        // Scroll the response display to the bottom
+        responseDisplay.scrollTop = responseDisplay.scrollHeight;
+      });
 
-  // Get the user's message
-  const message = input.value;
+      // Step 4: Implement the AI aspect of the chatbot
 
-  // Clear the input field
-  input.value = '';
-
-  // Generate a response to the user's message
-  const response = generateResponse(message);
-
-  // Display the response
-  const responseElement = document.createElement('div');
-  responseElement.innerHTML = response;
-  responseDisplay.appendChild(responseElement);
-
-  // Scroll the response display to the bottom
-  responseDisplay.scrollTop = responseDisplay.scrollHeight;
-});
-
-// Step 4: Implement the AI aspect of the chatbot
-
+    
 function generateResponse(message) {
   // Use a switch statement to determine the appropriate response based on the user's message
   let response = '';
-  switch (true) {
+  switch (message) {
     case message.includes('product'):
-      // Call a function from the products.js file to generate a response about products
-      response = getProductResponse();
+      // Display a list of categories to choose from
+      response = 'Please choose a category:';
+      response += '<select id="product-category-select">';
+      response += '  <option value="electronics">Electronics</option>';
+      response += '  <option value="appliances">Appliances</option>';
+      response += '  <option value="furniture">Furniture</option>';
+      response += '</select>';
+      response += '<button id="show-products-button">Show Products</button>';
       break;
     case message.includes('service'):
       response = 'We offer a range of services, including product consulting and support. How can we help you?';
@@ -110,8 +109,11 @@ function generateResponse(message) {
     default:
       response = "I'm sorry, I didn't understand your message. Could you please rephrase your question?";
   }
-  return `<script>console.log('${response}');</script>`;
+  return response;
 }
-
-
-</script>
+      
+    </script>
+    
+  </body>
+  
+</html>
