@@ -1,245 +1,120 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Chatbot de produits et de cuisine</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ChatBot </title>
     <style>
-      body {
-  font-family: Arial, sans-serif;
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height:100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: paleturquoise;
 }
-
-h1 {
-  text-align: center;
-  color: darkblue;
+.box{
+    width: 490px;
+    height: 350px;
+    box-shadow: 5px 5px 20px #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
 }
-
-p {
-  margin: 20px 0;
+.top{
+    width: 100%;
+    height: 80px;
+    background: cyan;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
-
-#chat-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.top h1{
+    margin: 0;
+    font-size: 30px;
+    color: crimson;
+    text-align: center;
+    padding-top: 10px;
+    font-family: sans-serif;
 }
-
-#chat-input {
-  width: 50%;
-  height: 40px;
-  font-size: 16px;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  padding: 0 10px;
+.mid{
+    width: 100%;
+    height: 150px;
+    background: yellow;
 }
-
-button[type="submit"] {
-  width: 100px;
-  height: 40px;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+.mid .chat{
+    width: 100%;
 }
-
-button[type="submit"]:hover {
-  background-color: steelblue;
+.mid .chat h2{
+    margin: 0;
+    font-size: 30px;
+    color: #000;
+    padding:30px 20px;
+    text-align: center;
 }
-
-#chat-output {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: lightgrey;
-  border-radius: 5px;
+.mid .chat p{
+    margin: 0;
+    height: 30px;
+    font-size: 28px;
+    color: blue;
+    text-align: center;
+    background-color: yellow;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
-
-#chat-output p {
-  margin: 10px 0;
-  font-size: 18px;
+.input{
+    height:100%;
+    width: 489px;
+    overflow: hidden;
 }
-
-#product-list {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.input input{
+    width: 100%;
+    height: 110px;
+    outline: none;
+    border: none;
+    padding-left: 30px;
+    padding-top:0;
+    font-family: monospace;
+    font-size: 50px;
+    background: lime;
 }
+    </style>
+</head>
+<body>
 
-.product-card {
-  width: 30%;
-  background-color: white;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    <div class="box">
+<div style="text-align: center;" class="top">
+    <h1>Send A Message !</h1>
+</div>
+<div class="mid">
+    <div class="chat">
+        <h2>Answers Are Below</h2>
+        <p id="chatLog">Let's Chat</p>
+    </div>
+</div>
+    <div class="input">
+    <input type="text" id="userBox"onkeydown="if(event.keyCode == 13){ talk() }"placeholder="Type A Message">
+    </div>
+    </div>
 
-.product-card img {
-  width: 100%;
-height: 200px;
-  object-fit: cover;
-  border-radius: 5px 5px 0 0;
-}
-
-.product-card h3 {
-  font-size: 18px;
-  margin: 10px;
-}
-
-.product-card p {
-  font-size: 14px;
-  margin: 10px;
-}
-
-.product-card button {
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 14px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.product-card button:hover {
-  background-color: steelblue;
-}
-
-</style>
-    
-  </head>
-  <body>
-    <h1>Chatbot de produits et de cuisine</h1>
-    <p>Posez une question au chatbot sur les produits ou la cuisine:</p>
-
-    <!-- Form to submit user input to the chatbot -->
-    <form id="chat-form">
-      <input type="text" id="chat-input" placeholder="Entrez votre question ici">
-      <button type="submit">Envoyer</button>
-    </form>
-    
-    <!-- Div to display the chatbot's responses -->
-    <div id="chat-output"></div>
-    
-    <!-- Div to display a list of products -->
-    <div id="product-list"></div>
-    
-   <script type="module">
-  import * as tf from 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
-  import natural from 'https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js';
-
-    const products = [
-  {
-    name: 'Baguette',
-    cuisine: 'french',
-    image: 'https://via.placeholder.com/250x200?text=Baguette'
-  },
-  {
-    name: 'Pizza',
-    cuisine: 'italian',
-    image: 'https://via.placeholder.com/250x200?text=Pizza'
-  },
-  {
-    name: 'Falafel',
-    cuisine: 'arabic',
-    image: 'https://via.placeholder.com/250x200?text=Falafel'
-  }
-];
-    </script>
-    
-    <!-- Define a function to handle user input -->
     <script>
-    import * as nlp from 'compromise';
-
-const handleUserInput = (input) => {
-  // Split the input into words
-  const words = input.split(' ');
-  
-  // Check if any of the words are related to products or cuisine
-  let productMentioned = false;
-  let cuisineMentioned = false;
-  for (const word of words) {
-    if (word.toLowerCase() === 'product') {
-      productMentioned = true;
-    } else if (word.toLowerCase() === 'cuisine') {
-      cuisineMentioned = true;
+function talk(){
+    var know ={
+        "Hi":"Hello",
+        "How Are You?":"Great !",
+        "Bye":"Have A Nice Day !",
+        "Hello":"Hi , Whats Up"
+    };
+    var user = document.getElementById('userBox').value;
+    document.getElementById('chatLog').innerHTML = user + "<br>";
+    if(user in know){
+        document.getElementById('chatLog').innerHTML = know[user] + "<br>";
+    }else{
+        document.getElementById('chatLog').innerHTML = "I do not understand .";
     }
-  }
-  
-  // If the user mentions products, ask about their cuisine preferences
-  if (productMentioned) {
-    if (cuisineMentioned) {
-      // If the user also mentions cuisine, display a list of relevant products
-      displayProductsForCuisine(input);
-    } else {
-      // If the user doesn't mention cuisine, ask about it
-      console.log('Quelle est votre cuisine préférée?');
-      console.log('What is your preferred cuisine?');
-      console.log('ما هي المطبخ المفضل لديك؟');
-    }
-  }
-};
+}
     </script>
-    
-    <!-- Define a function to display relevant products for a given cuisine -->
-    <script>
-    const displayProductsForCuisine = (input) => {
-  // Determine the user's preferred language
-  let language = 'en';
-  for (const lang in languageMap) {
-    if (input.toLowerCase().includes(lang)) {
-      language = languageMap[lang];
-      break;
-    }
-  }
-  
-  // Extract the user's preferred cuisine from the input
-  const preferredCuisine = nlp(input)
-    .nouns()
-    .toLowerCase()
-    .out('array')
-    .find(noun => {
-      return products.some(product => product.cuisine === noun);
-    });
-  
-  // Display a list of relevant products
-  const productList = document.getElementById('product-list');
-  productList.innerHTML = '';
-  for (const product of products) {
-    if (product.cuisine === preferredCuisine) {
-      productList.innerHTML += `
-        <div class="product-card">
-          <img src="${product.image}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p>${product.cuisine} cuisine</p>
-          <button>Ajouter au panier</button>
-        </div>
-      `;
-    }
-  }
-};
-    </script>
-    
-    <!-- Map language codes to full names -->
-    <script>
-    const languageMap = {
-  en: 'english',
-  fr: 'french',
-  it: 'italian',
-  ar: 'arabic'
-};
-    </script>
-    
-    <!-- Set up event listener for form submission -->
-    <script>
-    const chatForm = document.getElementById('chat-form');
-
-chatForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const input = document.getElementById('chat-input').value;
-  handleUserInput(input);
-});
-    </script>
-    
-  </body>
+</body>
 </html>
