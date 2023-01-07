@@ -124,12 +124,10 @@ height: 200px;
     <!-- Div to display a list of products -->
     <div id="product-list"></div>
     
-    <!-- Load external libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-    
-    <!-- Set up an array of products -->
-    <script>
+   <script type="module">
+  import * as tf from 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest';
+  import natural from 'https://cdn.jsdelivr.net/npm/compromise@latest/builds/compromise.min.js';
+
     const products = [
   {
     name: 'Baguette',
