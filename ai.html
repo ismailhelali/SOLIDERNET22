@@ -5,13 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+body {
+    background-color: #cccccc; /* gray background color */
+}
+
+
+@keyframes blink {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+
     #chat-container {
-        background-color: white;
         padding: 20px;
         width: 100%;
         margin: 50px auto;
     }
+
     #chat-log {
+    font-family: "Courier New", monospace; /* use a monospace font */
+    color: green; /* green text color */
+    text-shadow: 0 0 5px #00ff00; /* give the text a green "glow" */
+    animation: blink 1s linear infinite; /* blink animation */
+
         height: 400px;
         overflow-y: scroll;
         padding: 20px;
