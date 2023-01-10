@@ -1,9 +1,9 @@
 const products = [
-  { name: "Product 1", price: 29.99, category: "Category 1", description: "This is a sample product in Category 1." },
-  { name: "Product 2", price: 39.99, category: "Category 2", description: "This is a sample product in Category 2." },
-  { name: "Product 3", price: 49.99, category: "Category 1", description: "This is a sample product in Category 1." },
-  { name: "Product 4", price: 59.99, category: "Category 2", description: "This is a sample product in Category 2." },
-  { name: "Product 5", price: 69.99, category: "Category 1", description: "This is a sample product in Category 1." }
+  { name: "farine", price: 29.99, category: "Category 1", description: "This is a sample product in Category 1." },
+  { name: "fromage", price: 39.99, category: "Category 2", description: "This is a sample product in Category 2." },
+  { name: "beurre", price: 49.99, category: "Category 1", description: "This is a sample product in Category 1." },
+  { name: "cacao", price: 59.99, category: "Category 2", description: "This is a sample product in Category 2." },
+  { name: "penne", price: 69.99, category: "Category 1", description: "This is a sample product in Category 1." }
 ];
 
 const chatForm = document.querySelector('#chat-form');
