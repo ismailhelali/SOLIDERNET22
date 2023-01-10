@@ -160,7 +160,7 @@ function generatePdf(){
   products.forEach(product => {
     if(product.checked ==true){
         
-      p.push([i++,product.name,product.category,8,product.quantity,product.unit,300]);
+      p.push([i++,product.category,product.name,product.quantity,product.unit]);
         
     }
 
@@ -175,11 +175,11 @@ props.invoice.table = p;
 var props = {
     outputType: jsPDFInvoiceTemplate.OutputType.Save,
     returnJsPDFDocObject: true,
-    fileName: "Invoice 2021",
+    fileName: "solidernet 2023",
     orientationLandscape: false,
     compress: true,
     logo: {
-        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+        src: "",
         type: 'PNG', //optional, when src= data:uri (nodejs case)
         width: 53.33, //aspect ratio = width/height
         height: 26.66,
@@ -190,7 +190,7 @@ var props = {
     },
     stamp: {
         inAllPages: true, //by default = false, just in the last page
-        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+        src: "",
         type: 'JPG', //optional, when src= data:uri (nodejs case)
         width: 20, //aspect ratio = width/height
         height: 20,
@@ -202,24 +202,23 @@ var props = {
     business: {
         name: "Solidernet",
         address: "Temara , Maroc",
-        phone: "(+212) 069 11 11 111",
-        email: "email@example.com",
-        email_1: "info@example.al",
-        website: "www.solidernet.ma",
+        phone: "(+212) 0667 04 1734",
+        email: "solidernet@hotmail.com",
+        website: "https://solidernet.netlify.app/",
     },
     contact: {
         label: "Invoice issued for:",
         name: "Client Name",
-        address: "Albania, Tirane, Astir",
-        phone: "(+212) 069 22 22 222",
-        email: "client@website.al",
-        otherInfo: "www.website.al",
+        address: "",
+        phone: "",
+        email: "",
+        otherInfo: "",
     },
     invoice: {
         label: "Invoice #: ",
-        num: 19,
-        invDate: "Payment Date: 01/01/2021 18:12",
-        invGenDate: "Invoice Date: 02/02/2021 10:17",
+        num: 2023,
+        invDate: "",
+        invGenDate: "",
         headerBorder: false,
         tableBodyBorder: false,
         header: [
@@ -244,36 +243,22 @@ var props = {
           { title: "Price"},
           { title: "Quantité"},
           { title: "Unité"},
-          { title: "Total"}
+          
         ],
         
        table: [],
         additionalRows: [{
-            col1: 'Total:',
-            col2: '145,250.50',
-            col3: 'ALL',
+           
+            
             style: {
                 fontSize: 14 //optional, default 12
             }
         },
-        {
-            col1: 'VAT:',
-            col2: '20',
-            col3: '%',
-            style: {
-                fontSize: 10 //optional, default 12
-            }
-        },
-        {
-            col1: 'SubTotal:',
-            col2: '116,199.90',
-            col3: 'ALL',
-            style: {
-                fontSize: 10 //optional, default 12
-            }
+       
+       
         }],
-        invDescLabel: "Invoice Note",
-        invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+        invDescLabel: "",
+        invDesc: "SOLIDERNET SARL",
     },
     footer: {
         text: "The invoice is created on a computer and is valid without the signature and stamp.",
