@@ -1,5 +1,5 @@
 const products = [
-  { name: "farine", cond :1kg et 10kg, category: "Farine et semoule", description: "Farine fleurs Amgalita, ideal pour la pâtisserie et Pizza." },
+  { name: "farine", price: 29.99, category: "Category 1", description: "This is a sample product in Category 1." },
   { name: "fromage", price: 39.99, category: "Category 2", description: "This is a sample product in Category 2." },
   { name: "beurre", price: 49.99, category: "Category 1", description: "This is a sample product in Category 1." },
   { name: "cacao", price: 59.99, category: "Category 2", description: "This is a sample product in Category 2." },
