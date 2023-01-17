@@ -1,0 +1,78 @@
+body {
+ font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #333;
+  box-shadow: 2px 2px 2px #ccc;
+  padding: 1em;
+}
+
+.company-info {
+  text-align: center;
+  color: #333;
+}
+
+.company-info h2 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  text-shadow: 2px 2px 2px #ccc;
+}
+
+.call-to-action {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.call-to-action a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in;
+}
+
+.call-to-action a:hover {
+  background-color: #555;
+}
+
+.map {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 1em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  .map {
+    height: 200px;
+  }
+}
+
+
+<div class="container">
+  <h1>Nous contacter</h1>
+  <div class="company-info">
+    <h2>SOLIDERNET SARL</h2>
+    <p>Leader de la distribution CHR depuis 2000</p>
+    <p>Adresse: 1234 rue de l'entreprise</p>
+    <p>Téléphone fixe: 555-555-5555</p>
+    <p>Fax: 555-555-5556</p>
+    <p>Portable: 555-555-5557</p>
+    <p>WhatsApp: 555-555-5558</p>
+  </div>
+  <div class="call-to-action">
+    <a href="#">Nous contacter</a>
+  </div>
+  <div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+</div>
