@@ -9,6 +9,18 @@
   position: relative;
 }
 
+.quarter-circle {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 100%; /* adjust to desired size */
+  height: auto; /* adjust to desired size */
+}
+
+.quarter-circle img {
+  width: 100%;
+  transform: rotate(45deg);
+}
+
 .hero {
   font-size: 32px;
   font-weight: bold;
@@ -217,7 +229,7 @@ header .fa-whatsapp {
   </div>
 </header>
 
-<div>
+<div class="quarter-circle">
   
 <img src="https://raw.githubusercontent.com/ismailhelali/SOLIDERNET22/main/DALL%C2%B7E%202023-01-17%2022.22.55.png" class="cover" alt="solidernet">
   <div class="hero">Confiance et croissance - approvisionnez votre établissement avec SOLIDERNET.</div>
