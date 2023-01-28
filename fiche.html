@@ -131,10 +131,10 @@
     pdf.save("form-data.pdf");
 	  
     let formData = new FormData();
-    formData.append("data", pdf);
+    formData.append("data", data);
     formData.append("pdf", pdf);
 
-fetch("https://script.google.com/macros/s/AKfycbyNVEVZe_HUtXtGJ27meO6CuaKyq1IyP6gQhJnzLq2QegID5IMMTnvvgGgEdJ5LafreBQ/exec", {
+fetch("https://script.google.com/macros/s/AKfycbz_firQ5ZFTG4vetFWsnUUiJxoMUTX-3t6LeqKD7qY64eBLE9Lkle2DIWcp6HeNF8f9/exec", {
   method: "POST",
   body: formData
 })
