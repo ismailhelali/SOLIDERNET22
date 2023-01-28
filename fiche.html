@@ -27,7 +27,7 @@
             resize: none;
         }
             
-        #myForm .button {
+        #contactForm .button {
           width: 100%;
           background-color: #4CAF50;
           color: white;
@@ -38,7 +38,7 @@
           cursor: pointer;
         }
         
-        #myForm .button {
+        #contactForm .button {
           background-color: #00008B;
           border-radius: 10px;
 
@@ -49,7 +49,7 @@
           background-color: #f2f2f2;
           padding: 20px;
         }
-    #myForm label {
+    #contactForm label {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -79,15 +79,19 @@
 <h1>SOLIDERNET SARL</h1>
 		<p>Nous vous invitons à remplir notre formulaire de création de compte en toute confiance. Vos informations seront traitées de manière confidentielle et nous nous engageons à ne pas les divulguer à des tiers. Nous souhaitons établir une relation de confiance avec vous et vous contacterons dès que possible pour plus d'informations.</p>
 	    
-<form id="myForm">
-  <label>Name:</label>
-  <input type="text" name="name"><br>
-  <label>Email:</label>
-  <input type="email" name="email"><br>
-  <label>Message:</label>
-  <textarea name="message"></textarea><br>
-  <a href="#" onclick="submitForm()">Submit</a>
+<form id="contactForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name"><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message"></textarea><br>
+
+  <input type="button" value="Submit" onclick="submitForm()">
 </form>
+
 
     </div>
   
@@ -97,18 +101,26 @@
 </html>
   		
 <script>
-  function submitForm() {
-  var formData = new FormData(document.getElementById("myForm"));
-  var scriptUrl = "https://script.google.com/macros/s/AKfycbyOId1VGojw7BNTGLGU2iBmLQ7Zkp4N_blnU1oVWstNJ8RN1DUwahAFY_gaDpHAQW83bA/exec";
-  google.script.run
-    .withSuccessHandler(function(response) {
-      alert("Form submitted successfully!");
-    })
-    .withFailureHandler(function(error) {
-      alert("Error: " + error);
-    })
-    .withUrl(scriptUrl)
-    .sendPdf("helaliismail@gmail.com", formData);
+ function submitForm() {
+  // Get the form data
+  const formData = new FormData(document.getElementById("contactForm"));
+
+  // Send the form data to the Google Apps Script
+  fetch("https://script.google.com/macros/s/AKfycbxM9K8VWamV8GVEnMQrN9VbzBChufnoFnrh-lUMQKdOPQenWCCZwGc7mUa7KRYDUHugkw/exec", {
+    method: "POST",
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the Google Apps Script
+      if (data.status === "success") {
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("thankyou").style.display = "block";
+      } else {
+        console.error("An error occurred: " + data.message);
+      }
+    });
 }
+
 
 </script>
