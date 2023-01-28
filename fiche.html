@@ -1,126 +1,49 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SOLIDERNET - Quality Foods and Packaging for Restaurants</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
- <style>
- input{
-          width: 100%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          display: inline-block;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          box-sizing: border-box;
-        }
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 12px 20px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: #f8f8f8;
-            resize: none;
-        }
-            
-        #contactForm .button {
-          width: 100%;
-          background-color: #4CAF50;
-          color: white;
-          padding: 14px 20px;
-          margin: 8px 0;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-        
-        #contactForm .button {
-          background-color: #00008B;
-          border-radius: 10px;
-
-        }
-        
-        div {
-          border-radius: 5px;
-          background-color: #f2f2f2;
-          padding: 20px;
-        }
-    #contactForm label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  display: block;
-}
-   
-   .termsofuse {
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-  
-}
-   .termsofuse .terms {
-  height : 30px;
-  weight : 30px; 
-}
-   .termsofuse .labelterms {
-  font-size : 8px ;
-}
-  </style>
-  </head>  
-  
+  <title>Contact Form</title>
+</head>
 <body>
- 
-	
-    <div>
-<h1>SOLIDERNET SARL</h1>
-		<p>Nous vous invitons à remplir notre formulaire de création de compte en toute confiance. Vos informations seront traitées de manière confidentielle et nous nous engageons à ne pas les divulguer à des tiers. Nous souhaitons établir une relation de confiance avec vous et vous contacterons dès que possible pour plus d'informations.</p>
-	    
-<form id="contactForm">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name"><br>
+  <div id="formContainer">
+    <form id="contactForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email"><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br>
 
-  <label for="message">Message:</label>
-  <textarea id="message" name="message"></textarea><br>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message"></textarea><br>
 
-  <input type="button" value="Submit" onclick="submitForm()">
-</form>
+      <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+  </div>
 
+  <div id="thankyou" style="display: none;">
+    Thank you for your message!
+  </div>
 
-    </div>
-  
-  
+  <script>
+    function submitForm() {
+      // Get the form data
+      const formData = new FormData(document.getElementById("contactForm"));
 
+      // Send the form data to the Google Apps Script
+      fetch("https://script.google.com/macros/s/AKfycbzFvWafXhwMuN6_3G2EeHemJJdHPM74l65D6Qq7gAQt5BN3yNzS_eeSUaxNMMA315MI1g/exec", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the Google Apps Script
+          if (data.status === "success") {
+            document.getElementById("formContainer").style.display = "none";
+            document.getElementById("thankyou").style.display = "block";
+          } else {
+            console.error("An error occurred: " + data.message);
+          }
+        });
+    }
+  </script>
 </body>
 </html>
-  		
-<script>
- function submitForm() {
-  // Get the form data
-  const formData = new FormData(document.getElementById("contactForm"));
-
-  // Send the form data to the Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbxK0QpF1zvATmkwY3Egc0AWCM3LTHDDoMdFvUZbHXbiw-ZJawwmV3syo50XY5Rq8WXd6g/exec", {
-    method: "POST",
-    body: formData
-  })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response from the Google Apps Script
-      if (data.status === "success") {
-        document.getElementById("contactForm").style.display = "none";
-        document.getElementById("thankyou").style.display = "block";
-      } else {
-        console.error("An error occurred: " + data.message);
-      }
-    });
-}
-
-
-</script>
