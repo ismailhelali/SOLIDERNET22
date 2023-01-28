@@ -79,19 +79,16 @@
 <h1>SOLIDERNET SARL</h1>
 		<p>Nous vous invitons à remplir notre formulaire de création de compte en toute confiance. Vos informations seront traitées de manière confidentielle et nous nous engageons à ne pas les divulguer à des tiers. Nous souhaitons établir une relation de confiance avec vous et vous contacterons dès que possible pour plus d'informations.</p>
 	    
-        <form id="myForm">
-  <input type="text" placeholder="Nom et prénom" name="name"><br>
-  <input type="email" placeholder="Votre Email" name="email"><br>
-  <input type="tel" placeholder="Numéro de téléphone" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
-  <label for="message">Votre Message</label><br>
+<form id="myForm">
+  <label>Name:</label>
+  <input type="text" name="name"><br>
+  <label>Email:</label>
+  <input type="email" name="email"><br>
+  <label>Message:</label>
   <textarea name="message"></textarea><br>
-  <div class="termsofuse">
+  <a href="#" onclick="submitForm()">Submit</a>
+</form>
 
-   <input type="checkbox" class="terms" name="terms" id="terms" value="j'accepte que solidernet sarl utilise mes coordonnées pour me contacter" required><label class="labelterms" for="terms">j'accepte que solidernet sarl utilise mes coordonnées pour me contacter.</label><br>
-</div>
-
-   <input class="button" type="button" value="Envoyer" onclick="submitForm()">
-        </form>
     </div>
   
   
@@ -101,49 +98,17 @@
   		
 <script>
   function submitForm() {
-    var form = document.getElementById("myForm");
-
-    // check if name and email fields are filled in
-    if(form.name.value == "" || form.email.value == "") {
-      alert("Name and Email fields are required!");
-      return;
-    }
-
-    // check if email address is valid
-    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if(!emailRegex.test(form.email.value)) {
-      alert("Invalid email address!");
-      return;
-    }
-
-    var data = new FormData(form);
-
-    // create a new jsPDF object
-    var pdf = new jsPDF();
-
-    // add form data to pdf
-    pdf.text(20, 20, "Nom et prénom: " + form.name.value);
-    pdf.text(20, 30, "Votre Email: " + form.email.value);
-    pdf.text(20, 40, "Numéro de téléphone: " + form.phone.value);
-    pdf.text(20, 50, "Votre Message: " + form.message.value);
-
-    // save the pdf
-    pdf.save("form-data.pdf");
-	  
-    let formData = new FormData();
-    formData.append("data", data);
-    formData.append("pdf", pdf);
-
-fetch("https://script.google.com/macros/s/AKfycbz_firQ5ZFTG4vetFWsnUUiJxoMUTX-3t6LeqKD7qY64eBLE9Lkle2DIWcp6HeNF8f9/exec", {
-  method: "POST",
-  body: formData
-})
-    .then(function(response) {
-      return response.text();
+  var formData = new FormData(document.getElementById("myForm"));
+  var scriptUrl = "https://script.google.com/macros/s/AKfycbyOId1VGojw7BNTGLGU2iBmLQ7Zkp4N_blnU1oVWstNJ8RN1DUwahAFY_gaDpHAQW83bA/exec";
+  google.script.run
+    .withSuccessHandler(function(response) {
+      alert("Form submitted successfully!");
     })
-    .then(function(text) {
-      console.log(text);
-      alert(text);
-    });
-  }
+    .withFailureHandler(function(error) {
+      alert("Error: " + error);
+    })
+    .withUrl(scriptUrl)
+    .sendPdf("helaliismail@gmail.com", formData);
+}
+
 </script>
