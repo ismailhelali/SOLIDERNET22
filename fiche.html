@@ -131,10 +131,7 @@
     pdf.save("form-data.pdf");
 	  
     let formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("message", message);
+    formData.append("data", pdf);
     formData.append("pdf", pdf);
 
 fetch("https://script.google.com/macros/s/AKfycbyNVEVZe_HUtXtGJ27meO6CuaKyq1IyP6gQhJnzLq2QegID5IMMTnvvgGgEdJ5LafreBQ/exec", {
