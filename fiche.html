@@ -3,90 +3,144 @@
 <html>
 <head>
 	<title>SOLIDERNET - Quality Foods and Packaging for Restaurants</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-	
-<body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <style>
+ input{
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
+            
+        #myForm .button {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        #myForm .button {
+          background-color: #00008B;
+          border-radius: 10px;
+
+        }
+        
+        div {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+    #myForm label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+   
+   .termsofuse {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
   
+}
+   .termsofuse .terms {
+  height : 30px;
+  weight : 30px; 
+}
+   .termsofuse .labelterms {
+  font-size : 8px ;
+}
+  </style>
+  </head>  
+  
+<body>
  
-
-	<!--nav bar and whatsapp-->
 	
-	<header>
-		<nav>
-			<ul>
-                                <a href="/">Home</a>	
-				<li><a href="liste.html">Liste des produits</a></li>
-				<li><a href="devis.html">Demander un devis</a></li>
-				<li><a href="fiche.html">Devenir client</a></li>
-				<li><a href="rdv.html">Prendre Rendez-vous avec un commercial</a></li>
-			</ul>
-		</nav>
-	</header>
-	
-	 	
-<style>
-	
-	.whatsapp-icon {
-display: inline-block;
-color: #25d366;
-font-size: 36px;
-cursor: pointer;
-transition: all 0.3s ease;
-}
-.whatsapp-icon:hover {
-color: #00a655;
-}
-	header nav ul {
-		display: flex;
-		list-style: none;
-	}
-	header nav ul li {
-		margin: 0 10px;
-	}
-	header nav ul li a {
-		text-decoration: none;
-		color: #333;
-		font-size: 18px;
-		transition: all 0.3s ease;
-	}
-	header nav ul li a:hover {
-		color: #00bcd4;
-	}
-	
-
-</style>
-
-<!--end of nav bar and whatsapp-->
-	
-		<div class="promo-text">
-		<h1>SOLIDERNET SARL</h1>
+    <div>
+<h1>SOLIDERNET SARL</h1>
 		<p>Nous vous invitons à remplir notre formulaire de création de compte en toute confiance. Vos informations seront traitées de manière confidentielle et nous nous engageons à ne pas les divulguer à des tiers. Nous souhaitons établir une relation de confiance avec vous et vous contacterons dès que possible pour plus d'informations.</p>
-		<a href="https://wa.me/+212667041734" target="_blank">
-	<div class="whatsapp-icon">
-		<i class="fab fa-whatsapp"></i>
-	</div>
-</a>
-	</div>
-<!--contact form to hotmail-->
+	    
+        <form id="myForm">
+  <input type="text" placeholder="Nom et prénom" name="name"><br>
+  <input type="email" placeholder="Votre Email" name="email"><br>
+  <input type="tel" placeholder="Numéro de téléphone" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  <label for="message">Votre Message</label><br>
+  <textarea name="message"></textarea><br>
+  <div class="termsofuse">
 
-	<iframe width="100%" height="428px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAYAAJkZw6BUOFA4VlM4UDJBVlk2UkxXQkpIRThZRDBXVy4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100%" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
-<style>
-	.promo-text {
-		text-align: center;
-		color: #333;
-	}
-	.promo-text h1 {
-		font-size: 36px;
-		margin-bottom: 10px;
-	}
-	.promo-text p {
-		font-size: 18px;
-		line-height: 1.5;
-		margin-bottom: 20px;
-	}
+   <input type="checkbox" class="terms" name="terms" id="terms" value="j'accepte que solidernet sarl utilise mes coordonnées pour me contacter" required><label class="labelterms" for="terms">j'accepte que solidernet sarl utilise mes coordonnées pour me contacter.</label><br>
+</div>
 
-</style>
+   <input class="button" type="button" value="Envoyer" onclick="submitForm() ; clearForm()">
+        </form>
+    </div>
+  
+  
+
 </body>
 </html>
+  		
+<script>
+  function submitForm() {
+    var form = document.getElementById("myForm");
+
+    // check if name and email fields are filled in
+    if(form.name.value == "" || form.email.value == "") {
+      alert("Name and Email fields are required!");
+      return;
+    }
+
+    // check if email address is valid
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(!emailRegex.test(form.email.value)) {
+      alert("Invalid email address!");
+      return;
+    }
+
+    var data = new FormData(form);
+
+    // create a new jsPDF object
+    var pdf = new jsPDF();
+
+    // add form data to pdf
+    pdf.text(20, 20, "Nom et prénom: " + form.name.value);
+    pdf.text(20, 30, "Votre Email: " + form.email.value);
+    pdf.text(20, 40, "Numéro de téléphone: " + form.phone.value);
+    pdf.text(20, 50, "Votre Message: " + form.message.value);
+
+    // save the pdf
+    pdf.save("form-data.pdf");
+
+    // send form data to google script
+    fetch("https://script.google.com/macros/s/AKfycbxeWcj94zEKvQyteW4u_8lCNk1BpV-gQsGw_3DipF0siDJEGi96SE4llKI8g3PE4X_9-Q/exec", {
+      method: "POST",
+      body: data
+    })
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      console.log(text);
+      alert(text);
+    });
+  }
+</script>
