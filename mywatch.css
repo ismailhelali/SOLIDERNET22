@@ -1,0 +1,27 @@
+.mywatch {  
+background-color  : #DEB887 ; 
+width :100%; 
+
+}
+      #canvas {
+  display: block;
+  margin: 0 auto;
+}
+h3, h4 {
+    font-family: 'Freestyle Script', cursive;
+    text-align: center;
+    color: #333;
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h4 {
+    font-size: 35px;
+    line-height: 1.5;
+}
