@@ -1,0 +1,543 @@
+<!DATATYPE html>
+<html>
+  <head>
+  <title>Solidernet Temara</title>
+<meta name="google-site-verification" content="W_ROuRjxZhJYQ5YdlN4tX8SpuMKQWcaOf2ngGd-PQOU" />
+<meta charset="UTF-8">
+	<meta name="description" content="SOLIDERNET est une entreprise spécialisée dans la distribution de produits alimentaires et d'emballage pour restaurants. Nous proposons une large gamme de produits de qualité supérieure à des prix compétitifs.">
+	<meta name="keywords" content="fournisseur café , fournisseur restaurant , fournisseur hotel ,solidernet, fournisseur CHR,Temara, Rabat, conserve alimentaire, Fromage, Parmesan ,Papier cuisson x500, papier cuissine, Riz cigala, Produitss Asiatique ,   produits alimentaires, emballage, restaurants,Hotel, qualité, prix compétitifs">
+	
+<link rel="stylesheet" type="text/css" href="mainnavbar.css">
+<link rel="stylesheet" type="text/css" href="mainsearch.css">
+<link rel="stylesheet" type="text/css" href="mywatch.css">
+<link rel="stylesheet" type="text/css" href="contacteznous.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<script src="searchproducts.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      /* Navbar container */
+
+
+#icon-container {
+  position: fixed;
+  top: 25%;
+  right: 5px;
+  transform: translateY(-50%);
+  align-items: center;
+  width: 50px;
+  height: auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#icon-container img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+    /* page d'acuille Cover photo with text in the center */
+      .cover-photo {
+        background-image: url("https://raw.githubusercontent.com/ismailhelali/SOLIDERNET22/main/solidernet%20gamme%20cover%20photos%20(2).jpg");
+        background-size: cover;
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cover-photo h1 {
+        font-size: 26px;
+        color: white;
+        text-shadow: 2px 2px #333;
+        text-align: center;
+      }
+
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  }
+  
+ 
+    
+  .container a {
+  color:black;
+  background-color:black;
+  font-size:20px;
+  margin:20px;
+  padding:20px;
+  width:100%;
+  height: 500px;
+  text-decoration: none;
+  text-align: center;
+    }
+  .container a:hover {
+  background-color: #ddd;
+  color: black;
+    }
+
+.container a img {
+height : 50%;
+width : auto;
+margin ; auto;
+}
+    
+/* Responsive layout - cover text */
+@media screen and (max-width:750px) {
+ .cover-photo h1 {
+        font-size: 16px;
+        color: white;
+        text-shadow: 2px 2px #333;
+        text-align: center;
+      }
+ }
+    
+ .indicator {
+  flex: 1;
+  text-align: center;
+  padding: 16px;
+}
+
+.title {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #FF8C00;
+}
+
+.value {
+  font-family: 'Freestyle Script', cursive;
+  font-style: italic;
+  font-weight: 1400;
+  font-size: 3em;
+  color: #190A55;
+}
+
+
+     /* CSS for styling the search input and dropdown list */
+      #search {
+        padding: 10px;
+        font-size: 16px;
+        border: solid 1px #ddd;
+        width: 300px;
+      }
+      #results {
+        position: absolute;
+        width: 300px;
+        max-height: 200px;
+        overflow-y: scroll;
+        border: solid 1px #ddd;
+        display: none;
+        background-color: white;
+        z-index: 1;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      #results li {
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-bottom: solid 1px #ddd;
+      }
+      #results li a {
+        text-decoration: none;
+        color: black;
+        display: block;
+      }
+      #results li:hover {
+        background-color: #f1f1f1;
+      }
+
+  </style>
+  
+  </head>
+  
+  <body>
+  <h1 style="font-family: 'Freestyle Script', cursive;">L'art et la manière de distribution des produits alimentaires, d'hygiène et emballages au service des hôtels, restaurants et pâtisseries depuis 2000.</h1>
+    
+  <div class="navbar">
+  <a href="/">Démarrer</a>
+  <a href="contactsolidernet">Contact</a>
+   <a href="qui-sommes-nous">Notre Histoire</a>
+  <div class="dropdown">
+    <button class="dropbtn">Espace Client
+      <i class="fa fa-caret-down"></i>
+      </button>
+    <div class="dropdown-content">
+      <a href="gamme-solidernet">Notre Gamme - Produits</a>
+      <a href="Listeproduits">Devis Personnalisé</a>
+      <a href="fiche">Devenir Client</a>
+      
+
+    </div>
+  </div>
+     <input type="search" id="search-input" placeholder="Que Cherchez-vous ?"> 
+    <div id="search-results"></div> 
+    <div id="response-box"></div> 
+    <div id="modal" class="modal"> 
+      <div class="modal-content"> 
+        <span class="close">&times;</span> 
+        <h2>Le top de sa catégorie</h2> 
+        <ul id="modal-text"></ul> <h2>Découvrez SOLIDERNET</h2> 
+        <p>Nous sommes fiers de t'accueillir, Bienvenue chez vous</p> 
+        <button class="modal-button">Liste intégrale des produits</button> 
+        <button class="modal-button">GAMME Produits SOLIDERNET</button>
+        <button class="modal-button">Nous contacter</button> 
+        <button class="modal-button">Trouver SOLIDERNET</button> </div> </div> 
+</div>
+    
+
+    <br>
+      <div class="cover-photo">
+      <h1>
+      <span style="font-size: 36px;">SOLIDERNET SARL</span><br>
+      Leader de distribution CHR<br>
+      met à votre disposition 23 ans d'experience unique au niveau de la distribution
+      des produits alimentaires, d'hygiène et emballages
+      au service des hôtels, restaurants et pâtisseries.<br>
+        </h1>
+
+    </div>
+<div id="icon-container">
+  <a href="tel:+212667041734"><img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/Phone%20solidernet.png" alt="Call icon"></a><br>
+  <a href="https://wa.me/+212667041734"><img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/whatsapp%20solidernet.png" alt="WhatsApp icon"></a><br>
+  <a href="mailto:solidernet@hotmail.com"><img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/Email%20solidernet.png" alt="Email icon"></a>
+</div>
+    
+    
+<div class="container">
+  <a style="background-color :#7B77EC;" href="#"><h4>Prenez un moment pour découvrir notre gamme de produits</h4>
+ <img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/brochure.png" alt="gamme des produits">
+</a>
+  <a style="background-color : #E5C2A0;" href="#"><h4>Demandez un Devis Personnalisé : Parcourez notre Liste des Produits</h4>
+  <img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/des-produits.png" alt="liste des produits">
+</a>
+  <a style="background-color : #BEE1ED;" href="#"><h4>inscrivez-vous des maintenan : télécharger votre Fiche Client</h4>
+<img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/partenariat.png" alt="fiche client">
+</a>
+  <a style="background-color : #EDE6BE;" href="#"><h4>SOLIDERNET - Confiance et Croissance : Découvrez notre Histoire</h4>
+<img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/history.png" alt="our story">
+
+</a>
+  <a style="background-color : #BEEDD1;" href="#"><h4>Ne Ratez rien : Notre Service est à votre entière disposition</h4>
+<img src="https://raw.githubusercontent.com/ismailhelali/productssolidernet/main/customer-service.png" alt="service client">
+</a>
+  </div>    
+    
+<br>
+<div class="key-indicator">
+  <div class="indicator livraisons-par-jour">
+    <div class="title">Livraisons par mois</div>
+    <div class="value" data-final-value="780">+780</div>
+  </div>
+  <div class="indicator reference-produits">
+    <div class="title">Reference Produits</div>
+    <div class="value" data-final-value="3700">+3700</div>
+  </div>
+  <div class="indicator partenaires">
+    <div class="title">Partenaires</div>
+    <div class="value" data-final-value="250">+250</div>
+  </div>
+  <div class="indicator clients-satisfait">
+    <div class="title">Clients Satisfait</div>
+    <div class="value" data-final-value="300">+300</div>
+  </div>
+</div>
+
+<div class="container">
+  <a style="background-color :#0E1168; height:auto; font-family: 'Freestyle Script', cursive; border-radius: 10px; color : white;
+" > Vous cherchez un Fournisseur Fiable et réactif pour l'approvisionnement de vos produits alimentaires, d'emballages et  produits d'hygiène pour votre café, hôtel ou restaurant ? <br>
+
+Vous êtes au bon endroit ! <br>
+
+Chez nous, vous trouverez la qualité supérieure pour les professionnels de la restauration. Nous avons une large gamme de produits adaptée à tous les besoins et budgets avec meilleur rapport qualité-prix.<br>
+
+N'hésitez pas à nous contacter pour discuter vos besoins et obtenir un devis personnalisé. <br>
+
+Appelez-nous dès maintenant et découvrez comment nous pouvons vous aider à améliorer votre activité de manière efficace et rentable.  </a>
+    </div>    
+<br>
+
+<h1>Contactez Nous</h1>
+  <h2>Pour toute demande, n'hésitez pas à nous contacter. Notre service clientèle prendra contact avec vous dans les plus brefs délais.</h2>
+    <div class="contactform">
+        <form id="myForm">
+  <input type="text" placeholder="Nom et prénom" name="name"><br>
+  <input type="email" placeholder="Votre Email" name="email"><br>
+  <input type="tel" placeholder="Numéro de téléphone" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  <label for="message">Votre Message</label><br>
+  <textarea name="message"></textarea><br>
+  <div class="termsofuse">
+
+   <input type="checkbox" class="terms" name="terms" id="terms" value="j'accepte que solidernet sarl utilise mes coordonnées pour me contacter" required><label class="labelterms" for="terms">j'accepte que solidernet sarl utilise mes coordonnées pour me contacter.</label><br>
+</div>
+
+   <input class="button" type="button" value="Envoyer" onclick="submitForm() ; clearForm()">
+        </form>
+    </div>
+  
+
+
+<script>
+function clearForm() {
+    document.getElementById("myForm").reset();
+}  
+  
+  
+function submitForm() {
+  var form = document.getElementById("myForm");
+
+  // check if name and email fields are filled in
+  if(form.name.value == "" || form.email.value == "") {
+    alert("Name and Email fields are required!");
+    return;
+  }
+
+  // check if email address is valid
+  var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if(!emailRegex.test(form.email.value)) {
+    alert("Invalid email address!");
+    return;
+  }
+
+  var data = new FormData(form);
+  
+  fetch("https://script.google.com/macros/s/AKfycbwXtblh0zVtPM_f5dW4KNDHLnpgaT6eX31Gd6Z35Uqu8PwLhoVazqzI3-uGroxEVbx1Pg/exec", {
+    method: "POST",
+    body: data
+  })
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(text) {
+    console.log(text);
+    alert(text);
+  });
+}
+
+    </script>
+
+<br>
+<div class="mywatch">
+<br>
+<h3>Notre Devise</h3>
+<h4>Le bon produit</h4>
+<h4>au bon endroit</h4>
+<h4>en bonne quantité</h4>
+<h4>au bon moment</h4> 
+<h4>avec un bon prix</h4>
+
+    <canvas id="canvas" width="300wv" height="300wv"></canvas>
+
+<h3>Time is money</h3>
+<h3>Le Temps c'est de l'argent</h3>
+<br>
+</div>
+<footer>
+<div class="topnav">
+  <a href="index">Démarrer</a>
+  <a href="contactsolidernet">Contact SOLIDERNET</a>
+      <a href="listeproduits">Liste des produits</a>
+      <a href="https://www.instagram.com/solidernet/?hl=fr"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+  <a>Copyright &copy; 2023 SOLIDERNET SARL</a>
+</div>
+</footer>
+<script>
+
+    // JavaScript for handling the search input and dropdown list
+    var input = document.getElementById("search-input");
+    var results = document.getElementById("search-results");
+    var responseBox = document.getElementById("response-box");
+
+    input.addEventListener("input", function() {
+      var searchTerm = input.value;
+      if (!searchTerm) {
+        results.style.display = "none";
+        return;
+      }
+
+      // Retrieve the products from the products.js file
+      var products = getProducts();
+      var matches = products.filter(function(product) {
+        return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      if (!matches.length) {
+        results.style.display = "none";
+        return;
+      }
+
+      // Populate the dropdown list with the matching products
+      var html = "";
+      matches.forEach(function(product) {
+        html += "<a href='#'>" + product.name + "</a>";
+      });
+      results.innerHTML = html;
+      results.style.display = "block";
+    });
+
+             results.addEventListener("click", function(e) {
+        if (e.target.tagName === "A") {
+            let selectedProduct = products.find(p=>p.name === e.target.textContent);
+            let productsByCategory = products.filter(p => p.category === selectedProduct.category);
+            let html = "";
+            productsByCategory.forEach(function(product) {
+                html += "<li>" + product.name + "</li>";
+            });
+            // Get the modal
+            var modal = document.getElementById("modal");
+
+            // Get the modal text
+            var modalText = document.getElementById("modal-text");
+            modalText.innerHTML = html;
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Show the modal
+            modal.style.display = "block";
+            input.value = "";
+            results.style.display = "none";
+        }
+    });
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawLetters(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawLetters(ctx, radius) {
+  var ang;
+  var num;
+let letters = ["O", "L", "I", "D", "E", "R", "N", "E", "T",String.fromCodePoint(0x1F355), String.fromCodePoint(0x1F378), "S"];  ctx.font = radius*0.15 + "px Franklin Gothic Medium";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num <= letters.length; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(letters[num-1], 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+
+//minute
+minute=(minute*Math.PI/30)+(second*Math.PI/(3060));
+drawHand(ctx, minute, radius*0.8, radius*0.07);
+// second
+second=(second*Math.PI/30);
+drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+ctx.beginPath();
+ctx.lineWidth = width;
+ctx.lineCap = "round";
+ctx.moveTo(0,0);
+ctx.rotate(pos);
+ctx.lineTo(0, -length);
+ctx.stroke();
+ctx.rotate(-pos);
+}
+ 
+  </script>
+
+  </body>
+</html>
+
+<style>
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+@media screen and (max-width:600px) {
+  .topnav a {
+    width: 100%;
+  }
+}
+
+</style>
+
+    
+    
