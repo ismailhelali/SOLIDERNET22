@@ -8,14 +8,14 @@
 	<meta name="keywords" content="SOLIDERNET , Temara,catalogue, liste produits ,Produits alimentaires, emballage, patisseries, barquettes, boîtes à pizza, sauces, fromages, jus, arômes, bouillons, crèmes, farines, noix, huiles, sucres, thé et infusions, produits d'entretien, puré, sels, topping et sirop, vinaigres">
 <style>
  /* Navbar container */
-.navbar {
+#navbar {
   overflow: hidden;
   background-color: #333;
   font-family: Arial;
 }
 
 /* Links inside the navbar */
-.navbar a {
+#navbar a {
   float: left;
   font-size: 16px;
   color: white;
@@ -25,13 +25,13 @@
 }
 
 /* The dropdown container */
-.dropdown {
+#dropdown {
   float: left;
   overflow: hidden;
 }
 
 /* Dropdown button */
-.dropdown .dropbtn {
+#dropdown #dropbtn {
   font-size: 16px;
   border: none;
   outline: none;
@@ -43,12 +43,12 @@
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
+#navbar a:hover, #dropdown:hover .dropbtn {
   background-color: red;
 }
 
 /* Dropdown content (hidden by default) */
-.dropdown-content {
+#dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -58,7 +58,7 @@
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+#dropdown-content a {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -68,12 +68,12 @@
 }
 
 /* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
+#dropdown-content a:hover {
   background-color: #ddd;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+#dropdown:hover .dropdown-content {
   display: block;
 }
 
@@ -150,14 +150,14 @@ margin : auto;
  
 </head>
 <body>
-  <div class="navbar">
+  <div class="navbar" id="navbar">
   <a href="">Démarrer</a>
   <a href="contactsolidernet">Contact</a>
-  <div class="dropdown">
-    <button class="dropbtn">Espace Client
+  <div class="dropdown" id="dropdown">
+    <button class="dropbtn" id="dropbtn">Espace Client
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-content">
+    <div class="dropdown-content" id="dropdown-content">
       <a href="gamme-solidernet">Notre Gamme de Produits</a>
       <a href="Listeproduits">Devis Personnalisé</a>
       <a href="">Devenir Client</a>
