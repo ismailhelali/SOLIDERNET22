@@ -7,6 +7,24 @@
   <meta name="description" content="Découvrez notre large gamme de produits alimentaires et d'emballage, incluant des options pour patisseries, barquettes, boîtes à pizza, sauces, fromages, jus, arômes, bouillons, crèmes, farines, noix, huiles, sucres, thé et infusions, produits d'entretien, et plus encore.">
 	<meta name="keywords" content="SOLIDERNET , Temara, Produits alimentaires, emballage, patisseries, barquettes, boîtes à pizza, sauces, fromages, jus, arômes, bouillons, crèmes, farines, noix, huiles, sucres, thé et infusions, produits d'entretien, puré, sels, topping et sirop, vinaigres">
 <style>
+	.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 div.fixed  {
   position: fixed;
   width: 50%;
@@ -179,8 +197,13 @@ h1.title {
 <h2 class="title">Liste des Produits SOLIDERNET</h1>
 <br>
 	</div>
-
+<div class="dropdown">
+  <span>Comment ça marche ?</span>
+  <div class="dropdown-content">
 <p class="product-process">Sélectionner les produits souhaités, entrez les quantités souhaitées, utilisez le champ de recherche pour trouver des produits spécifiques ou utiliser la liste déroulante pour filtrer les produits par catégorie. Il est également possible de générer un fichier PDF qui regroupe les produits sélectionnés et de l'envoyer par email ou WhatsApp pour obtenir un devis personnalisé.</p>
+  </div>
+</div>
+	
   <div class="container-fluid">
     <!-- search field -->
     <div class="row">
