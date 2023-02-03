@@ -143,7 +143,7 @@ margin : auto;
     <!-- product table -->
     <table class="tableliste">
       <thead>
-        <tr class="active-row">
+        <tr>
           <th></th>
           <th>Product</th>
           <th>Quantity</th>
@@ -183,6 +183,7 @@ function generateTableRows(products) {
   table.innerHTML = ''; // clear the table
   products.forEach(product => {
     const row = document.createElement('tr');
+	 row.className = "active-row";
     row.innerHTML = `
       <td>
         <input id="checkbox" class="custom-checkbox"  type="checkbox" ${product.checked ? 'checked' : ''}>
