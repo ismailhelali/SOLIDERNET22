@@ -96,6 +96,28 @@ display: none;
   -ms-word-break: normal;
   word-break: normal;
 }
+ .selectdiv input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
 	
 .tableliste {
     border-collapse: collapse;
@@ -206,14 +228,10 @@ h1.title {
 	
   <div class="container-fluid">
     <!-- search field -->
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <input type="search" class="selectdiv" id="search-field" placeholder="Rechercher un produit">
-      </div>
-    </div>
-    <!-- category dropdown -->
-   
       <div class="selectdiv">
+        <input type="search"  id="search-field" placeholder="Rechercher un produit">
+     
+   
 	        <label>
         <select class="form-control" id="category-select">
 <option value="">Nos catégories</option>      
