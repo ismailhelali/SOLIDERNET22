@@ -7,6 +7,12 @@
   <meta name="description" content="Découvrez notre large gamme de produits alimentaires et d'emballage, incluant des options pour patisseries, barquettes, boîtes à pizza, sauces, fromages, jus, arômes, bouillons, crèmes, farines, noix, huiles, sucres, thé et infusions, produits d'entretien, et plus encore.">
 	<meta name="keywords" content="SOLIDERNET , Temara, Produits alimentaires, emballage, patisseries, barquettes, boîtes à pizza, sauces, fromages, jus, arômes, bouillons, crèmes, farines, noix, huiles, sucres, thé et infusions, produits d'entretien, puré, sels, topping et sirop, vinaigres">
 <style>
+div.fixed {
+  position: fixed;
+  width: 50%;
+  bottom: 10px;
+  border: 3px solid #8AC007;
+} 
 	.selectdiv {
   position: relative;
   /*Don't really need this just for demo styling*/
@@ -182,12 +188,10 @@ h1.title {
 
       </div>
     <!-- PDF button -->
-    <div class="row mt-3">
-      <div class="col-md-6 offset-md-3">
+	  <div class="fixed">
 
         <!-- ON CLICK GENERATE PDF-->
         <button onclick="generatePdf()" id="pdf-button">Télécharger La Liste</button>
-      </div>
 </div>
     <!-- product table -->
     <table class="tableliste">
