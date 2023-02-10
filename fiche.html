@@ -82,6 +82,9 @@
   </style>
 </head>
 <body>
+ <h1>SOLIDERNET</h1>
+ <h2>Fiche d'ouverture de Compte</h2>
+
   <div id="formContainer">
     <form id="contactForm">
     
@@ -135,7 +138,7 @@
       const formData = new FormData(document.getElementById("contactForm"));
 
       // Send the form data to the Google Apps Script
-      fetch("https://script.google.com/macros/s/AKfycbzagwJw0a5yGi3MkE0eUtyZLghECP5tUY0VkxLA2RejT8GBGmyu0-LtYmZmHrupRNWhzA/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbw4mUy6xxmKCsSMW1-bGsixHCL6X9inf6Bd6dN6syzHxUats1I86WMIiP-t3vDygdrBug/exec", {
         method: "POST",
         body: formData
       })
